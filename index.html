@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subhan Sajadi — Mechatronics Engineer</title>
+<meta name="description" content="Portfolio of Subhan Sajadi — Mechanical & Mechatronic Engineering @ TMU. Robotics, embedded systems, and dynamic systems design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F7F1;
+  --paper-2:#F0EFE7;
+  --grid:#DCE3ED;
+  --grid-2:#CBD5E3;
+  --ink:#22303E;
+  --graphite:#5A6675;
+  --draft:#2E5C9E;          /* drafting-pen blue */
+  --draft-soft:rgba(46,92,158,.07);
+  --draft-mid:rgba(46,92,158,.35);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --disp:'Saira Condensed',var(--sans);
+  --hand:'Architects Daughter',cursive;
+  --max:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  overflow-x:hidden;
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(rgba(220,227,237,.45) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(220,227,237,.45) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+}
+::selection{background:var(--draft);color:#fff}
+
+/* =================== DESK INTRO =================== */
+#desk{
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(20,10,4,.45) 100%),
+    repeating-linear-gradient(93deg,rgba(58,36,18,.16) 0 2px,transparent 2px 9px,rgba(58,36,18,.08) 9px 11px,transparent 11px 34px),
+    repeating-linear-gradient(91deg,rgba(255,230,190,.05) 0 1px,transparent 1px 17px),
+    linear-gradient(97deg,#6E4F35,#7E5E40 35%,#6A4B32 70%,#7A5A3D);
+  transition:opacity .55s ease;
+}
+#desk.fade{opacity:0;pointer-events:none}
+#deskScene{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  transform-origin:50% 50%;
+}
+#desk.zoom #deskScene{
+  transform:scale(8.5) rotate(3.5deg);
+  transition:transform 1.5s cubic-bezier(.72,.02,.26,1);
+}
+/* the paper */
+#paper{
+  position:relative;
+  width:min(340px,58vw);aspect-ratio:1/1.32;
+  background:var(--paper);
+  transform:rotate(-3.5deg) translateY(-26px) scale(1.05);
+  box-shadow:0 1px 2px rgba(20,10,4,.3),0 14px 34px rgba(20,10,4,.45);
+  opacity:0;
+}
+#desk.settle #paper{
+  transform:rotate(-3.5deg) translateY(0) scale(1);
+  opacity:1;
+  transition:transform .55s cubic-bezier(.2,.8,.3,1),opacity .35s ease;
+}
+#paper svg{display:block;width:100%;height:100%}
+/* desk props */
+.prop{position:absolute;filter:drop-shadow(0 7px 9px rgba(20,10,4,.4))}
+.prop.ruler{left:max(2vw,calc(50% - 340px));top:12%;height:76%}
+.prop.pencil{right:max(4vw,calc(50% - 330px));top:24%}
+.prop.gearwt{right:max(8vw,calc(50% - 280px));bottom:13%}
+.prop.eraser{left:max(10vw,calc(50% - 250px));bottom:9%}
+.ring{
+  position:absolute;left:calc(50% + 190px);top:9%;
+  width:92px;height:92px;border-radius:50%;
+  border:9px solid rgba(48,26,10,.18);
+  filter:blur(1px);
+}
+@media(max-width:720px){
+  .prop.ruler{display:none}
+  .ring{left:auto;right:4vw}
+}
+
+/* =================== SHEET FRAME =================== */
+.frame{position:fixed;inset:14px;pointer-events:none;z-index:50;border:1px solid var(--grid-2)}
+.frame::before,.frame::after,.frame .c3,.frame .c4{content:'';position:absolute;width:14px;height:14px;border:2px solid var(--ink)}
+.frame::before{top:-2px;left:-2px;border-right:0;border-bottom:0}
+.frame::after{top:-2px;right:-2px;border-left:0;border-bottom:0}
+.frame .c3{bottom:-2px;left:-2px;border-right:0;border-top:0}
+.frame .c4{bottom:-2px;right:-2px;border-left:0;border-top:0}
+@media(max-width:720px){.frame{inset:8px}}
+
+/* =================== NAV =================== */
+nav{
+  position:fixed;top:14px;left:14px;right:14px;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:linear-gradient(rgba(248,247,241,.93),rgba(248,247,241,.86));
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--grid-2);
+}
+nav .id{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--graphite)}
+nav .id b{color:var(--draft);font-weight:500}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-decoration:none;transition:color .2s}
+nav a:hover,nav a:focus-visible{color:var(--draft)}
+nav a:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
+nav .btn{padding:7px 15px;font-size:11px}
+@media(max-width:720px){
+  nav{top:8px;left:8px;right:8px;padding:11px 14px}
+  nav ul{gap:13px}
+  nav a{font-size:10px;letter-spacing:.06em}
+  nav .id{display:none}
+  nav .btn{padding:6px 12px;font-size:10px}
+}
+
+/* =================== HERO =================== */
+.hero{
+  min-height:100svh;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:30px;
+  align-items:center;
+  max-width:var(--max);margin:0 auto;
+  padding:130px 40px 90px;
+  position:relative;
+}
+.kicker{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--draft);display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.kicker::before{content:'';width:34px;height:1px;background:var(--draft)}
+h1{
+  font-family:var(--disp);font-weight:700;
+  font-size:clamp(64px,9.5vw,124px);
+  line-height:.92;letter-spacing:.005em;text-transform:uppercase;
+}
+h1 .row{display:block;overflow:hidden}
+h1 .row span{display:inline-block;transform:translateY(112%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.loaded h1 .row:nth-child(1) span{transform:none;transition-delay:.1s}
+.loaded h1 .row:nth-child(2) span{transform:none;transition-delay:.22s}
+h1 .row:nth-child(2) span{color:transparent;-webkit-text-stroke:1.6px var(--draft)}
+.role{
+  margin-top:24px;font-size:17px;color:var(--graphite);max-width:46ch;
+  opacity:0;transform:translateY(14px);transition:all .8s ease .5s;
+}
+.loaded .role{opacity:1;transform:none}
+.role b{color:var(--ink);font-weight:600}
+.hero-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:all .8s ease .65s}
+.loaded .hero-cta{opacity:1;transform:none}
+.btn{
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:13px 24px;text-decoration:none;border:1px solid var(--ink);color:var(--ink);
+  position:relative;transition:color .25s;overflow:hidden;z-index:1;
+}
+.btn::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.6,0,.2,1);z-index:-1}
+.btn:hover::before,.btn:focus-visible::before{transform:scaleX(1)}
+.btn:hover,.btn:focus-visible{color:var(--paper)}
+.btn.blue{border-color:var(--draft);color:var(--draft)}
+.btn.blue::before{background:var(--draft)}
+.btn.blue:hover,.btn.blue:focus-visible{color:#fff}
+.btn:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
+
+/* hero figure: cutout standing on the drawing */
+.fig{position:relative;justify-self:center;width:min(460px,100%);opacity:0;transition:opacity .5s ease .4s}
+.loaded .fig{opacity:1}
+.fig .stage{position:relative;aspect-ratio:480/560}
+.fig .draw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.fig .draw path,.fig .draw circle,.fig .draw line{
+  stroke-dasharray:1200;stroke-dashoffset:1200;
+}
+.loaded .fig .draw path,.loaded .fig .draw circle,.loaded .fig .draw line{
+  animation:draw 2.2s cubic-bezier(.5,0,.3,1) forwards;
+}
+.loaded .fig .draw .d2{animation-delay:.45s}
+.loaded .fig .draw .d3{animation-delay:.9s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fig img{
+  position:absolute;bottom:24px;left:50%;width:72%;height:auto;
+  filter:grayscale(.12) contrast(1.04) drop-shadow(0 14px 18px rgba(34,48,62,.2));
+  opacity:0;transform:translate(-50%,22px);
+  transition:opacity .8s ease .9s,transform .8s cubic-bezier(.16,1,.3,1) .9s;
+}
+.loaded .fig img{opacity:1;transform:translate(-50%,0)}
+/* leader callouts */
+.callout{
+  position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  color:var(--draft);white-space:nowrap;text-transform:uppercase;
+  background:var(--paper);padding:2px 5px;line-height:1.55;
+  opacity:0;transition:opacity .5s ease;
+}
+.loaded .callout{opacity:1}
+.callout.c1{top:3%;left:-4%;transition-delay:1.9s}
+.callout.c2{top:30%;right:-7%;text-align:right;transition-delay:2.1s}
+.callout.c3{bottom:-9%;left:50%;transform:translateX(-50%);transition-delay:2.3s;color:var(--graphite);background:transparent}
+.callout .hand{font-family:var(--hand);font-size:15px;text-transform:none;letter-spacing:0;color:var(--draft)}
+@media(max-width:880px){
+  .hero{grid-template-columns:1fr;gap:64px;padding:118px 26px 80px}
+}
+@media(max-width:640px){
+  .callout.c1,.callout.c2,.fig .draw .leaders{display:none}
+}
+
+/* =================== SECTION CHROME =================== */
+section{max-width:var(--max);margin:0 auto;padding:66px 40px}
+@media(max-width:720px){section{padding:46px 22px}}
+.shead{
+  display:flex;align-items:baseline;justify-content:space-between;
+  border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:46px;gap:16px;
+}
+.shead h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(30px,4vw,44px);letter-spacing:.015em}
+.shead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--graphite);text-transform:uppercase;text-align:right}
+.shead .tag b{color:var(--draft);font-weight:500}
+
+/* gear divider */
+.divider{
+  max-width:var(--max);margin:0 auto;padding:0 40px;
+  display:flex;align-items:center;gap:18px;
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--grid-2)}
+.divider svg{color:var(--draft-mid)}
+.divider .g1{animation:spin 14s linear infinite}
+.divider .g2{animation:spin 9s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:720px){.divider{padding:0 22px}}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* =================== ABOUT =================== */
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:56px}
+.about p{font-size:18px;color:#33404E;max-width:58ch}
+.about p+p{margin-top:18px}
+.about .hl{background:var(--draft-soft);box-shadow:inset 0 -2px 0 var(--draft);padding:0 3px}
+.about .note{
+  margin-top:26px;font-family:var(--hand);font-size:17px;color:var(--draft);
+  display:flex;align-items:center;gap:10px;
+}
+.about .note svg{flex:none}
+.bom{border:1px solid var(--ink);background:var(--paper);height:fit-content}
+.bom .bhead{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:10px 22px;border-bottom:1px solid var(--ink);color:var(--graphite);
+  display:flex;justify-content:space-between;
+}
+.bom .bhead b{color:var(--draft);font-weight:500}
+.stat{padding:17px 22px;border-bottom:1px solid var(--grid-2);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.stat:last-child{border-bottom:0}
+.stat .n{font-family:var(--disp);font-weight:700;font-size:32px;color:var(--draft)}
+.stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-align:right}
+@media(max-width:880px){.about{grid-template-columns:1fr}}
+
+/* =================== EXPERIENCE =================== */
+.xp{border-top:1px solid var(--grid-2)}
+.job{display:grid;grid-template-columns:170px 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--grid-2);position:relative}
+.job::before{
+  content:'';position:absolute;left:-22px;top:40px;width:9px;height:9px;border-radius:50%;
+  border:2px solid var(--draft);background:var(--paper);
+}
+.job::after{
+  content:'';position:absolute;left:-25px;top:43px;width:15px;height:1px;background:var(--draft);
+  transform:rotate(90deg);
+}
+.job .when{font-family:var(--mono);font-size:12px;color:var(--graphite);letter-spacing:.04em;padding-top:4px}
+.job .when .now{color:var(--draft)}
+.job h3{font-family:var(--disp);font-size:24px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+.job .org{font-family:var(--mono);font-size:12.5px;color:var(--graphite);margin:3px 0 12px;letter-spacing:.04em}
+.job ul{list-style:none;display:grid;gap:7px}
+.job li{padding-left:20px;position:relative;color:#33404E;font-size:15.5px}
+.job li::before{content:'—';position:absolute;left:0;color:var(--draft)}
+@media(max-width:720px){.job{grid-template-columns:1fr;gap:8px}.job::before,.job::after{display:none}}
+.job .company-logo{display:block;margin-top:14px;max-width:130px;height:44px;object-fit:contain;object-position:left center;opacity:.85;filter:grayscale(.15)}
+.job .company-logo.logo-cover{object-fit:cover;object-position:center 50%;width:130px}
+@media(max-width:720px){.job .company-logo{height:36px;max-width:110px}}
+
+/* =================== PROJECTS =================== */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.card{
+  border:1px solid var(--ink);background:var(--paper);position:relative;
+  display:flex;flex-direction:column;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;
+}
+.card:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--draft)}
+.card .cbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-bottom:1px solid var(--ink);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);
+}
+.card .cbar b{color:var(--draft);font-weight:500}
+.card .body{padding:22px;flex:1;display:flex;flex-direction:column}
+.card .media{border-bottom:1px solid var(--ink);background:linear-gradient(#FCFCFA,#F1F2EC);overflow:hidden;position:relative}
+.card .media svg{display:block;width:100%;height:auto}
+.card .media .figlbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--graphite)}
+.card h3{font-family:var(--disp);font-size:25px;font-weight:600;text-transform:uppercase;line-height:1.1;margin-bottom:10px}
+.m-sweep{animation:lidar 2.8s ease-in-out infinite alternate}
+@keyframes lidar{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.m-spin{animation:rspin .45s linear infinite}
+@keyframes rspin{to{transform:rotate(360deg)}}
+.m-wave{stroke-dasharray:6 5;animation:wmarch .8s linear infinite}
+@keyframes wmarch{to{stroke-dashoffset:-11}}
+.m-steam{animation:steam 4.5s ease-in-out infinite}
+.m-steam.s2{animation-delay:2.2s}
+@keyframes steam{0%,100%{opacity:.2;transform:translateY(0)}50%{opacity:.75;transform:translateY(-9px)}}
+.m-trace{stroke-dasharray:240;animation:trace 3s linear infinite}
+@keyframes trace{from{stroke-dashoffset:240}to{stroke-dashoffset:-240}}
+.card p{font-size:15px;color:#33404E;flex:1}
+.card .res{
+  margin-top:16px;padding:10px 14px;background:var(--draft-soft);
+  border-left:3px solid var(--draft);
+  font-family:var(--mono);font-size:12.5px;color:var(--ink);letter-spacing:.01em;
+}
+.card .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.chips span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  border:1px solid var(--grid-2);color:var(--graphite);padding:4px 9px;background:var(--paper-2);
+}
+
+/* =================== SKILLS =================== */
+.spec{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--ink)}
+.spec .col{padding:26px 28px;border-bottom:1px solid var(--grid-2)}
+.spec .col:nth-child(odd){border-right:1px solid var(--grid-2)}
+.spec .col:nth-last-child(-n+2){border-bottom:0}
+.spec h3{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--draft);margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.spec h3::after{content:'';flex:1;height:1px;background:var(--grid-2)}
+.spec .items{display:flex;flex-wrap:wrap;gap:8px}
+.spec .items span{font-size:14px;color:var(--ink);background:var(--paper-2);border:1px solid var(--grid-2);padding:5px 12px;transition:all .2s}
+.spec .items span:hover{border-color:var(--draft);color:var(--draft);background:var(--draft-soft)}
+@media(max-width:720px){.spec{grid-template-columns:1fr}.spec .col{border-right:0!important}.spec .col:nth-last-child(2){border-bottom:1px solid var(--grid-2)}}
+
+/* =================== LEADERSHIP =================== */
+.lead{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:880px){.lead{grid-template-columns:1fr}}
+.lcard{border:1px solid var(--ink);padding:24px;background:var(--paper);position:relative}
+.lcard::before{
+  content:attr(data-n);position:absolute;top:-13px;right:16px;
+  font-family:var(--mono);font-size:11px;color:var(--draft);background:var(--paper);padding:0 8px;letter-spacing:.1em;
+}
+.lcard h3{font-family:var(--disp);font-size:22px;font-weight:600;text-transform:uppercase;line-height:1.15}
+.lcard .org{font-family:var(--mono);font-size:11.5px;color:var(--graphite);margin:4px 0 12px}
+.lcard p{font-size:14.5px;color:#33404E}
+.lcard .metric{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--draft)}
+
+/* =================== CONTACT / TITLE BLOCK =================== */
+footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relative}
+@media(max-width:720px){footer{padding:46px 22px 44px}}
+.contact{margin-bottom:60px;position:relative}
+.contact h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(44px,7vw,86px);line-height:.95;letter-spacing:.005em}
+.contact h2 .o{color:transparent;-webkit-text-stroke:1.6px var(--draft)}
+.contact p{margin-top:18px;font-size:17px;color:var(--graphite);max-width:52ch}
+.contact .hero-cta{opacity:1;transform:none}
+.stamp{
+  position:absolute;right:0;top:-6px;width:158px;height:158px;
+  transform:rotate(-12deg);color:var(--draft);opacity:.82;
+  pointer-events:none;
+}
+@media(max-width:880px){.stamp{width:118px;height:118px;top:auto;bottom:-30px;right:6px}}
+.tblock{border:2px solid var(--ink);display:grid;grid-template-columns:repeat(4,1fr);font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.tblock .cell{padding:12px 16px;border-right:1px solid var(--ink)}
+.tblock .cell:last-child{border-right:0}
+.tblock .k{display:block;font-size:9.5px;color:var(--graphite);text-transform:uppercase;letter-spacing:.14em;margin-bottom:3px}
+.tblock .v{color:var(--ink)}
+.tblock .v.blue{color:var(--draft)}
+.tblock a{color:inherit;text-decoration:none}
+.tblock a:hover{color:var(--draft)}
+@media(max-width:720px){.tblock{grid-template-columns:repeat(2,1fr)}.tblock .cell:nth-child(2n){border-right:0}.tblock .cell:nth-child(-n+2){border-bottom:1px solid var(--ink)}}
+
+/* =================== REDUCED MOTION =================== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  #desk{display:none}
+  h1 .row span,.role,.hero-cta,.fig,.fig img,.callout,.rv{opacity:1;transform:none}
+  .fig .draw path,.fig .draw circle,.fig .draw line{stroke-dasharray:none;stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ DESK INTRO ============ -->
+<div id="desk" aria-hidden="true">
+  <div id="deskScene">
+    <!-- coffee ring -->
+    <div class="ring"></div>
+
+    <!-- ruler -->
+    <svg class="prop ruler" width="44" viewBox="0 0 44 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="36" height="600" fill="#D8C49A" stroke="#A98F5E"/>
+      <g stroke="#7A6238" stroke-width="1.4">
+        <line x1="4" y1="30" x2="22" y2="30"/><line x1="4" y1="60" x2="16" y2="60"/>
+        <line x1="4" y1="90" x2="16" y2="90"/><line x1="4" y1="120" x2="22" y2="120"/>
+        <line x1="4" y1="150" x2="16" y2="150"/><line x1="4" y1="180" x2="16" y2="180"/>
+        <line x1="4" y1="210" x2="22" y2="210"/><line x1="4" y1="240" x2="16" y2="240"/>
+        <line x1="4" y1="270" x2="16" y2="270"/><line x1="4" y1="300" x2="22" y2="300"/>
+        <line x1="4" y1="330" x2="16" y2="330"/><line x1="4" y1="360" x2="16" y2="360"/>
+        <line x1="4" y1="390" x2="22" y2="390"/><line x1="4" y1="420" x2="16" y2="420"/>
+        <line x1="4" y1="450" x2="16" y2="450"/><line x1="4" y1="480" x2="22" y2="480"/>
+        <line x1="4" y1="510" x2="16" y2="510"/><line x1="4" y1="540" x2="16" y2="540"/>
+        <line x1="4" y1="570" x2="22" y2="570"/>
+      </g>
+    </svg>
+
+    <!-- mechanical pencil -->
+    <svg class="prop pencil" width="36" height="290" viewBox="0 0 36 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(14deg)">
+      <rect x="11" y="6" width="14" height="210" rx="3" fill="#3C5872"/>
+      <rect x="11" y="48" width="14" height="34" fill="#2C4258"/>
+      <rect x="13.5" y="216" width="9" height="32" fill="#B9C2CC"/>
+      <path d="M15 248 L21 248 L18.7 272 L17.3 272 Z" fill="#8D969F"/>
+      <rect x="17.4" y="272" width="1.4" height="12" fill="#222"/>
+      <rect x="13" y="0" width="10" height="8" rx="2" fill="#B9C2CC"/>
+    </svg>
+
+    <!-- gear paperweight -->
+    <svg class="prop gearwt" width="92" height="92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#37424E" d="M12 1.5l1.2 2.4 2.6-.6 .4 2.7 2.7 .4-.6 2.6 2.4 1.2-1.5 2.3 1.5 2.3-2.4 1.2 .6 2.6-2.7 .4-.4 2.7-2.6-.6L12 22.5l-1.2-2.4-2.6 .6-.4-2.7-2.7-.4 .6-2.6L3.3 13.7 4.8 11.4 3.3 9.1l2.4-1.2-.6-2.6 2.7-.4 .4-2.7 2.6 .6Z"/>
+      <circle cx="12" cy="11.4" r="4.6" fill="#5E6B79"/>
+      <circle cx="12" cy="11.4" r="2" fill="#222B34"/>
+    </svg>
+
+    <!-- eraser -->
+    <svg class="prop eraser" width="84" height="44" viewBox="0 0 84 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-18deg)">
+      <rect x="1" y="1" width="82" height="42" rx="6" fill="#EDEAE2" stroke="#C9C3B4"/>
+      <rect x="1" y="1" width="30" height="42" rx="6" fill="#3D5B7E"/>
+    </svg>
+
+    <!-- the paper (mini drawing sheet) -->
+    <div id="paper">
+      <svg viewBox="0 0 340 449" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- border + corners -->
+        <rect x="10" y="10" width="320" height="429" stroke="#22303E" stroke-width="1.4"/>
+        <rect x="16" y="16" width="308" height="417" stroke="#CBD5E3" stroke-width=".7"/>
+        <!-- grid hint -->
+        <g stroke="#DCE3ED" stroke-width=".5">
+          <line x1="10" y1="120" x2="330" y2="120"/><line x1="10" y1="230" x2="330" y2="230"/>
+          <line x1="10" y1="340" x2="330" y2="340"/><line x1="120" y1="10" x2="120" y2="439"/>
+          <line x1="230" y1="10" x2="230" y2="439"/>
+        </g>
+        <!-- name -->
+        <text x="30" y="64" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="34" fill="#22303E" letter-spacing="1">SUBHAN</text>
+        <text x="30" y="100" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="34" fill="none" stroke="#2E5C9E" stroke-width="1" letter-spacing="1">SAJADI</text>
+        <text x="30" y="124" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#2E5C9E" letter-spacing="1.5">MECHATRONICS · ROBOTICS</text>
+        <!-- gear sketch -->
+        <g stroke="#2E5C9E" stroke-width="1.1" opacity=".75">
+          <circle cx="250" cy="190" r="34"/>
+          <circle cx="250" cy="190" r="22" stroke-dasharray="4 3"/>
+          <circle cx="250" cy="190" r="7"/>
+          <line x1="250" y1="146" x2="250" y2="234" stroke-dasharray="6 4" stroke-width=".8"/>
+          <line x1="206" y1="190" x2="294" y2="190" stroke-dasharray="6 4" stroke-width=".8"/>
+        </g>
+        <!-- arm sketch -->
+        <g stroke="#22303E" stroke-width="1.3">
+          <circle cx="70" cy="350" r="9"/>
+          <line x1="70" y1="350" x2="150" y2="300"/>
+          <circle cx="150" cy="300" r="7"/>
+          <line x1="150" y1="300" x2="215" y2="330"/>
+          <circle cx="215" cy="330" r="5"/>
+          <path d="M215 330 l18 -6 M215 330 l16 12"/>
+        </g>
+        <g stroke="#2E5C9E" stroke-width=".7" opacity=".8">
+          <line x1="70" y1="372" x2="215" y2="372"/>
+          <line x1="70" y1="360" x2="70" y2="376"/><line x1="215" y1="338" x2="215" y2="376"/>
+        </g>
+        <text x="128" y="384" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#2E5C9E">R = 240</text>
+        <!-- title block -->
+        <g stroke="#22303E" stroke-width="1">
+          <rect x="10" y="404" width="320" height="35"/>
+          <line x1="130" y1="404" x2="130" y2="439"/>
+          <line x1="240" y1="404" x2="240" y2="439"/>
+        </g>
+        <text x="18" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">DRAWN BY</text>
+        <text x="18" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#22303E">S. SAJADI</text>
+        <text x="138" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">SHEET</text>
+        <text x="138" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#22303E">SS-001</text>
+        <text x="248" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">SCALE</text>
+        <text x="248" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#2E5C9E">1:1</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="frame" aria-hidden="true"><span class="c3"></span><span class="c4"></span></div>
+
+<nav>
+  <div class="id"><b>SS-001</b> / REV 2026.06 / SCALE 1:1</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="btn blue" href="Subhan_Sajadi_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div>
+    <div class="kicker">Mechatronics · Robotics · Embedded Systems</div>
+    <h1>
+      <span class="row"><span>Subhan</span></span>
+      <span class="row"><span>Sajadi</span></span>
+    </h1>
+    <p class="role">Mechanical Engineering (Mechatronics) student at <b>Toronto Metropolitan University</b> — Undergraduate Research Assistant at <b>iBEST</b> and VP Competitions at the <b>Ontario Engineering Competition</b>. I design, build, and program electromechanical systems that actually work.</p>
+    <div class="hero-cta">
+      <a class="btn blue" href="#projects">View Projects</a>
+      <a class="btn" href="#contact">Get In Touch</a>
+    </div>
+  </div>
+
+  <figure class="fig">
+    <div class="stage">
+      <!-- drawn linework behind: robotic arm + gear + datum -->
+      <svg class="draw" viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+        <!-- robotic arm, right margin -->
+        <g stroke="#2E5C9E" stroke-width="1.6" opacity=".55">
+          <circle cx="432" cy="486" r="22"/>
+          <circle cx="432" cy="486" r="8"/>
+          <path class="d2" d="M432 486 L392 348"/>
+          <circle class="d2" cx="392" cy="348" r="13"/>
+          <path class="d2" d="M392 348 L444 226"/>
+          <circle class="d3" cx="444" cy="226" r="9"/>
+          <path class="d3" d="M444 226 l28 -10 M444 226 l24 16"/>
+          <circle class="d3" cx="472" cy="216" r="3.4"/>
+          <circle class="d3" cx="468" cy="242" r="3.4"/>
+        </g>
+        <!-- arm base centerlines -->
+        <g stroke="#2E5C9E" stroke-width=".8" stroke-dasharray="8 5" opacity=".4">
+          <line class="d2" x1="432" y1="442" x2="432" y2="530"/>
+          <line class="d2" x1="388" y1="486" x2="476" y2="486"/>
+        </g>
+        <!-- dimension arc at elbow -->
+        <g stroke="#2E5C9E" stroke-width=".9" opacity=".55">
+          <path class="d3" d="M414 320 A 38 38 0 0 1 412 376"/>
+          <path class="d3" d="M414 320 l-8 3 M414 320 l3 8"/>
+        </g>
+        <!-- gear, lower-left margin -->
+        <g stroke="#2E5C9E" stroke-width="1.4" opacity=".5">
+          <circle cx="56" cy="408" r="44"/>
+          <circle class="d2" cx="56" cy="408" r="30" stroke-dasharray="5 4"/>
+          <circle class="d2" cx="56" cy="408" r="10"/>
+          <line class="d3" x1="56" y1="352" x2="56" y2="464" stroke-dasharray="9 5" stroke-width=".8"/>
+          <line class="d3" x1="0" y1="408" x2="112" y2="408" stroke-dasharray="9 5" stroke-width=".8"/>
+        </g>
+        <!-- datum / ground hatch under feet -->
+        <g stroke="#22303E" stroke-width="1.2" opacity=".75">
+          <line class="d3" x1="96" y1="538" x2="384" y2="538"/>
+        </g>
+        <g stroke="#22303E" stroke-width=".9" opacity=".5">
+          <line class="d3" x1="106" y1="550" x2="118" y2="538"/><line class="d3" x1="132" y1="550" x2="144" y2="538"/>
+          <line class="d3" x1="158" y1="550" x2="170" y2="538"/><line class="d3" x1="184" y1="550" x2="196" y2="538"/>
+          <line class="d3" x1="210" y1="550" x2="222" y2="538"/><line class="d3" x1="236" y1="550" x2="248" y2="538"/>
+          <line class="d3" x1="262" y1="550" x2="274" y2="538"/><line class="d3" x1="288" y1="550" x2="300" y2="538"/>
+          <line class="d3" x1="314" y1="550" x2="326" y2="538"/><line class="d3" x1="340" y1="550" x2="352" y2="538"/>
+          <line class="d3" x1="366" y1="550" x2="378" y2="538"/>
+        </g>
+        <!-- leader lines: from callout text to silhouette edge -->
+        <g class="leaders" stroke="#2E5C9E" stroke-width="1" opacity=".8">
+          <path class="d3" d="M60 76 L134 248"/>
+          <circle class="d3" cx="134" cy="248" r="2.6" fill="#2E5C9E" stroke="none"/>
+          <path class="d3" d="M430 206 L398 232"/>
+          <circle class="d3" cx="398" cy="232" r="2.6" fill="#2E5C9E" stroke="none"/>
+        </g>
+      </svg>
+
+      <img src="subhan_cutout.png" alt="Subhan Sajadi, arms crossed in a black blazer" width="755" height="1119">
+
+      <div class="callout c1">ITEM 1 — ENGINEER<br>QTY: 1 · MAT'L: DETERMINED</div>
+      <div class="callout c2">SEE SHT 03<br>FOR DETAIL DWGS</div>
+      <div class="callout c3"><span style="font-family:var(--mono)">DATUM A · </span><span class="hand">as built, works on first try*</span></div>
+    </div>
+  </figure>
+</header>
+
+<div class="divider" aria-hidden="true">
+  <svg class="g1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.8l.9 1.9 2-.5.3 2.1 2.1.3-.5 2 1.9.9-1.1 1.8 1.1 1.8-1.9.9.5 2-2.1.3-.3 2.1-2-.5-.9 1.9-.9-1.9-2 .5-.3-2.1-2.1-.3.5-2-1.9-.9 1.1-1.8L4.6 9.5l1.9-.9-.5-2 2.1-.3.3-2.1 2 .5Z"/><circle cx="12" cy="11.3" r="3.4"/></svg>
+  <svg class="g2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.8l.9 1.9 2-.5.3 2.1 2.1.3-.5 2 1.9.9-1.1 1.8 1.1 1.8-1.9.9.5 2-2.1.3-.3 2.1-2-.5-.9 1.9-.9-1.9-2 .5-.3-2.1-2.1-.3.5-2-1.9-.9 1.1-1.8L4.6 9.5l1.9-.9-.5-2 2.1-.3.3-2.1 2 .5Z"/><circle cx="12" cy="11.3" r="3.4"/></svg>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="shead rv">
+    <h2>Profile</h2>
+    <div class="tag"><b>SHT 01</b> / GENERAL NOTES</div>
+  </div>
+  <div class="about">
+    <div class="rv">
+      <p>I build integrated systems where <span class="hl">mechanical design, electronics, and code meet</span> — from a SLAM-driven autonomous race car to a sensor-instrumented knee sleeve for ACL rehabilitation. My approach combines analytical modeling, simulation, and rapid prototyping to get from concept to a working machine.</p>
+      <p>Alongside engineering, I've led teams of up to 26 people delivering province-scale competitions, and spent a year inside automotive manufacturing at Litens reviewing drawings, BOMs, and ECOs with real suppliers. Currently exploring how AI and machine learning can make physical systems more intelligent — working toward a career in robotics.</p>
+      <div class="note">
+        <svg width="34" height="22" viewBox="0 0 34 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 18 C 12 20, 22 14, 30 6 M30 6 l-7 1 M30 6 l-1 7"/></svg>
+        from CAD to firmware — I like owning the whole stack
+      </div>
+    </div>
+    <div class="bom rv">
+      <div class="bhead"><span>BILL OF MATERIALS</span><b>TBL-01</b></div>
+      <div class="stat"><span class="n">2027</span><span class="l">B.Eng Mech. Eng + CS Minor<br>Toronto Metropolitan Univ.</span></div>
+      <div class="stat"><span class="n">6+</span><span class="l">Hardware + software<br>projects shipped</span></div>
+      <div class="stat"><span class="n">26</span><span class="l">Largest team led</span></div>
+      <div class="stat"><span class="n">~90%</span><span class="l">Collision reduction,<br>autonomous AEB system</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="shead rv">
+    <h2>Experience</h2>
+    <div class="tag"><b>SHT 02</b> / REVISION HISTORY</div>
+  </div>
+  <div class="xp">
+    <div class="job rv">
+      <div class="when">May 2026 — <span class="now">Present</span><img src="iBEST.png" alt="iBEST" class="company-logo logo-cover" style="height:56px"></div>
+      <div>
+        <h3>Undergraduate Research Assistant</h3>
+        <div class="org">iBEST — Institute for Biomedical Engineering, Science & Technology · Toronto</div>
+        <ul>
+          <li>Conducting research at the intersection of engineering and biomedical science at TMU + St. Michael's Hospital's joint research institute.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="when">Mar 2026 — <span class="now">Present</span><img src="tmuwave.png" alt="TMU WAVE" class="company-logo" style="height:52px;max-width:52px"></div>
+      <div>
+        <h3>Software Team Member</h3>
+        <div class="org">TMU WAVE · Design Team</div>
+        <ul>
+          <li>Developing software for TMU's student vehicle design team.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="when">May 2025 — May 2026<img src="litens.png.webp" alt="Litens Automotive" class="company-logo logo-cover" style="height:36px"></div>
+      <div>
+        <h3>Purchasing Student</h3>
+        <div class="org">Litens Automotive Group · Vaughan, ON</div>
+        <ul>
+          <li>Reviewed engineering drawings and BOMs to identify design improvements, achieving up to 10% in cost savings.</li>
+          <li>Coordinated supplier design exceptions, ECOs and MCOs, keeping revisions aligned with production capability and cost targets.</li>
+          <li>Served as project manager tracking progress across multiple team projects; supported CRQs for Ford, GMC, and other OEMs.</li>
+          <li>Analyzed raw material trends with engineering to select materials; conducted site visits to verify technical and quality compliance.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="when">May 2024 — Aug 2024<img src="Celestica.png" alt="Celestica" class="company-logo"></div>
+      <div>
+        <h3>Commodity Management</h3>
+        <div class="org">Celestica · Toronto, ON</div>
+        <ul>
+          <li>Negotiated supplier contracts, achieving a 10% increase in cost savings.</li>
+          <li>Optimized procurement workflows by maintaining material price databases for compliance and competitiveness in global bids.</li>
+          <li>Resolved supplier performance issues and participated in quarterly business reviews with top suppliers.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="when">Sep 2023 — Jun 2025<img src="PALS.png" alt="PALS Learning Center" class="company-logo"></div>
+      <div>
+        <h3>Academic Tutor</h3>
+        <div class="org">PALS Learning Center · Toronto, ON</div>
+        <ul>
+          <li>Tutored grades 9–12 science and mathematics.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="shead rv">
+    <h2>Projects</h2>
+    <div class="tag"><b>SHT 03</b> / DETAIL DRAWINGS</div>
+  </div>
+
+  <div class="grid">
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-01</b></span><span>Autonomous Systems</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D4C5C"/><stop offset="1" stop-color="#1B232C"/></linearGradient>
+ <linearGradient id="g1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E8BC9"/><stop offset="1" stop-color="#2E5C9E"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-01 · AEB ENGAGED</text>
+<ellipse cx="250" cy="128" rx="180" ry="7" fill="#22303E" opacity=".09"/>
+<g class="m-sweep" style="transform-origin:262px 47px">
+  <path d="M262 47 L470 18 L470 78 Z" fill="#E03C3C" opacity=".13"/>
+  <line x1="262" y1="47" x2="470" y2="47" stroke="#E03C3C" stroke-width="1.2" opacity=".55"/>
+</g>
+<rect x="246" y="38" width="34" height="15" rx="4" fill="#15191E"/>
+<ellipse cx="263" cy="38" rx="17" ry="3.6" fill="#2A323C"/>
+<rect x="257" y="53" width="11" height="16" fill="#2A323C"/>
+<path d="M82 104 L150 80 L248 72 L348 74 L432 88 L448 102 L438 116 L96 116 Z" fill="url(#g1a)" stroke="#10161D" stroke-width="1.4"/>
+<path d="M196 74 L238 56 L304 56 L330 73 Z" fill="url(#g1b)" stroke="#1E3F70" stroke-width="1.2"/>
+<path d="M86 104 L150 84 L250 76" stroke="#5E8BC9" stroke-width="1.4" opacity=".5"/>
+<text x="262" y="99" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#AFC2D6" letter-spacing="2">F1TENTH</text>
+<circle cx="152" cy="112" r="23" fill="#14181D"/><circle cx="152" cy="112" r="11" fill="#9AA5B0"/><circle cx="152" cy="112" r="4" fill="#2A323C"/>
+<circle cx="382" cy="112" r="23" fill="#14181D"/><circle cx="382" cy="112" r="11" fill="#9AA5B0"/><circle cx="382" cy="112" r="4" fill="#2A323C"/>
+<line x1="20" y1="135" x2="500" y2="135" stroke="#B9C2CC" stroke-width="1"/>
+</svg></div>
+      <div class="body">
+        <h3>1/10th-Scale Autonomous Race Car</h3>
+        <p>SLAM-based localization with RViz visualization on the F1Tenth platform, plus an automatic emergency braking system using LiDAR distance thresholding and time-to-collision logic.</p>
+        <div class="res">↓ ~90% collision events · &lt;100 ms perception-to-control</div>
+        <div class="chips"><span>ROS2</span><span>SLAM</span><span>LiDAR</span><span>RViz</span><span>Python</span></div>
+      </div>
+    </article>
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-02</b></span><span>Biomedical</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g2v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DDE7F2"/><stop offset="1" stop-color="#F0F4F9"/></linearGradient>
+ <linearGradient id="g2s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#55657A"/><stop offset=".5" stop-color="#2D3A49"/><stop offset="1" stop-color="#1C2630"/></linearGradient>
+ <linearGradient id="g2l" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F0CBA4"/><stop offset=".55" stop-color="#E2B488"/><stop offset="1" stop-color="#C99B6F"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<g>
+<rect x="56" y="10" width="408" height="130" fill="#FAFBFC" stroke="#B9C2CC" stroke-width="1.2"/>
+<rect x="56" y="10" width="408" height="18" fill="#ECEFF3" stroke="#B9C2CC" stroke-width="1.2"/>
+<rect x="62" y="15" width="9" height="9" fill="#E8762C"/>
+<text x="78" y="22.5" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#3A4654">SOLIDWORKS — knee_sleeve_asm.SLDASM</text>
+<circle cx="436" cy="19" r="2.6" fill="#B9C2CC"/><circle cx="446" cy="19" r="2.6" fill="#B9C2CC"/><circle cx="456" cy="19" r="2.6" fill="#E03C3C"/>
+<rect x="56" y="28" width="96" height="112" fill="#F4F6F8" stroke="#D5DBE1" stroke-width="1"/>
+<g font-family="'IBM Plex Mono',monospace" font-size="7.2" fill="#5A6675">
+ <text x="64" y="44">▾ Assembly</text><text x="70" y="58">▸ Sleeve_Body</text><text x="70" y="72">▸ EMG_Mount ×2</text><text x="70" y="86">▸ IMU_Pod</text><text x="70" y="100">▸ Battery_Hsg</text><text x="70" y="114" fill="#2E5C9E">▸ Strap_Buckle</text><text x="70" y="128">▸ Mates (14)</text>
+</g>
+<rect x="152" y="28" width="312" height="112" fill="url(#g2v)"/>
+<path d="M285 36 C262 36 254 52 254 70 C254 90 248 96 248 112 L248 134 L322 134 L322 112 C322 96 316 90 316 70 C316 52 308 36 285 36 Z" fill="url(#g2l)"/>
+<rect x="246" y="58" width="78" height="56" rx="16" fill="url(#g2s)" stroke="#E8762C" stroke-width="1.6"/>
+<ellipse cx="266" cy="72" rx="9" ry="18" fill="#6B7C90" opacity=".35"/>
+<line x1="246" y1="70" x2="324" y2="70" stroke="#11161C" stroke-width="2" opacity=".5"/>
+<line x1="246" y1="102" x2="324" y2="102" stroke="#11161C" stroke-width="2" opacity=".5"/>
+<rect x="296" y="76" width="22" height="22" rx="3" fill="#1E7A45" stroke="#0F4A28" stroke-width="1"/>
+<circle cx="302" cy="82" r="1.6" fill="#E9C46A"/><circle cx="308" cy="82" r="1.6" fill="#E9C46A"/><circle cx="302" cy="88" r="1.6" fill="#E9C46A"/><circle cx="308" cy="88" r="1.6" fill="#E9C46A"/>
+<circle cx="258" cy="86" r="5" fill="#C9D2DA" stroke="#5A6675" stroke-width="1"/>
+<path class="m-trace" d="M340 76 h18 l5 -14 7 26 6 -20 5 8 h18 l5 -10 7 18 6 -14 h18" stroke="#2E5C9E" stroke-width="1.5"/>
+<text x="340" y="64" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#2E5C9E">sEMG CH1</text>
+<g stroke-width="1.6"><line x1="162" y1="130" x2="178" y2="130" stroke="#D6453C"/><line x1="162" y1="130" x2="162" y2="114" stroke="#3DA35D"/><line x1="162" y1="130" x2="173" y2="121" stroke="#3E6FB8"/></g>
+</g>
+</svg></div>
+      <div class="body">
+        <h3>Smart Rehabilitation Knee Sleeve</h3>
+        <p>Wearable integrating surface EMG and IMU sensors to quantify muscle activation asymmetry and knee ROM for ACL rehab. Embedded firmware performs real-time bilateral EMG comparison; full CAD assembly with modular sensor mounts, plus FEA and Health Canada / FDA Class I regulatory analysis.</p>
+        <div class="res">Objective strength-deficit tracking, injured vs. healthy leg</div>
+        <div class="chips"><span>EMG</span><span>IMU</span><span>Embedded C</span><span>CAD</span><span>FEA</span><span>Regulatory</span></div>
+      </div>
+    </article>
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-03</b></span><span>Robotics</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g3b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D2DA"/><stop offset="1" stop-color="#8E99A4"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-03 · TERRAIN TRIAL</text>
+<rect x="0" y="118" width="520" height="32" fill="#E9DEC6"/>
+<path d="M0 118 H520" stroke="#C9B98F" stroke-width="1.2"/>
+<ellipse cx="92" cy="124" rx="10" ry="4" fill="#C9B98F"/><ellipse cx="430" cy="127" rx="14" ry="5" fill="#C9B98F"/>
+<circle cx="170" cy="106" r="17" fill="#1A1E23"/><circle cx="170" cy="106" r="8" fill="#9AA5B0"/>
+<circle cx="244" cy="106" r="17" fill="#1A1E23"/><circle cx="244" cy="106" r="8" fill="#9AA5B0"/>
+<circle cx="318" cy="106" r="17" fill="#1A1E23"/><circle cx="318" cy="106" r="8" fill="#9AA5B0"/>
+<g stroke="#E8762C" stroke-width="6" stroke-linecap="round">
+ <path d="M170 106 L207 76 L244 106"/>
+ <path d="M207 76 L262 64 L318 106"/>
+</g>
+<circle cx="207" cy="76" r="5" fill="#A14E15"/><circle cx="262" cy="64" r="5" fill="#A14E15"/>
+<rect x="186" y="30" width="140" height="34" rx="4" fill="url(#g3b)" stroke="#5A636D" stroke-width="1.4"/>
+<rect x="194" y="24" width="52" height="8" rx="2" fill="#2E5C9E"/>
+<line x1="200" y1="30" x2="200" y2="8" stroke="#5A636D" stroke-width="3"/>
+<rect x="192" y="2" width="16" height="9" rx="2" fill="#1A1E23"/>
+<g stroke="#E8762C" stroke-width="5" stroke-linecap="round"><path d="M326 42 L366 26 L398 58"/></g>
+<circle cx="366" cy="26" r="4.5" fill="#A14E15"/>
+<path d="M398 58 l13 -5 M398 58 l11 9" stroke="#1A1E23" stroke-width="3" stroke-linecap="round"/>
+<rect x="404" y="56" width="14" height="13" fill="#2E5C9E" stroke="#1E3F70" stroke-width="1"/>
+<text x="226" y="52" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#3A4654" letter-spacing="1">ROVER-01</text>
+</svg></div>
+      <div class="body">
+        <h3>Rocker-Bogie Rover + 3-DOF Arm</h3>
+        <p>Terrain-adaptive 6-wheel rover with an integrated robotic arm for mobile manipulation. Modeled suspension kinematics and arm workspace in MATLAB with worst-case torque and tip-over analysis; 3D-printed subsystems and built an ESP32 control system with PWM motor control.</p>
+        <div class="res">Full mechatronic stack: CAD → analysis → build → firmware</div>
+        <div class="chips"><span>SolidWorks</span><span>MATLAB</span><span>ESP32</span><span>3D Printing</span></div>
+      </div>
+    </article>
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-04</b></span><span>Dynamics</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g4b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D5DCE4"/><stop offset="1" stop-color="#97A2AE"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-04 · 1500 RPM</text>
+<path d="M40 66 L368 76 L368 96 L40 104 Z" fill="url(#g4b)" stroke="#5A636D" stroke-width="1.3"/>
+<path d="M40 82 L368 87" stroke="#D6453C" stroke-width="3"/>
+<path d="M368 76 L398 38 L414 40 L392 78 L392 94 L368 96 Z" fill="url(#g4b)" stroke="#5A636D" stroke-width="1.3"/>
+<circle cx="404" cy="86" r="26" stroke="#9AA5B0" stroke-width="1" stroke-dasharray="3 4" opacity=".8"/>
+<g class="m-spin" style="transform-origin:404px 86px">
+  <rect x="401.5" y="56" width="5" height="60" rx="2.4" fill="#2A323C"/>
+  <rect x="374" y="83.5" width="60" height="5" rx="2.4" fill="#2A323C"/>
+</g>
+<circle cx="404" cy="86" r="6.5" fill="#15191E" stroke="#5A636D" stroke-width="1.4"/>
+<path class="m-wave" d="M60 50 q10 -3 20 0 t20 0 q10 -5 20 0 t20 0 q10 -8 20 0 t20 0 q10 -12 20 0 t20 0 q10 -17 20 0 t20 0 q11 -22 22 0 t22 0" stroke="#2E5C9E" stroke-width="1.5"/>
+<text x="60" y="36" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#2E5C9E">TRANSMISSIBILITY ↓80% ←</text>
+<g stroke="#5A6675" stroke-width="1.1"><rect x="186" y="104" width="26" height="18" fill="#C9D2DA"/><path d="M192 104 v-8 M206 104 v-8 M192 96 h14"/><path d="M196 122 l-4 8 8 0 -4 -8" fill="#5A6675"/></g>
+<text x="222" y="118" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">2-DOF ABSORBER</text>
+</svg></div>
+      <div class="body">
+        <h3>Passive Vibration Absorber — Helicopter Tail Rotor</h3>
+        <p>2-DOF passive absorber mitigating harmonic excitation from a 500 g unbalanced rotor at 1000–2000 rpm. Tuned mass, damping, and frequency ratios via Den Hartog's equal-peak method, validated with MATLAB transmissibility simulations.</p>
+        <div class="res">↓ up to 80% peak transmissibility at resonance</div>
+        <div class="chips"><span>Vibrations</span><span>MATLAB</span><span>Den Hartog</span><span>Simulation</span></div>
+      </div>
+    </article>
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-05</b></span><span>Mechanism Design</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g5s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A434E"/><stop offset="1" stop-color="#171C22"/></linearGradient>
+ <linearGradient id="g5f" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D7DDE4"/><stop offset=".5" stop-color="#AEB7C1"/><stop offset="1" stop-color="#7E8893"/></linearGradient>
+ <linearGradient id="g5o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4F7BBE"/><stop offset="1" stop-color="#1E3F70"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-05 · GRIP 500 G</text>
+<rect x="210" y="14" width="100" height="42" rx="6" fill="url(#g5s)" stroke="#0E1318" stroke-width="1.3"/>
+<line x1="222" y1="24" x2="222" y2="46" stroke="#4A535E" stroke-width="2"/><line x1="232" y1="24" x2="232" y2="46" stroke="#4A535E" stroke-width="2"/><line x1="242" y1="24" x2="242" y2="46" stroke="#4A535E" stroke-width="2"/>
+<text x="258" y="38" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#9AA5B0">SERVO ×2</text>
+<rect x="226" y="56" width="68" height="10" rx="2" fill="#5A636D"/>
+<g stroke="#E8762C" stroke-width="4" stroke-linecap="round">
+ <path d="M236 66 L216 88"/><path d="M284 66 L304 88"/>
+ <path d="M216 88 L236 104"/><path d="M304 88 L284 104"/>
+</g>
+<circle cx="236" cy="66" r="4" fill="#A14E15"/><circle cx="284" cy="66" r="4" fill="#A14E15"/>
+<circle cx="216" cy="88" r="4" fill="#A14E15"/><circle cx="304" cy="88" r="4" fill="#A14E15"/>
+<path d="M232 100 L224 132 L236 132 L242 106 Z" fill="url(#g5f)" stroke="#5A636D" stroke-width="1.2"/>
+<path d="M288 100 L296 132 L284 132 L278 106 Z" fill="url(#g5f)" stroke="#5A636D" stroke-width="1.2"/>
+<rect x="242" y="100" width="36" height="34" rx="4" fill="url(#g5o)" stroke="#16325A" stroke-width="1.2"/>
+<ellipse cx="260" cy="102" rx="18" ry="4" fill="#6E97D2"/>
+<text x="324" y="118" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#5A6675">PAYLOAD: 500 g ✓</text>
+<path d="M250 142 H270" stroke="#B9C2CC" stroke-width="1"/>
+</svg></div>
+      <div class="body">
+        <h3>5-Bar Robotic Gripper</h3>
+        <p>2-DOF gripper actuated by dual servomotors synchronized through precision gearing. Kinematic, static, and torque analysis in MATLAB for secure grip on 500 g objects; full SolidWorks assembly and 3D-printed functional prototype.</p>
+        <div class="res">Working prototype, verified 500 g grip capacity</div>
+        <div class="chips"><span>Kinematics</span><span>SolidWorks</span><span>Servos</span><span>MATLAB</span></div>
+      </div>
+    </article>
+
+    <article class="card rv">
+      <div class="cbar"><span>DWG <b>P-06</b></span><span>Thermodynamics</span></div>
+      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs>
+ <linearGradient id="g6t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D5DCE4"/><stop offset=".5" stop-color="#B6BFC9"/><stop offset="1" stop-color="#97A2AE"/></linearGradient>
+ <linearGradient id="g6h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A8B2BD"/><stop offset="1" stop-color="#7E8893"/></linearGradient>
+</defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-06 · 80 MWe</text>
+<line x1="20" y1="128" x2="500" y2="128" stroke="#5A636D" stroke-width="1.4"/>
+<path d="M150 128 C150 94 168 86 168 62 L210 62 C210 86 228 94 228 128 Z" fill="url(#g6t)" stroke="#5A636D" stroke-width="1.3"/>
+<ellipse cx="189" cy="62" rx="21" ry="4.5" fill="#8E99A4"/>
+<ellipse class="m-steam" cx="189" cy="44" rx="20" ry="9" fill="#FFFFFF" opacity=".5"/>
+<ellipse class="m-steam s2" cx="206" cy="32" rx="14" ry="7" fill="#FFFFFF" opacity=".4"/>
+<rect x="266" y="84" width="124" height="44" fill="url(#g6h)" stroke="#5A636D" stroke-width="1.3"/>
+<path d="M266 84 L328 68 L390 84" fill="#C9D2DA" stroke="#5A636D" stroke-width="1.3"/>
+<rect x="278" y="96" width="14" height="14" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/>
+<rect x="302" y="96" width="14" height="14" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/>
+<rect x="326" y="96" width="14" height="14" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/>
+<rect x="354" y="92" width="22" height="36" fill="#7E8893" stroke="#5A636D" stroke-width="1"/>
+<g stroke="#5A636D" stroke-width="1.4">
+ <path d="M448 128 L440 60 L456 60 L448 128 M436 76 H460 M438 92 H458"/>
+</g>
+<path d="M390 96 C410 96 424 80 440 74" stroke="#2E5C9E" stroke-width="1.2"/>
+<path d="M456 74 C480 80 492 90 520 92" stroke="#2E5C9E" stroke-width="1.2"/>
+<text x="266" y="142" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">TURBINE HALL · NET-ZERO CONFIG</text>
+</svg></div>
+      <div class="body">
+        <h3>Sustainable Power Plant Design</h3>
+        <p>Vapour power plant meeting 80 MWe / 25 MWth for an off-grid Canadian community. Full-cycle thermodynamic analysis and MATLAB simulation across nuclear, natural gas, and renewable options.</p>
+        <div class="res">↑ 6% cycle efficiency · net-zero GHG configuration</div>
+        <div class="chips"><span>Thermo</span><span>MATLAB</span><span>Energy Systems</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="shead rv">
+    <h2>Skills</h2>
+    <div class="tag"><b>SHT 04</b> / SPECIFICATIONS</div>
+  </div>
+  <div class="spec rv">
+      <div class="col">
+        <h3>Mechanical</h3>
+        <div class="items"><span>SolidWorks</span><span>AutoCAD</span><span>Fusion 360</span><span>Onshape</span><span>Ansys FEA</span><span>GD&amp;T</span><span>Engineering Drawings</span><span>CNC Machining</span><span>CMM / Metrology</span><span>3D Printing</span></div>
+      </div>
+      <div class="col">
+        <h3>Robotics &amp; AI</h3>
+        <div class="items"><span>ROS2</span><span>Computer Vision</span><span>OpenCV</span><span>YOLOv8</span><span>RViz</span><span>SLAM</span><span>F1Tenth</span><span>Object Detection</span></div>
+      </div>
+      <div class="col">
+        <h3>Electrical &amp; Embedded</h3>
+        <div class="items"><span>ESP32</span><span>Arduino</span><span>FPGA</span><span>VHDL</span><span>Sensor Integration</span><span>Motor Control</span></div>
+      </div>
+      <div class="col">
+        <h3>Software</h3>
+        <div class="items"><span>Python</span><span>C/C++</span><span>MATLAB</span><span>Simulink</span><span>Java</span><span>VBA</span><span>Bash</span><span>SAP/ERP</span><span>Power BI</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEADERSHIP ============ -->
+<section id="leadership">
+  <div class="shead rv">
+    <h2>Leadership</h2>
+    <div class="tag"><b>SHT 05</b> / ASSEMBLY NOTES</div>
+  </div>
+  <div class="lead">
+    <div class="lcard rv" data-n="L-01">
+      <h3>VP Competitions</h3>
+      <div class="org">Ontario Engineering Competition · 2026 —</div>
+      <p>Developed 9 technical competitions for Ontario's top engineering students; built scorecard automation with Google Apps Script and Python.</p>
+      <div class="metric">20 leads managed · 300+ competitors</div>
+    </div>
+    <div class="lcard rv" data-n="L-02">
+      <h3>VP Competitions</h3>
+      <div class="org">Metropolitan Engineering Competition · 2023 — 2025</div>
+      <p>Built 18 technical competitions, led procurement of ~$4K in materials, and helped ship a custom competition website with inventory and help-desk capabilities.</p>
+      <div class="metric">26 coordinators · ~500 site users</div>
+    </div>
+    <div class="lcard rv" data-n="L-03">
+      <h3>VP Events</h3>
+      <div class="org">Mechatronic Course Union · 2025 —</div>
+      <p>Led 6+ hands-on technical workshops — SolidWorks, Arduino, and more — for engineering students, managing a team of directors and first-year reps.</p>
+      <div class="metric">10-person team · 6+ events</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact">
+  <div class="contact rv">
+    <svg class="stamp" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="80" cy="80" r="76" stroke="currentColor" stroke-width="3"/>
+      <circle cx="80" cy="80" r="62" stroke="currentColor" stroke-width="1.4"/>
+      <path id="stArcT" d="M 12 80 A 45 45 0 0 1 148 80" fill="none"/>
+      <text font-family="'IBM Plex Mono',monospace" font-size="10" fill="currentColor" letter-spacing="1.6" text-anchor="middle">
+        <textPath href="#stArcT" startOffset="50%">RELEASED FOR CONSTRUCTION</textPath>
+      </text>
+      <text x="80" y="85" text-anchor="middle" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="21" fill="currentColor" letter-spacing="1">APPROVED</text>
+      <line x1="40" y1="95" x2="120" y2="95" stroke="currentColor" stroke-width="1.2"/>
+      <text x="80" y="110" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="currentColor" letter-spacing="1">REV 2026.06</text>
+      <text x="80" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="currentColor" letter-spacing="1">S. SAJADI</text>
+    </svg>
+    <h2>Let's build<br><span class="o">something real.</span></h2>
+    <p>Open to robotics, mechatronics, and R&amp;D opportunities — internships, research, and collaborations.</p>
+    <div class="hero-cta">
+      <a class="btn blue" href="mailto:subhan.sajadi@torontomu.ca">subhan.sajadi@torontomu.ca</a>
+      <a class="btn" href="https://www.linkedin.com/in/subhansajadi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="Subhan_Sajadi_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </div>
+  </div>
+  <div class="tblock rv" role="contentinfo">
+    <div class="cell"><span class="k">Drawn by</span><span class="v">SUBHAN SAJADI</span></div>
+    <div class="cell"><span class="k">Title</span><span class="v">PORTFOLIO — SHEET SS-001</span></div>
+    <div class="cell"><span class="k">Location</span><span class="v">TORONTO, ON</span></div>
+    <div class="cell"><span class="k">Status</span><span class="v blue">REV 2026.06 · APPROVED</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desk = document.getElementById('desk');
+
+  function start(){ document.body.classList.add('loaded'); }
+
+  if (reduce || !desk) { start(); if(desk) desk.remove(); }
+  else {
+    requestAnimationFrame(()=>requestAnimationFrame(()=>desk.classList.add('settle')));
+    setTimeout(()=>desk.classList.add('zoom'), 950);
+    setTimeout(()=>{ desk.classList.add('fade'); start(); }, 1950);
+    setTimeout(()=>desk.remove(), 2600);
+  }
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  if (reduce) document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+})();
+</script>
+</body>
+</html>
