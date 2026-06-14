@@ -51,6 +51,8 @@ body{
   transition:opacity .5s ease;
 }
 #desk.fade{opacity:0;pointer-events:none}
+/* skip the macOS desktop intro on phones — go straight to the portfolio */
+@media(max-width:720px){#desk{display:none!important}}
 
 /* menu bar */
 .macbar{
@@ -508,6 +510,10 @@ h1 .row:nth-child(2) span{color:transparent;-webkit-text-stroke:1.6px var(--draf
 }
 @media(max-width:640px){
   .callout.c1,.callout.c2,.fig .draw .leaders{display:none}
+  .kicker{font-size:10px;letter-spacing:.08em;gap:9px;line-height:1.5}
+  .kicker::before{width:22px}
+  .hero>div,.fig{min-width:0}
+  .role{font-size:15px;max-width:100%;overflow-wrap:break-word}
 }
 
 /* =================== SECTION CHROME =================== */
@@ -1533,11 +1539,12 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 window.scrollTo(0, 0);
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = matchMedia('(max-width: 720px)').matches;
   const desk = document.getElementById('desk');
 
   function start(){ window.scrollTo(0, 0); document.body.classList.add('loaded'); }
 
-  if (reduce || !desk) { start(); if(desk) desk.remove(); }
+  if (reduce || isMobile || !desk) { start(); if(desk) desk.remove(); }
   else {
     requestAnimationFrame(()=>requestAnimationFrame(()=>desk.classList.add('ready')));
 
