@@ -1001,7 +1001,7 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
   <div class="mac-hint">Go to <b>Documents</b> and <b>double-click</b> Portfolio to enter ↵</div>
 
   <!-- password dialog -->
-  <div class="pw-wrap">
+  <div class="pw-wrap" id="file-pw-wrap">
     <div class="pw-dlg" role="dialog">
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="margin:0 auto 12px;display:block">
         <circle cx="22" cy="22" r="22" fill="#636366"/>
@@ -1011,10 +1011,10 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
       </svg>
       <h4>"API_KEYS.txt" is locked.</h4>
       <p>Enter your password to unlock this file.</p>
-      <input class="pw-input" type="password" placeholder="Password" autocomplete="off" spellcheck="false">
+      <input class="pw-input" id="file-pw-input" type="password" placeholder="Password" autocomplete="off" spellcheck="false">
       <div class="pw-btns">
-        <button type="button" class="pw-cancel">Cancel</button>
-        <button type="button" class="pw-ok">OK</button>
+        <button type="button" class="pw-cancel" id="file-pw-cancel">Cancel</button>
+        <button type="button" class="pw-ok" id="file-pw-ok">OK</button>
       </div>
     </div>
   </div>
@@ -1765,9 +1765,9 @@ window.scrollTo(0, 0);
 
     const clearSel = ()=>desk.querySelectorAll('.fitem').forEach(x=>x.classList.remove('sel'));
 
-    // password dialog
-    const pwWrap  = desk.querySelector('.pw-wrap');
-    const pwInput = desk.querySelector('.pw-input');
+    // file password dialog (API_KEYS.txt)
+    const pwWrap  = desk.querySelector('#file-pw-wrap');
+    const pwInput = desk.querySelector('#file-pw-input');
     const showPw  = ()=>{ pwWrap.classList.add('show'); pwInput.value=''; setTimeout(()=>pwInput.focus(),220); };
     const closePw = ()=>{ pwWrap.classList.remove('show'); };
     const wrongPw = ()=>{
@@ -1777,8 +1777,8 @@ window.scrollTo(0, 0);
       pwInput.value = '';
       setTimeout(()=>pwInput.focus(), 10);
     };
-    desk.querySelector('.pw-cancel').addEventListener('click', closePw);
-    desk.querySelector('.pw-ok').addEventListener('click', wrongPw);
+    desk.querySelector('#file-pw-cancel').addEventListener('click', closePw);
+    desk.querySelector('#file-pw-ok').addEventListener('click', wrongPw);
     pwInput.addEventListener('keydown', (e)=>{
       if (e.key==='Enter') wrongPw();
       if (e.key==='Escape') closePw();
