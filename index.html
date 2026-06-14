@@ -43,57 +43,355 @@ body{
 }
 ::selection{background:var(--draft);color:#fff}
 
-/* =================== DESK INTRO =================== */
+/* =================== MAC INTRO =================== */
 #desk{
   position:fixed;inset:0;z-index:100;overflow:hidden;
-  background:
-    radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(20,10,4,.45) 100%),
-    repeating-linear-gradient(93deg,rgba(58,36,18,.16) 0 2px,transparent 2px 9px,rgba(58,36,18,.08) 9px 11px,transparent 11px 34px),
-    repeating-linear-gradient(91deg,rgba(255,230,190,.05) 0 1px,transparent 1px 17px),
-    linear-gradient(97deg,#6E4F35,#7E5E40 35%,#6A4B32 70%,#7A5A3D);
-  transition:opacity .55s ease;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',var(--sans);
+  background:url('images/wallpaper.png') center/cover no-repeat;
+  transition:opacity .5s ease;
 }
 #desk.fade{opacity:0;pointer-events:none}
-#deskScene{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  transform-origin:50% 50%;
+
+/* menu bar */
+.macbar{
+  position:absolute;top:0;left:0;right:0;height:25px;z-index:2;
+  display:flex;align-items:center;gap:20px;padding:0 16px;
+  background:rgba(28,28,32,.5);backdrop-filter:blur(22px);
+  font-size:13.5px;color:#f3f3f6;
 }
-#desk.zoom #deskScene{
-  transform:scale(8.5) rotate(3.5deg);
-  transition:transform 1.5s cubic-bezier(.72,.02,.26,1);
+.macbar .apple{height:15px;width:auto;display:block;flex:none;transform:translateY(-1.5px)}
+.menubar-icon{height:14px;width:auto;display:block}
+.menubar-icon.dnd{height:20px}
+.menubar-icon.wifi{height:16px}
+.macbar b{font-weight:700}
+.macbar .menus{display:flex;gap:18px;font-weight:500;color:#ededf1}
+.macbar .right{margin-left:auto;display:flex;gap:15px;align-items:center;position:relative}
+.macbar .right svg{display:block}
+.macbar .clock{font-variant-numeric:tabular-nums;font-weight:500}
+@media(max-width:640px){.macbar .menus{display:none}}
+
+/* menubar clickable items */
+.mb-item{cursor:pointer;position:relative;display:flex;align-items:center;border-radius:4px;padding:2px 5px;margin:-2px -5px}
+.mb-item:hover{background:rgba(255,255,255,.15)}
+.mb-item.open{background:rgba(255,255,255,.2)}
+
+/* dropdowns — liquid glass */
+.mb-dropdown{
+  position:absolute;top:calc(100% + 6px);right:0;min-width:220px;
+  background:rgba(26,26,30,.90);
+  backdrop-filter:blur(42px) saturate(1.9);
+  -webkit-backdrop-filter:blur(42px) saturate(1.9);
+  border:.5px solid rgba(255,255,255,.15);border-radius:13px;
+  box-shadow:0 18px 50px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 .5px rgba(255,255,255,.04);
+  padding:6px 0;color:#f0f0f3;font-size:13px;z-index:20;
+  opacity:0;pointer-events:none;transform:translateY(-4px);
+  transition:opacity .15s ease,transform .15s ease;
 }
-/* the paper */
-#paper{
+.mb-dropdown.show{opacity:1;pointer-events:auto;transform:none}
+.mb-dropdown .dd-header{
+  padding:9px 16px 4px;font-size:11.5px;font-weight:600;
+  color:#9a9aa0;letter-spacing:.01em;
+}
+.mb-dropdown .dd-divider{height:.5px;background:rgba(255,255,255,.1);margin:5px 0}
+.mb-dropdown .dd-settings{padding:8px 16px;font-size:13.5px;color:#f0f0f3;cursor:default}
+.mb-dropdown .dd-settings:hover{background:rgba(255,255,255,.07)}
+.toggle-switch{width:38px;height:22px;border-radius:11px;background:#0a84ff;position:relative;cursor:pointer;transition:background .2s;flex:none;border:0}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:18px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle-switch.off{background:#636366}
+.toggle-switch.off::after{left:2px}
+
+/* circle glyph used in dropdown rows */
+.fc{width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.16)}
+.fc svg{display:block}
+
+/* signal bars */
+.dd-signal{margin-left:auto;display:flex;gap:1.5px;align-items:flex-end;height:11px}
+.dd-signal span{width:3px;background:#fff;border-radius:1px}
+.dd-signal span:nth-child(1){height:4px}
+.dd-signal span:nth-child(2){height:6px}
+.dd-signal span:nth-child(3){height:9px}
+.dd-signal span:nth-child(4){height:11px}
+.dd-signal.s1 span:nth-child(n+2){opacity:.28}
+.dd-signal.s2 span:nth-child(n+3){opacity:.28}
+.dd-signal.s3 span:nth-child(n+4){opacity:.28}
+.lock-ic{margin-left:auto;flex:none;opacity:.7}
+.wifi-png{width:16px;height:auto;display:block}
+.hotspot-info{margin-left:auto;display:flex;align-items:center;gap:6px}
+.hotspot-info .dd-signal{margin-left:0}
+.hotspot-meta{font-size:12px;color:#c8c8ce;flex:none}
+.batt-ic{flex:none}
+
+/* Focus dropdown */
+.focus-dd{min-width:272px}
+.focus-head{padding:11px 16px 5px}
+.focus-head .ft{font-size:15px;font-weight:700;color:#fff}
+.focus-head small{display:block;font-size:12.5px;color:#9a9aa0;margin-top:1px}
+.focus-main{display:flex;align-items:center;gap:12px;padding:8px 16px;cursor:pointer;font-size:14px;color:#fff}
+.focus-main .fc{background:#fff}
+.focus-sub{background:rgba(255,255,255,.07)}
+.focus-sub-row{padding:8px 16px 8px 56px;font-size:13.5px;color:#e6e6ea;cursor:default}
+.focus-sub-row:hover{background:rgba(255,255,255,.08)}
+.focus-row{display:flex;align-items:center;gap:12px;padding:6px 16px;cursor:default;font-size:14px;color:#f0f0f3}
+.focus-row:hover{background:rgba(255,255,255,.07)}
+
+/* Wi-Fi dropdown */
+.wifi-dd{min-width:304px}
+.wifi-head{display:flex;align-items:center;justify-content:space-between;padding:11px 16px 9px}
+.wifi-head .wt{font-size:16px;font-weight:700;color:#fff}
+.wifi-warn{display:flex;align-items:center;padding:6px 16px 9px;font-size:13.5px;color:#f0f0f3;cursor:default}
+.wifi-warn svg{margin-left:auto;flex:none}
+.wifi-row{display:flex;align-items:center;gap:12px;padding:7px 16px;cursor:default;font-size:13.5px;color:#f0f0f3}
+.wifi-row.other{cursor:pointer}
+.wifi-row:hover{background:rgba(255,255,255,.07)}
+.wifi-row .fc{background:rgba(255,255,255,.16)}
+.wifi-row.connected .fc{background:#0a84ff}
+
+/* Battery dropdown */
+.batt-dd{min-width:280px}
+.batt-head{display:flex;align-items:baseline;justify-content:space-between;padding:11px 16px 5px}
+.batt-head .bt{font-size:16px;font-weight:700;color:#fff}
+.batt-head .bp{font-size:15px;font-weight:600;color:#fff}
+.batt-line{padding:1px 16px 8px;font-size:13.5px;color:#b6b6bc;cursor:default}
+.batt-mode{display:flex;align-items:center;gap:12px;padding:6px 16px;font-size:14px;color:#f0f0f3;cursor:default}
+.batt-mode:hover{background:rgba(255,255,255,.07)}
+.batt-note{padding:7px 16px;font-size:13px;color:#b6b6bc;cursor:default}
+
+/* iMessage notifications — liquid glass */
+.notif-stack{
+  position:absolute;top:34px;right:12px;z-index:30;
+  display:flex;flex-direction:column;gap:10px;align-items:flex-end;
+}
+.imsg-notif{
   position:relative;
-  width:min(340px,58vw);aspect-ratio:1/1.32;
-  background:var(--paper);
-  transform:rotate(-3.5deg) translateY(-26px) scale(1.05);
-  box-shadow:0 1px 2px rgba(20,10,4,.3),0 14px 34px rgba(20,10,4,.45);
-  opacity:0;
+  width:346px;background:rgba(26,26,30,.72);
+  backdrop-filter:blur(48px) saturate(1.9);
+  -webkit-backdrop-filter:blur(48px) saturate(1.9);
+  border:.5px solid rgba(255,255,255,.15);border-radius:18px;
+  box-shadow:0 18px 55px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12);
+  padding:13px 15px;display:flex;gap:11px;align-items:center;
+  transform:translateY(-14px) scale(.95);opacity:0;pointer-events:none;transform-origin:top right;
+  transition:transform .42s cubic-bezier(.2,.9,.3,1.18),opacity .3s ease;
 }
-#desk.settle #paper{
-  transform:rotate(-3.5deg) translateY(0) scale(1);
-  opacity:1;
-  transition:transform .55s cubic-bezier(.2,.8,.3,1),opacity .35s ease;
+.imsg-notif.show{transform:none;opacity:1;pointer-events:auto}
+.imsg-avatar{
+  width:44px;height:44px;border-radius:50%;flex:none;position:relative;overflow:visible;
 }
-#paper svg{display:block;width:100%;height:100%}
-/* desk props */
-.prop{position:absolute;filter:drop-shadow(0 7px 9px rgba(20,10,4,.4))}
-.prop.ruler{left:max(2vw,calc(50% - 340px));top:12%;height:76%}
-.prop.pencil{right:max(4vw,calc(50% - 330px));top:24%}
-.prop.gearwt{right:max(8vw,calc(50% - 280px));bottom:13%}
-.prop.eraser{left:max(10vw,calc(50% - 250px));bottom:9%}
-.ring{
-  position:absolute;left:calc(50% + 190px);top:9%;
-  width:92px;height:92px;border-radius:50%;
-  border:9px solid rgba(48,26,10,.18);
-  filter:blur(1px);
+.imsg-avatar.white{background:#fff}
+.imsg-pfp{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block}
+.imsg-pfp.contain{object-fit:contain;padding:5px;box-sizing:border-box}
+.imsg-badge{
+  position:absolute;bottom:-3px;right:-3px;width:19px;height:19px;border-radius:50%;
+  background:#34c759;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 2px rgba(38,38,42,.95);
 }
-@media(max-width:720px){
-  .prop.ruler{display:none}
-  .ring{left:auto;right:4vw}
+.imsg-body{flex:1;min-width:0}
+.imsg-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.imsg-sender{font-size:14px;font-weight:600;color:#fff}
+.imsg-time{font-size:12px;color:#a0a0a6;flex:none}
+.imsg-msg{font-size:13.5px;color:#e0e0e4;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.imsg-dismiss{
+  position:absolute;top:-8px;left:-8px;width:23px;height:23px;border-radius:50%;
+  background:rgba(72,72,76,.96);backdrop-filter:blur(12px);
+  border:.5px solid rgba(255,255,255,.16);cursor:pointer;color:#d4d4d8;font-size:11px;
+  display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.45);
 }
+.imsg-notif:hover .imsg-dismiss{display:flex}
+.imsg-dismiss:hover{background:rgba(94,94,98,.96);color:#fff}
+
+/* finder window */
+.finder{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.96);
+  width:min(680px,92vw);height:min(450px,76vh);
+  background:#232326;color:#e6e6ea;border-radius:11px;overflow:hidden;
+  border:.5px solid rgba(255,255,255,.12);
+  box-shadow:0 34px 90px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;opacity:0;
+}
+#desk.ready .finder{
+  opacity:1;transform:translate(-50%,-50%) scale(1);
+  transition:opacity .5s ease,transform .55s cubic-bezier(.2,.85,.3,1);
+}
+#desk.launch .finder{
+  opacity:0;transform:translate(-50%,-50%) scale(1.35);
+  transition:opacity .55s ease,transform .65s cubic-bezier(.6,0,.3,1);
+}
+.finder .tbar{
+  height:48px;flex:none;display:flex;align-items:center;gap:13px;padding:0 16px;
+  background:rgba(54,54,58,.94);border-bottom:.5px solid rgba(0,0,0,.45);
+}
+.lights{display:flex;gap:8px}
+.light{width:12px;height:12px;border-radius:50%;border:0;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}
+.light .sym{position:absolute;font-size:8px;font-weight:700;line-height:1;opacity:0;color:rgba(0,0,0,.5);pointer-events:none}
+.lights:hover .sym{opacity:1}
+.light.r{background:#ff5f57}.light.y{background:#febc2e}.light.g{background:#28c840}
+.light.r:hover{background:#ff3b30}.light.y:hover{background:#f5a800}.light.g:hover{background:#1aab2e}
+/* tool buttons */
+.tool-btn{background:transparent;border:0;cursor:pointer;color:#9a9aa0;display:flex;align-items:center;padding:3px;border-radius:5px}
+.tool-btn:hover{color:#d6d6da;background:rgba(255,255,255,.08)}
+.tool-btn.active{color:#2c7cf6}
+/* search bar in toolbar */
+.finder-search-wrap{flex:none}
+.finder-search{
+  background:rgba(255,255,255,.1);border:.5px solid rgba(255,255,255,.2);border-radius:7px;
+  padding:4px 10px;color:#fff;font-size:13px;font-family:inherit;outline:none;width:160px;
+}
+.finder-search:focus{border-color:rgba(44,124,246,.7);box-shadow:0 0 0 2px rgba(44,124,246,.25)}
+/* large icon mode */
+.finder.large-icons .fitem .ficon{width:88px}
+.finder.large-icons .fitem .fthumb{width:88px;height:60px}
+.finder.large-icons .files{grid-template-columns:repeat(3,1fr);gap:28px 8px}
+/* minimize animation */
+@keyframes finder-minimize{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,120%) scale(.3);opacity:0}}
+@keyframes finder-restore{0%{transform:translate(-50%,120%) scale(.3);opacity:0}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.finder.minimizing{animation:finder-minimize .35s cubic-bezier(.4,0,1,1) forwards;pointer-events:none}
+.finder.restoring{animation:finder-restore .35s cubic-bezier(0,0,.3,1) forwards}
+/* fullscreen mode */
+.finder.fullscreen{
+  width:100vw!important;height:calc(100vh - 25px)!important;
+  top:25px!important;left:0!important;transform:none!important;
+  border-radius:0!important;
+}
+#desk.ready .finder.fullscreen{transform:none;transition:width .3s ease,height .3s ease,top .3s ease,left .3s ease,border-radius .3s ease}
+.nav{display:flex;gap:5px;margin-left:4px}
+.nav button{
+  width:27px;height:27px;border:0;background:transparent;border-radius:6px;
+  color:#7d7d83;cursor:default;display:flex;align-items:center;justify-content:center;font-family:inherit;
+}
+.nav button.act{color:#d6d6da;cursor:pointer}
+.nav button.act:hover{background:rgba(255,255,255,.08)}
+.finder .title{font-size:14.5px;font-weight:600;color:#f0f0f3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tspacer{flex:1}
+.tbar .tools{display:flex;gap:15px;color:#9a9aa0;flex:none}
+.tbar .tools svg{display:block}
+@media(max-width:560px){.tbar .tools{display:none}}
+
+.finder .main{flex:1;display:flex;min-height:0}
+.sidebar{
+  width:178px;flex:none;background:rgba(44,44,48,.55);border-right:.5px solid rgba(255,255,255,.06);
+  padding:12px 10px;font-size:13px;overflow:hidden;
+}
+.sidebar .grp{padding:11px 8px 4px;font-size:11px;letter-spacing:.01em;color:#85858b;font-weight:600}
+.sidebar .grp:first-child{padding-top:2px}
+.sidebar .item{display:flex;align-items:center;gap:9px;padding:5px 9px;border-radius:6px;color:#d3d3d7}
+.sidebar .item.on{background:rgba(255,255,255,.13)}
+.sidebar .item svg{flex:none;color:#5b9bf0}
+@media(max-width:560px){.sidebar{display:none}}
+
+.fcontent{flex:1;display:flex;flex-direction:column;min-width:0;background:#1f1f22;position:relative}
+.view-panel{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden}
+.view-panel.active{display:flex}
+.files{
+  flex:1;padding:24px 22px;overflow:auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px 6px;align-content:start;
+}
+.empty-state{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:#636366;
+}
+/* generic file item (replaces .folder) */
+.fitem{
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:9px 4px 6px;border-radius:8px;cursor:pointer;user-select:none;text-align:center;
+}
+.fitem:hover{background:rgba(255,255,255,.05)}
+.fitem.sel{background:rgba(255,255,255,.08)}
+.fitem .ficon{width:64px;height:auto;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+.fitem .nm{font-size:12px;color:#e6e6ea;line-height:1.3;max-width:14ch;word-break:break-word}
+.fitem.sel .nm{background:#2c7cf6;color:#fff;border-radius:4px;padding:1px 5px}
+/* wallpaper thumbnail */
+.fthumb{
+  width:64px;height:44px;border-radius:5px;
+  background-size:cover;background-position:center;
+  border:.5px solid rgba(255,255,255,.15);
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.45));
+  flex:none;
+}
+/* DMG icon badge */
+.ficon.dmg{width:58px}
+@keyframes mac-nudge{0%,100%{box-shadow:0 0 0 0 rgba(120,170,255,0)}50%{box-shadow:0 0 0 3px rgba(120,170,255,.55)}}
+#desk.ready .fitem.key{animation:mac-nudge 2.1s ease-in-out 1.8s infinite}
+/* sidebar active state */
+.sidebar .item{cursor:pointer}
+.sidebar .item.on{background:rgba(255,255,255,.13)}
+
+.statusbar{
+  flex:none;height:27px;display:flex;align-items:center;justify-content:center;
+  background:rgba(46,46,50,.92);border-top:.5px solid rgba(0,0,0,.4);
+  font-size:11.5px;color:#9a9aa0;
+}
+
+/* hint */
+.mac-hint{
+  position:absolute;left:0;right:0;bottom:30px;text-align:center;z-index:1;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:rgba(255,255,255,.85);
+}
+.mac-hint b{color:#fff;font-weight:600}
+
+/* macOS error dialog */
+.dlg-wrap{
+  position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.dlg-wrap.show{opacity:1;pointer-events:auto}
+.dlg{
+  width:280px;max-width:84vw;padding:20px 18px 16px;text-align:center;
+  background:rgba(50,50,54,.92);backdrop-filter:blur(28px);color:#f0f0f3;
+  border:.5px solid rgba(255,255,255,.12);
+  border-radius:12px;box-shadow:0 28px 70px rgba(0,0,0,.6);
+  transform:scale(.92);transition:transform .22s cubic-bezier(.2,.9,.3,1.25);
+}
+.dlg-wrap.show .dlg{transform:scale(1)}
+.dlg .ic{width:54px;height:54px;margin:0 auto 13px;display:block}
+.dlg h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:7px;line-height:1.35}
+.dlg p{font-size:11.5px;color:#b6b6bc;line-height:1.5;margin-bottom:16px}
+.dlg button{
+  width:100%;background:#2c7cf6;color:#fff;border:0;border-radius:7px;
+  padding:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;
+}
+.dlg button:hover{background:#1a6ef0}
+
+/* password dialog */
+.pw-wrap{
+  position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.pw-wrap.show{opacity:1;pointer-events:auto}
+.pw-dlg{
+  width:280px;max-width:84vw;padding:20px 18px 16px;text-align:center;
+  background:rgba(50,50,54,.96);backdrop-filter:blur(28px);color:#f0f0f3;
+  border:.5px solid rgba(255,255,255,.12);
+  border-radius:12px;box-shadow:0 28px 70px rgba(0,0,0,.6);
+  transform:scale(.92);transition:transform .22s cubic-bezier(.2,.9,.3,1.25);
+}
+.pw-wrap.show .pw-dlg{transform:scale(1)}
+.pw-dlg h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px}
+.pw-dlg p{font-size:11.5px;color:#b6b6bc;margin-bottom:14px}
+.pw-input{
+  width:100%;background:rgba(255,255,255,.1);border:.5px solid rgba(255,255,255,.2);
+  border-radius:7px;padding:7px 10px;color:#fff;font-size:13px;font-family:inherit;
+  outline:none;margin-bottom:14px;box-sizing:border-box;
+}
+.pw-input:focus{border-color:rgba(44,124,246,.7);box-shadow:0 0 0 3px rgba(44,124,246,.25)}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-8px)}
+  30%{transform:translateX(7px)}
+  45%{transform:translateX(-6px)}
+  60%{transform:translateX(5px)}
+  75%{transform:translateX(-4px)}
+  90%{transform:translateX(3px)}
+}
+.pw-input.shake{animation:shake .45s ease}
+.pw-btns{display:flex;gap:10px}
+.pw-btns button{
+  flex:1;border:0;border-radius:7px;padding:7px;font-size:13px;
+  font-weight:500;cursor:pointer;font-family:inherit;
+}
+.pw-cancel{background:rgba(255,255,255,.12);color:#f0f0f3}
+.pw-cancel:hover{background:rgba(255,255,255,.18)}
+.pw-ok{background:#2c7cf6;color:#fff}
+.pw-ok:hover{background:#1a6ef0}
 
 /* =================== SHEET FRAME =================== */
 .frame{position:fixed;inset:14px;pointer-events:none;z-index:50;border:1px solid var(--grid-2)}
@@ -121,11 +419,10 @@ nav a:hover,nav a:focus-visible{color:var(--draft)}
 nav a:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
 nav .btn{padding:7px 15px;font-size:11px}
 @media(max-width:720px){
-  nav{top:8px;left:8px;right:8px;padding:11px 14px}
-  nav ul{gap:13px}
-  nav a{font-size:10px;letter-spacing:.06em}
-  nav .id{display:none}
-  nav .btn{padding:6px 12px;font-size:10px}
+  nav{top:8px;left:8px;right:8px;padding:10px 12px}
+  nav ul{display:none}
+  nav .id{display:block;font-size:9.5px;letter-spacing:.05em}
+  nav .btn{padding:5px 10px;font-size:9.5px}
 }
 
 /* =================== HERO =================== */
@@ -214,8 +511,8 @@ h1 .row:nth-child(2) span{color:transparent;-webkit-text-stroke:1.6px var(--draf
 }
 
 /* =================== SECTION CHROME =================== */
-section{max-width:var(--max);margin:0 auto;padding:66px 40px}
-@media(max-width:720px){section{padding:46px 22px}}
+section{max-width:var(--max);margin:0 auto;padding:48px 40px}
+@media(max-width:720px){section{padding:36px 22px}}
 .shead{
   display:flex;align-items:baseline;justify-content:space-between;
   border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:46px;gap:16px;
@@ -224,17 +521,6 @@ section{max-width:var(--max);margin:0 auto;padding:66px 40px}
 .shead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--graphite);text-transform:uppercase;text-align:right}
 .shead .tag b{color:var(--draft);font-weight:500}
 
-/* gear divider */
-.divider{
-  max-width:var(--max);margin:0 auto;padding:0 40px;
-  display:flex;align-items:center;gap:18px;
-}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--grid-2)}
-.divider svg{color:var(--draft-mid)}
-.divider .g1{animation:spin 14s linear infinite}
-.divider .g2{animation:spin 9s linear infinite reverse}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:720px){.divider{padding:0 22px}}
 
 /* reveal on scroll */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
@@ -265,26 +551,19 @@ section{max-width:var(--max);margin:0 auto;padding:66px 40px}
 
 /* =================== EXPERIENCE =================== */
 .xp{border-top:1px solid var(--grid-2)}
-.job{display:grid;grid-template-columns:170px 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--grid-2);position:relative}
-.job::before{
-  content:'';position:absolute;left:-22px;top:40px;width:9px;height:9px;border-radius:50%;
-  border:2px solid var(--draft);background:var(--paper);
-}
-.job::after{
-  content:'';position:absolute;left:-25px;top:43px;width:15px;height:1px;background:var(--draft);
-  transform:rotate(90deg);
-}
-.job .when{font-family:var(--mono);font-size:12px;color:var(--graphite);letter-spacing:.04em;padding-top:4px}
+.job{display:grid;grid-template-columns:210px 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--grid-2)}
+.job .when{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--graphite);letter-spacing:.04em;padding-top:4px;white-space:nowrap}
 .job .when .now{color:var(--draft)}
 .job h3{font-family:var(--disp);font-size:24px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
-.job .org{font-family:var(--mono);font-size:12.5px;color:var(--graphite);margin:3px 0 12px;letter-spacing:.04em}
-.job ul{list-style:none;display:grid;gap:7px}
+.job .org{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--graphite);margin:3px 0 0;letter-spacing:.04em}
+.job ul{list-style:none;display:grid;gap:7px;margin-top:12px}
 .job li{padding-left:20px;position:relative;color:#33404E;font-size:15.5px}
 .job li::before{content:'—';position:absolute;left:0;color:var(--draft)}
-@media(max-width:720px){.job{grid-template-columns:1fr;gap:8px}.job::before,.job::after{display:none}}
-.job .company-logo{display:block;margin-top:14px;max-width:130px;height:44px;object-fit:contain;object-position:left center;opacity:.85;filter:grayscale(.15)}
-.job .company-logo.logo-cover{object-fit:cover;object-position:center 50%;width:130px}
-@media(max-width:720px){.job .company-logo{height:36px;max-width:110px}}
+@media(max-width:720px){.job{grid-template-columns:1fr;gap:8px}}
+.company-logo{display:block;margin-top:14px;height:32px;width:auto;max-width:120px;object-fit:contain;object-position:left center;opacity:.85;filter:grayscale(.15)}
+.company-logo.md{height:46px;max-width:150px}
+.company-logo.lg{height:72px;max-width:210px}
+@media(max-width:720px){.company-logo{height:26px;max-width:96px}.company-logo.md{height:38px;max-width:120px}.company-logo.lg{height:58px;max-width:160px}}
 
 /* =================== PROJECTS =================== */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
@@ -358,8 +637,8 @@ section{max-width:var(--max);margin:0 auto;padding:66px 40px}
 .lcard .metric{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--draft)}
 
 /* =================== CONTACT / TITLE BLOCK =================== */
-footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relative}
-@media(max-width:720px){footer{padding:46px 22px 44px}}
+footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relative}
+@media(max-width:720px){footer{padding:36px 22px 44px}}
 .contact{margin-bottom:60px;position:relative}
 .contact h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(44px,7vw,86px);line-height:.95;letter-spacing:.005em}
 .contact h2 .o{color:transparent;-webkit-text-stroke:1.6px var(--draft)}
@@ -370,7 +649,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
   transform:rotate(-12deg);color:var(--draft);opacity:.82;
   pointer-events:none;
 }
-@media(max-width:880px){.stamp{width:118px;height:118px;top:auto;bottom:-30px;right:6px}}
+@media(max-width:880px){.stamp{width:110px;height:110px;top:4px;bottom:auto;right:6px}}
 .tblock{border:2px solid var(--ink);display:grid;grid-template-columns:repeat(4,1fr);font-family:var(--mono);font-size:11px;letter-spacing:.06em}
 .tblock .cell{padding:12px 16px;border-right:1px solid var(--ink)}
 .tblock .cell:last-child{border-right:0}
@@ -393,103 +672,366 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
 </head>
 <body>
 
-<!-- ============ DESK INTRO ============ -->
+<!-- ============ MAC INTRO ============ -->
 <div id="desk" aria-hidden="true">
-  <div id="deskScene">
-    <!-- coffee ring -->
-    <div class="ring"></div>
 
-    <!-- ruler -->
-    <svg class="prop ruler" width="44" viewBox="0 0 44 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="36" height="600" fill="#D8C49A" stroke="#A98F5E"/>
-      <g stroke="#7A6238" stroke-width="1.4">
-        <line x1="4" y1="30" x2="22" y2="30"/><line x1="4" y1="60" x2="16" y2="60"/>
-        <line x1="4" y1="90" x2="16" y2="90"/><line x1="4" y1="120" x2="22" y2="120"/>
-        <line x1="4" y1="150" x2="16" y2="150"/><line x1="4" y1="180" x2="16" y2="180"/>
-        <line x1="4" y1="210" x2="22" y2="210"/><line x1="4" y1="240" x2="16" y2="240"/>
-        <line x1="4" y1="270" x2="16" y2="270"/><line x1="4" y1="300" x2="22" y2="300"/>
-        <line x1="4" y1="330" x2="16" y2="330"/><line x1="4" y1="360" x2="16" y2="360"/>
-        <line x1="4" y1="390" x2="22" y2="390"/><line x1="4" y1="420" x2="16" y2="420"/>
-        <line x1="4" y1="450" x2="16" y2="450"/><line x1="4" y1="480" x2="22" y2="480"/>
-        <line x1="4" y1="510" x2="16" y2="510"/><line x1="4" y1="540" x2="16" y2="540"/>
-        <line x1="4" y1="570" x2="22" y2="570"/>
-      </g>
-    </svg>
+  <!-- menu bar -->
+  <div class="macbar">
+    <img class="apple" src="images/apple.png" alt="" aria-hidden="true">
+    <b>Finder</b>
+    <div class="menus"><span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Window</span><span>Help</span></div>
+    <div class="right">
 
-    <!-- mechanical pencil -->
-    <svg class="prop pencil" width="36" height="290" viewBox="0 0 36 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(14deg)">
-      <rect x="11" y="6" width="14" height="210" rx="3" fill="#3C5872"/>
-      <rect x="11" y="48" width="14" height="34" fill="#2C4258"/>
-      <rect x="13.5" y="216" width="9" height="32" fill="#B9C2CC"/>
-      <path d="M15 248 L21 248 L18.7 272 L17.3 272 Z" fill="#8D969F"/>
-      <rect x="17.4" y="272" width="1.4" height="12" fill="#222"/>
-      <rect x="13" y="0" width="10" height="8" rx="2" fill="#B9C2CC"/>
-    </svg>
+      <!-- Focus / DND button -->
+      <div class="mb-item" id="mb-dnd">
+        <img class="menubar-icon dnd" src="images/dnd_white.png" alt="Do Not Disturb" aria-label="Focus">
+        <div class="mb-dropdown focus-dd" id="dd-dnd">
+          <div class="focus-head"><span class="ft">Focus</span><small>On</small></div>
+          <div class="dd-divider"></div>
+          <div class="focus-main" id="dnd-toggle">
+            <span class="fc"><svg width="15" height="15" viewBox="0 0 24 24" fill="#1c1c1e"><path d="M21.5 13.2A9 9 0 1110.8 2.5a7 7 0 0010.7 10.7z"/></svg></span>
+            Do Not Disturb
+          </div>
+          <div class="focus-sub">
+            <div class="focus-sub-row">For 1 hour</div>
+            <div class="focus-sub-row">Until tomorrow morning</div>
+          </div>
+          <div class="dd-divider"></div>
+          <div class="dd-settings">Focus Settings…</div>
+        </div>
+      </div>
 
-    <!-- gear paperweight -->
-    <svg class="prop gearwt" width="92" height="92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#37424E" d="M12 1.5l1.2 2.4 2.6-.6 .4 2.7 2.7 .4-.6 2.6 2.4 1.2-1.5 2.3 1.5 2.3-2.4 1.2 .6 2.6-2.7 .4-.4 2.7-2.6-.6L12 22.5l-1.2-2.4-2.6 .6-.4-2.7-2.7-.4 .6-2.6L3.3 13.7 4.8 11.4 3.3 9.1l2.4-1.2-.6-2.6 2.7-.4 .4-2.7 2.6 .6Z"/>
-      <circle cx="12" cy="11.4" r="4.6" fill="#5E6B79"/>
-      <circle cx="12" cy="11.4" r="2" fill="#222B34"/>
-    </svg>
+      <!-- Wi-Fi button -->
+      <div class="mb-item" id="mb-wifi">
+        <img class="menubar-icon wifi" src="images/wifi_white.png" alt="Wi-Fi">
+        <div class="mb-dropdown wifi-dd" id="dd-wifi">
+          <div class="wifi-head"><span class="wt">Wi-Fi</span><button type="button" class="toggle-switch" aria-label="Wi-Fi on"></button></div>
+          <div class="wifi-warn">Privacy Warning…<svg width="16" height="16" viewBox="0 0 24 24" fill="#f5b800"><path d="M12 2L1 21h22L12 2zm0 6l.9 7h-1.8L12 8zm0 9.5a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2z"/></svg></div>
+          <div class="dd-divider"></div>
+          <div class="dd-header">Known Network</div>
+          <div class="wifi-row connected">
+            <span class="fc"><img class="wifi-png" src="images/wifi_white.png" alt=""></span>
+            Home
+            <svg class="lock-ic" width="11" height="13" viewBox="0 0 14 18" fill="none"><rect x="2" y="7" width="10" height="9" rx="1.6" fill="#c8c8ce"/><path d="M4 7V5a3 3 0 016 0v2" stroke="#c8c8ce" stroke-width="1.6"/></svg>
+          </div>
+          <div class="dd-divider"></div>
+          <div class="dd-header">Personal Hotspots</div>
+          <div class="wifi-row other" data-net="Elon's iPhone">
+            <span class="fc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M9.5 14.5l5-5M8 11l-2 2a3.5 3.5 0 005 5l2-2M16 13l2-2a3.5 3.5 0 00-5-5l-2 2"/></svg></span>
+            Elon's iPhone
+            <span class="hotspot-info">
+              <span class="dd-signal s4"><span></span><span></span><span></span><span></span></span>
+              <span class="hotspot-meta">5G</span>
+              <svg class="batt-ic" width="22" height="11" viewBox="0 0 28 14" fill="none"><rect x="1" y="1.6" width="22" height="10.8" rx="3" stroke="#c8c8ce" stroke-width="1.3"/><rect x="3" y="3.6" width="13" height="6.8" rx="1.5" fill="#c8c8ce"/><path d="M25 5v4c1.3-.5 1.3-3.5 0-4z" fill="#c8c8ce"/></svg>
+            </span>
+          </div>
+          <div class="dd-divider"></div>
+          <div class="dd-header">Other Networks</div>
+          <div class="wifi-row other" data-net="FBI Surveillance Van #3">
+            <span class="fc"><img class="wifi-png" src="images/wifi_white.png" alt=""></span>
+            FBI Surveillance Van #3
+            <svg class="lock-ic" width="11" height="13" viewBox="0 0 14 18" fill="none"><rect x="2" y="7" width="10" height="9" rx="1.6" fill="#c8c8ce"/><path d="M4 7V5a3 3 0 016 0v2" stroke="#c8c8ce" stroke-width="1.6"/></svg>
+          </div>
+          <div class="wifi-row other" data-net="Anita Max Wynn">
+            <span class="fc"><img class="wifi-png" src="images/wifi_white.png" alt=""></span>
+            Anita Max Wynn
+            <svg class="lock-ic" width="11" height="13" viewBox="0 0 14 18" fill="none"><rect x="2" y="7" width="10" height="9" rx="1.6" fill="#c8c8ce"/><path d="M4 7V5a3 3 0 016 0v2" stroke="#c8c8ce" stroke-width="1.6"/></svg>
+          </div>
+          <div class="dd-divider"></div>
+          <div class="dd-settings">Wi-Fi Settings…</div>
+        </div>
+      </div>
 
-    <!-- eraser -->
-    <svg class="prop eraser" width="84" height="44" viewBox="0 0 84 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-18deg)">
-      <rect x="1" y="1" width="82" height="42" rx="6" fill="#EDEAE2" stroke="#C9C3B4"/>
-      <rect x="1" y="1" width="30" height="42" rx="6" fill="#3D5B7E"/>
-    </svg>
+      <!-- Battery button -->
+      <div class="mb-item" id="mb-batt">
+        <svg width="25" height="13" viewBox="0 0 28 14" fill="none" aria-label="Battery">
+          <rect x="1" y="1.6" width="22" height="10.8" rx="3" stroke="currentColor" stroke-width="1.3" opacity=".5"/>
+          <rect x="3" y="3.6" width="13" height="6.8" rx="1.5" fill="currentColor"/>
+          <path d="M25 5v4c1.3-.5 1.3-3.5 0-4z" fill="currentColor" opacity=".5"/>
+        </svg>
+        <div class="mb-dropdown batt-dd" id="dd-batt">
+          <div class="batt-head"><span class="bt">Battery</span><span class="bp">67%</span></div>
+          <div class="batt-line">Power Source: Battery</div>
+          <div class="dd-divider"></div>
+          <div class="dd-header">Energy Mode</div>
+          <div class="batt-mode"><span class="fc"><svg width="20" height="10" viewBox="0 0 28 14" fill="none"><rect x="1" y="1.6" width="22" height="10.8" rx="3" stroke="#fff" stroke-width="1.3" opacity=".5"/><rect x="3" y="3.6" width="6" height="6.8" rx="1.5" fill="#fff"/><path d="M25 5v4c1.3-.5 1.3-3.5 0-4z" fill="#fff" opacity=".5"/></svg></span>Low Power</div>
+          <div class="dd-divider"></div>
+          <div class="batt-note">No Apps Using Significant Energy</div>
+          <div class="dd-divider"></div>
+          <div class="dd-settings">Battery Settings…</div>
+        </div>
+      </div>
 
-    <!-- the paper (mini drawing sheet) -->
-    <div id="paper">
-      <svg viewBox="0 0 340 449" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <!-- border + corners -->
-        <rect x="10" y="10" width="320" height="429" stroke="#22303E" stroke-width="1.4"/>
-        <rect x="16" y="16" width="308" height="417" stroke="#CBD5E3" stroke-width=".7"/>
-        <!-- grid hint -->
-        <g stroke="#DCE3ED" stroke-width=".5">
-          <line x1="10" y1="120" x2="330" y2="120"/><line x1="10" y1="230" x2="330" y2="230"/>
-          <line x1="10" y1="340" x2="330" y2="340"/><line x1="120" y1="10" x2="120" y2="439"/>
-          <line x1="230" y1="10" x2="230" y2="439"/>
-        </g>
-        <!-- name -->
-        <text x="30" y="64" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="34" fill="#22303E" letter-spacing="1">SUBHAN</text>
-        <text x="30" y="100" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="34" fill="none" stroke="#2E5C9E" stroke-width="1" letter-spacing="1">SAJADI</text>
-        <text x="30" y="124" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#2E5C9E" letter-spacing="1.5">MECHATRONICS · ROBOTICS</text>
-        <!-- gear sketch -->
-        <g stroke="#2E5C9E" stroke-width="1.1" opacity=".75">
-          <circle cx="250" cy="190" r="34"/>
-          <circle cx="250" cy="190" r="22" stroke-dasharray="4 3"/>
-          <circle cx="250" cy="190" r="7"/>
-          <line x1="250" y1="146" x2="250" y2="234" stroke-dasharray="6 4" stroke-width=".8"/>
-          <line x1="206" y1="190" x2="294" y2="190" stroke-dasharray="6 4" stroke-width=".8"/>
-        </g>
-        <!-- arm sketch -->
-        <g stroke="#22303E" stroke-width="1.3">
-          <circle cx="70" cy="350" r="9"/>
-          <line x1="70" y1="350" x2="150" y2="300"/>
-          <circle cx="150" cy="300" r="7"/>
-          <line x1="150" y1="300" x2="215" y2="330"/>
-          <circle cx="215" cy="330" r="5"/>
-          <path d="M215 330 l18 -6 M215 330 l16 12"/>
-        </g>
-        <g stroke="#2E5C9E" stroke-width=".7" opacity=".8">
-          <line x1="70" y1="372" x2="215" y2="372"/>
-          <line x1="70" y1="360" x2="70" y2="376"/><line x1="215" y1="338" x2="215" y2="376"/>
-        </g>
-        <text x="128" y="384" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#2E5C9E">R = 240</text>
-        <!-- title block -->
-        <g stroke="#22303E" stroke-width="1">
-          <rect x="10" y="404" width="320" height="35"/>
-          <line x1="130" y1="404" x2="130" y2="439"/>
-          <line x1="240" y1="404" x2="240" y2="439"/>
-        </g>
-        <text x="18" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">DRAWN BY</text>
-        <text x="18" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#22303E">S. SAJADI</text>
-        <text x="138" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">SHEET</text>
-        <text x="138" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#22303E">SS-001</text>
-        <text x="248" y="418" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">SCALE</text>
-        <text x="248" y="430" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#2E5C9E">1:1</text>
+      <span class="clock"></span>
+    </div>
+  </div>
+
+  <!-- iMessage notifications -->
+  <div class="notif-stack">
+    <div class="imsg-notif" id="imsg-elon" role="alert">
+      <div class="imsg-avatar">
+        <img class="imsg-pfp" src="images/elon.jpg" alt="">
+        <span class="imsg-badge"><svg width="11" height="11" viewBox="0 0 20 20" fill="#fff"><path d="M10 1C4.7 1 .5 4.6.5 9c0 2.5 1.3 4.7 3.3 6.2L3 18.5l3.5-1.6c1.1.4 2.3.6 3.5.6 5.3 0 9.5-3.6 9.5-8s-4.2-8.5-9.5-8.5z"/></svg></span>
+      </div>
+      <div class="imsg-body">
+        <div class="imsg-top">
+          <span class="imsg-sender">Elon Musk</span>
+          <span class="imsg-time">now</span>
+        </div>
+        <div class="imsg-msg">hey can u pls answer</div>
+      </div>
+      <button type="button" class="imsg-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+
+    <div class="imsg-notif" id="imsg-harvard" role="alert">
+      <div class="imsg-avatar white">
+        <img class="imsg-pfp contain" src="images/harvard.svg" alt="">
+        <span class="imsg-badge"><svg width="11" height="11" viewBox="0 0 20 20" fill="#fff"><path d="M10 1C4.7 1 .5 4.6.5 9c0 2.5 1.3 4.7 3.3 6.2L3 18.5l3.5-1.6c1.1.4 2.3.6 3.5.6 5.3 0 9.5-3.6 9.5-8s-4.2-8.5-9.5-8.5z"/></svg></span>
+      </div>
+      <div class="imsg-body">
+        <div class="imsg-top">
+          <span class="imsg-sender">Harvard Admissions</span>
+          <span class="imsg-time">now</span>
+        </div>
+        <div class="imsg-msg">yo u want a scholarship?</div>
+      </div>
+      <button type="button" class="imsg-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <!-- Wi-Fi password dialog -->
+  <div class="pw-wrap" id="wifi-pw-wrap">
+    <div class="pw-dlg" role="dialog">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="margin:0 auto 12px;display:block">
+        <circle cx="22" cy="22" r="22" fill="#0a84ff"/>
+        <g transform="translate(22,24)"><path d="M0 6a1.8 1.8 0 100-.01zM0-7C-4.6-7-8.8-5.1-12-2.2l2.2 2.2C-7.3-2.2-3.8-3.6 0-3.6s7.3 1.4 9.8 3.6L12-2.2C8.8-5.1 4.6-7 0-7zm0 5.4c-2.9 0-5.5 1.2-7.4 3l2.2 2.2C-3.9 1.3-2 .5 0 .5s3.9.8 5.2 2.1l2.2-2.2C5.5-.4 2.9-1.6 0-1.6z" fill="#fff"/></g>
       </svg>
+      <h4>The Wi-Fi network “<span id="wifi-net-name">Network</span>” requires a WPA2 password.</h4>
+      <input class="pw-input" id="wifi-pw-input" type="password" placeholder="Password" autocomplete="off" spellcheck="false">
+      <div class="pw-btns">
+        <button type="button" class="pw-cancel" id="wifi-pw-cancel">Cancel</button>
+        <button type="button" class="pw-ok" id="wifi-pw-join">Join</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- finder window -->
+  <div class="finder">
+    <div class="tbar">
+      <div class="lights">
+        <button type="button" class="light r" aria-label="Close" title="Close"><span class="sym">✕</span></button>
+        <button type="button" class="light y" aria-label="Minimize" title="Minimize"><span class="sym">−</span></button>
+        <button type="button" class="light g" aria-label="Fullscreen" title="Fullscreen"><span class="sym">+</span></button>
+      </div>
+      <div class="nav">
+        <button type="button" class="back" aria-label="Back"><svg width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1.5L1.5 7l5 5.5"/></svg></button>
+        <button type="button" class="fwd" aria-label="Forward"><svg width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5L6.5 7l-5 5.5"/></svg></button>
+      </div>
+      <div class="title f-title">Documents</div>
+      <div class="tspacer"></div>
+      <div class="finder-search-wrap" style="display:none">
+        <input class="finder-search" type="search" placeholder="Search" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="tools">
+        <button type="button" class="tool-btn grid-btn" aria-label="Toggle icon size" title="Toggle icon size">
+          <svg width="20" height="16" viewBox="0 0 22 18" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="9" height="7" rx="1.4"/><rect x="12" y="1" width="9" height="7" rx="1.4"/><rect x="1" y="10" width="9" height="7" rx="1.4"/><rect x="12" y="10" width="9" height="7" rx="1.4"/></svg>
+        </button>
+        <button type="button" class="tool-btn search-btn" aria-label="Search" title="Search">
+          <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5"/><path d="M11.6 11.6L16 16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="sidebar">
+        <div class="grp">Favorites</div>
+        <div class="item" data-view="desktop">
+          <!-- Desktop icon: monitor shape -->
+          <svg width="18" height="16" viewBox="0 0 20 18" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="18" height="12" rx="2" fill="currentColor" opacity=".85"/>
+            <rect x="1" y="1" width="18" height="12" rx="2" stroke="currentColor" stroke-width="0"/>
+            <rect x="7" y="13" width="6" height="2" fill="currentColor" opacity=".6"/>
+            <rect x="5" y="15" width="10" height="1.5" rx=".75" fill="currentColor" opacity=".5"/>
+          </svg>
+          Desktop
+        </div>
+        <div class="item on" data-view="documents">
+          <!-- Documents icon: page with folded corner -->
+          <svg width="15" height="18" viewBox="0 0 15 18" fill="none" aria-hidden="true">
+            <path d="M2 1h8l3 3v13H2z" fill="currentColor" opacity=".85"/>
+            <path d="M10 1v3h3" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
+            <rect x="4" y="7" width="7" height="1.2" rx=".6" fill="#1f1f22"/>
+            <rect x="4" y="9.5" width="6" height="1.2" rx=".6" fill="#1f1f22"/>
+            <rect x="4" y="12" width="5" height="1.2" rx=".6" fill="#1f1f22"/>
+          </svg>
+          Documents
+        </div>
+        <div class="item" data-view="downloads">
+          <!-- Downloads icon: circle with down arrow -->
+          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+            <circle cx="8.5" cy="8.5" r="7.5" stroke="currentColor" stroke-width="1.6" opacity=".85"/>
+            <path d="M8.5 4.5v5.5M6 8l2.5 2.5L11 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Downloads
+        </div>
+      </div>
+      <div class="fcontent">
+
+        <!-- Desktop view -->
+        <div class="view-panel" id="view-desktop">
+          <div class="files">
+            <div class="fitem" data-role="wallpaper" tabindex="0">
+              <div class="fthumb" style="background-image:url('images/wallpaper.png')"></div>
+              <span class="nm">wallpaper.png</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documents view -->
+        <div class="view-panel active" id="view-documents">
+          <div class="files">
+            <div class="fitem key" data-role="portfolio" tabindex="0">
+              <svg class="ficon" viewBox="0 0 88 70" fill="none" aria-hidden="true"><path d="M6 18c0-4 3-7 7-7h20l8 8h34c4 0 7 3 7 7v6H6z" fill="#4f9bee"/><path d="M6 22c0-3 3-6 6-6h64c3 0 6 3 6 6v34c0 4-3 7-7 7H13c-4 0-7-3-7-7z" fill="#6fb1f2"/></svg>
+              <span class="nm">Portfolio</span>
+            </div>
+            <div class="fitem" data-role="error"
+                 data-title="The item &ldquo;Free Time&rdquo; can&rsquo;t be found."
+                 data-msg="It may have been moved, renamed, deleted, or it never existed in the first place. Check back after graduation. (error code -43)" tabindex="0">
+              <svg class="ficon" viewBox="0 0 88 70" fill="none" aria-hidden="true"><path d="M6 18c0-4 3-7 7-7h20l8 8h34c4 0 7 3 7 7v6H6z" fill="#4f9bee"/><path d="M6 22c0-3 3-6 6-6h64c3 0 6 3 6 6v34c0 4-3 7-7 7H13c-4 0-7-3-7-7z" fill="#6fb1f2"/></svg>
+              <span class="nm">Free Time</span>
+            </div>
+            <div class="fitem" data-role="password" tabindex="0">
+              <svg class="ficon" viewBox="0 0 64 80" fill="none" aria-hidden="true">
+                <path d="M8 4h32l16 16v56H8z" fill="#f5f5f7" stroke="#c7c7cc" stroke-width="1.5"/>
+                <path d="M40 4l16 16H40z" fill="#e0e0e5" stroke="#c7c7cc" stroke-width="1.5"/>
+                <rect x="16" y="30" width="32" height="2.5" rx="1.25" fill="#8e8e93"/>
+                <rect x="16" y="37" width="28" height="2.5" rx="1.25" fill="#8e8e93"/>
+                <rect x="16" y="44" width="30" height="2.5" rx="1.25" fill="#8e8e93"/>
+                <rect x="16" y="51" width="20" height="2.5" rx="1.25" fill="#8e8e93"/>
+                <text x="10" y="75" font-family="monospace" font-size="7" fill="#8e8e93" letter-spacing=".5">.txt</text>
+              </svg>
+              <span class="nm">API_KEYS.txt</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downloads view -->
+        <div class="view-panel" id="view-downloads">
+          <div class="files">
+
+            <div class="fitem" data-role="dmg-error"
+                 data-title="You can&rsquo;t open &ldquo;MATLAB_R2024b.dmg&rdquo;"
+                 data-msg="The disk image could not be opened. Try downloading it again. (error code -60008)" tabindex="0">
+              <svg class="ficon dmg" viewBox="0 0 72 80" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="64" height="62" rx="8" fill="#d0d5dd" stroke="#b0b7c3" stroke-width="1.5"/>
+                <path d="M4 18c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v8H4z" fill="#e8ebf0"/>
+                <text x="36" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="8" font-weight="700" fill="#5a6275">MATLAB</text>
+                <circle cx="36" cy="55" r="15" fill="#e02020"/>
+                <text x="36" y="60" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#fff">M</text>
+                <text x="36" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6.5" fill="#8e8e93">.dmg</text>
+              </svg>
+              <span class="nm">MATLAB_R2024b.dmg</span>
+            </div>
+
+            <div class="fitem" data-role="dmg-error"
+                 data-title="You can&rsquo;t open &ldquo;Xcode_16.dmg&rdquo;"
+                 data-msg="&ldquo;Xcode_16.dmg&rdquo; is damaged and can&rsquo;t be opened. Move it to the Trash and try again. (error code -34018)" tabindex="0">
+              <svg class="ficon dmg" viewBox="0 0 72 80" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="64" height="62" rx="8" fill="#d0d5dd" stroke="#b0b7c3" stroke-width="1.5"/>
+                <path d="M4 18c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v8H4z" fill="#e8ebf0"/>
+                <text x="36" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="8" font-weight="700" fill="#5a6275">XCODE</text>
+                <rect x="21" y="40" width="30" height="30" rx="7" fill="#1c7aff"/>
+                <path d="M28 63l8-14 8 14" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="36" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6.5" fill="#8e8e93">.dmg</text>
+              </svg>
+              <span class="nm">Xcode_16.dmg</span>
+            </div>
+
+            <div class="fitem" data-role="dmg-error"
+                 data-title="You can&rsquo;t open &ldquo;SolidWorks_2024.dmg&rdquo;"
+                 data-msg="SolidWorks is not available on macOS. Please use a Windows PC or a VM like a normal engineer. (error code -10660)" tabindex="0">
+              <svg class="ficon dmg" viewBox="0 0 72 80" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="64" height="62" rx="8" fill="#d0d5dd" stroke="#b0b7c3" stroke-width="1.5"/>
+                <path d="M4 18c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v8H4z" fill="#e8ebf0"/>
+                <text x="36" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6" font-weight="700" fill="#5a6275">SOLIDWORKS</text>
+                <circle cx="36" cy="55" r="15" fill="#e8282c"/>
+                <path d="M28 55 a8 8 0 0 1 16 0" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M34 55 a2 2 0 1 0 4 0 a2 2 0 0 0-4 0" fill="#fff"/>
+                <text x="36" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6.5" fill="#8e8e93">.dmg</text>
+              </svg>
+              <span class="nm">SolidWorks_2024.dmg</span>
+            </div>
+
+            <div class="fitem" data-role="dmg-error"
+                 data-title="You can&rsquo;t open &ldquo;Notion_3.19.dmg&rdquo;"
+                 data-msg="An error occurred while trying to open this disk image. It may be corrupt or incomplete. (error code -60005)" tabindex="0">
+              <svg class="ficon dmg" viewBox="0 0 72 80" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="64" height="62" rx="8" fill="#d0d5dd" stroke="#b0b7c3" stroke-width="1.5"/>
+                <path d="M4 18c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v8H4z" fill="#e8ebf0"/>
+                <text x="36" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="8" font-weight="700" fill="#5a6275">NOTION</text>
+                <rect x="21" y="40" width="30" height="30" rx="5" fill="#1a1a1a"/>
+                <text x="36" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#fff">N</text>
+                <text x="36" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6.5" fill="#8e8e93">.dmg</text>
+              </svg>
+              <span class="nm">Notion_3.19.dmg</span>
+            </div>
+
+            <div class="fitem" data-role="dmg-error"
+                 data-title="You can&rsquo;t open &ldquo;Minecraft_Java.dmg&rdquo;"
+                 data-msg="This item is blocked by parental controls. Contact your administrator. (error code -128)" tabindex="0">
+              <svg class="ficon dmg" viewBox="0 0 72 80" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="64" height="62" rx="8" fill="#d0d5dd" stroke="#b0b7c3" stroke-width="1.5"/>
+                <path d="M4 18c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v8H4z" fill="#e8ebf0"/>
+                <text x="36" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6" font-weight="700" fill="#5a6275">MINECRAFT</text>
+                <rect x="21" y="40" width="30" height="30" rx="4" fill="#5d8c3e"/>
+                <rect x="21" y="40" width="30" height="15" rx="4" fill="#8bc34a"/>
+                <rect x="21" y="52" width="30" height="3" fill="#5d8c3e"/>
+                <text x="36" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="6.5" fill="#8e8e93">.dmg</text>
+              </svg>
+              <span class="nm">Minecraft_Java.dmg</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="statusbar"><span class="count">3 items</span></div>
+  </div>
+
+  <div class="mac-hint">Go to <b>Documents</b> and <b>double-click</b> Portfolio to enter ↵</div>
+
+  <!-- password dialog -->
+  <div class="pw-wrap">
+    <div class="pw-dlg" role="dialog">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="margin:0 auto 12px;display:block">
+        <circle cx="22" cy="22" r="22" fill="#636366"/>
+        <rect x="15" y="20" width="14" height="11" rx="2.5" stroke="#fff" stroke-width="1.8"/>
+        <path d="M17 20v-3a5 5 0 0110 0v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="22" cy="25.5" r="1.5" fill="#fff"/>
+      </svg>
+      <h4>"API_KEYS.txt" is locked.</h4>
+      <p>Enter your password to unlock this file.</p>
+      <input class="pw-input" type="password" placeholder="Password" autocomplete="off" spellcheck="false">
+      <div class="pw-btns">
+        <button type="button" class="pw-cancel">Cancel</button>
+        <button type="button" class="pw-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- error dialog -->
+  <div class="dlg-wrap">
+    <div class="dlg" role="alertdialog">
+      <svg class="ic" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+        <path d="M6 16c0-3 2-5 5-5h11l5 5h22c3 0 5 2 5 5v22c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="#4f9bee"/>
+        <path d="M6 20c0-2 2-4 4-4h36c2 0 4 2 4 4v21c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="#6fb1f2"/>
+        <circle cx="44" cy="42" r="11" fill="#ff453a" stroke="#323236" stroke-width="2.5"/>
+        <rect x="42.5" y="35.5" width="3" height="8" rx="1.5" fill="#fff"/>
+        <circle cx="44" cy="47.5" r="1.7" fill="#fff"/>
+      </svg>
+      <h4 class="d-title"></h4>
+      <p class="d-msg"></p>
+      <button type="button" class="d-ok">OK</button>
     </div>
   </div>
 </div>
@@ -578,7 +1120,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
         </g>
       </svg>
 
-      <img src="subhan_cutout.png" alt="Subhan Sajadi, arms crossed in a black blazer" width="755" height="1119">
+      <img src="images/subhan_cutout.png" alt="Subhan Sajadi, arms crossed in a black blazer" width="755" height="1119">
 
       <div class="callout c1">ITEM 1 — ENGINEER<br>QTY: 1 · MAT'L: DETERMINED</div>
       <div class="callout c2">SEE SHT 03<br>FOR DETAIL DWGS</div>
@@ -587,10 +1129,6 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
   </figure>
 </header>
 
-<div class="divider" aria-hidden="true">
-  <svg class="g1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.8l.9 1.9 2-.5.3 2.1 2.1.3-.5 2 1.9.9-1.1 1.8 1.1 1.8-1.9.9.5 2-2.1.3-.3 2.1-2-.5-.9 1.9-.9-1.9-2 .5-.3-2.1-2.1-.3.5-2-1.9-.9 1.1-1.8L4.6 9.5l1.9-.9-.5-2 2.1-.3.3-2.1 2 .5Z"/><circle cx="12" cy="11.3" r="3.4"/></svg>
-  <svg class="g2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.8l.9 1.9 2-.5.3 2.1 2.1.3-.5 2 1.9.9-1.1 1.8 1.1 1.8-1.9.9.5 2-2.1.3-.3 2.1-2-.5-.9 1.9-.9-1.9-2 .5-.3-2.1-2.1-.3.5-2-1.9-.9 1.1-1.8L4.6 9.5l1.9-.9-.5-2 2.1-.3.3-2.1 2 .5Z"/><circle cx="12" cy="11.3" r="3.4"/></svg>
-</div>
 
 <!-- ============ ABOUT ============ -->
 <section id="about">
@@ -625,7 +1163,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
   </div>
   <div class="xp">
     <div class="job rv">
-      <div class="when">May 2026 — <span class="now">Present</span><img src="iBEST.png" alt="iBEST" class="company-logo logo-cover" style="height:56px"></div>
+      <div class="when">May 2026 — <span class="now">Present</span><img src="images/iBEST.png" alt="iBEST" class="company-logo md"></div>
       <div>
         <h3>Undergraduate Research Assistant</h3>
         <div class="org">iBEST — Institute for Biomedical Engineering, Science & Technology · Toronto</div>
@@ -635,7 +1173,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
       </div>
     </div>
     <div class="job rv">
-      <div class="when">Mar 2026 — <span class="now">Present</span><img src="tmuwave.png" alt="TMU WAVE" class="company-logo" style="height:52px;max-width:52px"></div>
+      <div class="when">Mar 2026 — <span class="now">Present</span><img src="images/tmuwave.png" alt="TMU WAVE" class="company-logo md"></div>
       <div>
         <h3>Software Team Member</h3>
         <div class="org">TMU WAVE · Design Team</div>
@@ -645,7 +1183,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
       </div>
     </div>
     <div class="job rv">
-      <div class="when">May 2025 — May 2026<img src="litens.png.webp" alt="Litens Automotive" class="company-logo logo-cover" style="height:36px"></div>
+      <div class="when">May 2025 — May 2026<img src="images/litens.png.webp" alt="Litens Automotive" class="company-logo lg"></div>
       <div>
         <h3>Purchasing Student</h3>
         <div class="org">Litens Automotive Group · Vaughan, ON</div>
@@ -658,7 +1196,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
       </div>
     </div>
     <div class="job rv">
-      <div class="when">May 2024 — Aug 2024<img src="Celestica.png" alt="Celestica" class="company-logo"></div>
+      <div class="when">May 2024 — Aug 2024<img src="images/Celestica.png" alt="Celestica" class="company-logo"></div>
       <div>
         <h3>Commodity Management</h3>
         <div class="org">Celestica · Toronto, ON</div>
@@ -670,7 +1208,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
       </div>
     </div>
     <div class="job rv">
-      <div class="when">Sep 2023 — Jun 2025<img src="PALS.png" alt="PALS Learning Center" class="company-logo"></div>
+      <div class="when">Sep 2023 — Jun 2025<img src="images/PALS.png" alt="PALS Learning Center" class="company-logo"></div>
       <div>
         <h3>Academic Tutor</h3>
         <div class="org">PALS Learning Center · Toronto, ON</div>
@@ -965,7 +1503,7 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
     <svg class="stamp" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <circle cx="80" cy="80" r="76" stroke="currentColor" stroke-width="3"/>
       <circle cx="80" cy="80" r="62" stroke="currentColor" stroke-width="1.4"/>
-      <path id="stArcT" d="M 12 80 A 45 45 0 0 1 148 80" fill="none"/>
+      <path id="stArcT" d="M 14 80 A 66 66 0 0 1 146 80" fill="none"/>
       <text font-family="'IBM Plex Mono',monospace" font-size="10" fill="currentColor" letter-spacing="1.6" text-anchor="middle">
         <textPath href="#stArcT" startOffset="50%">RELEASED FOR CONSTRUCTION</textPath>
       </text>
@@ -978,7 +1516,8 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
     <p>Open to robotics, mechatronics, and R&amp;D opportunities — internships, research, and collaborations.</p>
     <div class="hero-cta">
       <a class="btn blue" href="mailto:subhan.sajadi@torontomu.ca">subhan.sajadi@torontomu.ca</a>
-      <a class="btn" href="https://www.linkedin.com/in/subhansajadi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/subhansajadi/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 310 310" fill="currentColor" aria-hidden="true" style="vertical-align:-.1em;margin-right:5px"><path d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73C77.16,101.969,74.922,99.73,72.16,99.73z"/><path d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"/><path d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995C310,145.43,300.549,94.761,230.454,94.761z"/></svg>LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/subhansajadi" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="vertical-align:-.15em;margin-right:5px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub ↗</a>
       <a class="btn" href="Subhan_Sajadi_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
     </div>
   </div>
@@ -991,18 +1530,288 @@ footer{max-width:var(--max);margin:0 auto;padding:66px 40px 54px;position:relati
 </footer>
 
 <script>
+window.scrollTo(0, 0);
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const desk = document.getElementById('desk');
 
-  function start(){ document.body.classList.add('loaded'); }
+  function start(){ window.scrollTo(0, 0); document.body.classList.add('loaded'); }
 
   if (reduce || !desk) { start(); if(desk) desk.remove(); }
   else {
-    requestAnimationFrame(()=>requestAnimationFrame(()=>desk.classList.add('settle')));
-    setTimeout(()=>desk.classList.add('zoom'), 950);
-    setTimeout(()=>{ desk.classList.add('fade'); start(); }, 1950);
-    setTimeout(()=>desk.remove(), 2600);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>desk.classList.add('ready')));
+
+    const launch = ()=>{
+      if (desk.classList.contains('launch')) return;
+      desk.classList.add('launch');
+      start();
+      setTimeout(()=>desk.classList.add('fade'), 360);
+      setTimeout(()=>desk.remove(), 1050);
+    };
+
+    // live menu-bar clock
+    const clockEl = desk.querySelector('.clock');
+    const tick = ()=>{
+      const d = new Date();
+      const date = d.toLocaleDateString([], {weekday:'short', month:'short', day:'numeric'}).replace(',', '');
+      const time = d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+      clockEl.textContent = date + '  ' + time;
+    };
+    tick(); setInterval(tick, 20000);
+
+    // ── menubar dropdowns ──────────────────────────────────
+    const allDropdowns = desk.querySelectorAll('.mb-dropdown');
+    const closeAllDD = ()=>{ allDropdowns.forEach(d=>d.classList.remove('show')); desk.querySelectorAll('.mb-item').forEach(i=>i.classList.remove('open')); };
+    ['mb-dnd','mb-wifi','mb-batt'].forEach(id=>{
+      const item = desk.querySelector('#'+id);
+      const dd   = item.querySelector('.mb-dropdown');
+      const icon = item.querySelector('.menubar-icon, svg');
+      icon.addEventListener('click', (e)=>{
+        const wasOpen = dd.classList.contains('show');
+        closeAllDD();
+        if (!wasOpen){ dd.classList.add('show'); item.classList.add('open'); }
+        e.stopPropagation();
+      });
+      // clicks inside the dropdown shouldn't close it
+      dd.addEventListener('click', (e)=>e.stopPropagation());
+    });
+    desk.addEventListener('click', closeAllDD);
+
+    // DND toggle
+    const dndToggle = desk.querySelector('#dnd-toggle');
+    const dndItem   = desk.querySelector('#mb-dnd');
+    const imsgElon  = desk.querySelector('#imsg-elon');
+    const imsgHarvard = desk.querySelector('#imsg-harvard');
+
+    // iMessage ding via Web Audio
+    const playDing = ()=>{
+      try {
+        const ctx = new (window.AudioContext||window.webkitAudioContext)();
+        // Two-tone iMessage ding
+        const play = (freq, start, dur, vol=0.35)=>{
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = freq;
+          osc.type = 'sine';
+          gain.gain.setValueAtTime(0, ctx.currentTime + start);
+          gain.gain.linearRampToValueAtTime(vol, ctx.currentTime + start + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
+          osc.start(ctx.currentTime + start);
+          osc.stop(ctx.currentTime + start + dur);
+        };
+        play(1318, 0,    0.18);  // E6
+        play(1760, 0.12, 0.22);  // A6
+      } catch(e){}
+    };
+
+    dndToggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      // turn OFF dnd → remove icon, close dropdown, fire notifications
+      dndItem.style.display = 'none';
+      closeAllDD();
+      setTimeout(()=>{ playDing(); imsgElon.classList.add('show'); }, 600);
+      setTimeout(()=>{ playDing(); imsgHarvard.classList.add('show'); }, 1700);
+    });
+
+    desk.querySelectorAll('.imsg-notif .imsg-dismiss').forEach(btn=>{
+      btn.addEventListener('click', ()=>btn.closest('.imsg-notif').classList.remove('show'));
+    });
+
+    // Wi-Fi password prompt for "Other Networks"
+    const wifiPwWrap  = desk.querySelector('#wifi-pw-wrap');
+    const wifiPwInput = desk.querySelector('#wifi-pw-input');
+    const wifiNetName = desk.querySelector('#wifi-net-name');
+    const openWifiPw = (net)=>{
+      wifiNetName.textContent = net;
+      wifiPwWrap.classList.add('show');
+      wifiPwInput.value = '';
+      setTimeout(()=>wifiPwInput.focus(), 220);
+    };
+    const closeWifiPw = ()=>wifiPwWrap.classList.remove('show');
+    const wrongWifiPw = ()=>{
+      wifiPwInput.classList.remove('shake');
+      void wifiPwInput.offsetWidth;
+      wifiPwInput.classList.add('shake');
+      wifiPwInput.value = '';
+      setTimeout(()=>wifiPwInput.focus(), 10);
+    };
+    desk.querySelectorAll('.wifi-row.other').forEach(row=>{
+      row.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        closeAllDD();
+        openWifiPw(row.dataset.net);
+      });
+    });
+    desk.querySelector('#wifi-pw-cancel').addEventListener('click', closeWifiPw);
+    desk.querySelector('#wifi-pw-join').addEventListener('click', wrongWifiPw);
+    wifiPwInput.addEventListener('keydown', (e)=>{
+      if (e.key==='Enter') wrongWifiPw();
+      if (e.key==='Escape') closeWifiPw();
+    });
+    wifiPwWrap.addEventListener('click', (e)=>{ if(e.target===wifiPwWrap) closeWifiPw(); });
+    // ───────────────────────────────────────────────────────
+
+    // error dialog
+    const dlg  = desk.querySelector('.dlg-wrap');
+    const dTtl = desk.querySelector('.d-title');
+    const dMsg = desk.querySelector('.d-msg');
+    const showError = (f)=>{
+      dTtl.textContent = f.dataset.title;
+      dMsg.textContent = f.dataset.msg;
+      dlg.classList.add('show');
+    };
+    const closeDlg = ()=>dlg.classList.remove('show');
+    desk.querySelector('.d-ok').addEventListener('click', closeDlg);
+    dlg.addEventListener('click', (e)=>{ if(e.target===dlg) closeDlg(); });
+
+    const finder  = desk.querySelector('.finder');
+    const title   = desk.querySelector('.f-title');
+    const count   = desk.querySelector('.count');
+    const backBtn = desk.querySelector('.nav .back');
+    const fwdBtn  = desk.querySelector('.nav .fwd');
+
+    // sidebar view switching with history
+    const viewCounts = {desktop:'1 item', documents:'3 items', downloads:'5 items'};
+    const viewTitles = {desktop:'Desktop', documents:'Documents', downloads:'Downloads'};
+    const views = ['desktop','documents','downloads'];
+    let history = ['documents'], histIdx = 0;
+    let currentView = 'documents';
+
+    const updateNavBtns = ()=>{
+      backBtn.classList.toggle('act', histIdx > 0);
+      fwdBtn.classList.toggle('act', histIdx < history.length - 1);
+    };
+
+    const switchView = (v, pushHistory=true)=>{
+      currentView = v;
+      if (pushHistory) { history = history.slice(0, histIdx+1); history.push(v); histIdx++; }
+      desk.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active'));
+      desk.querySelector('#view-'+v).classList.add('active');
+      desk.querySelectorAll('.sidebar .item').forEach(i=>i.classList.toggle('on', i.dataset.view===v));
+      title.textContent = viewTitles[v];
+      count.textContent = viewCounts[v];
+      clearSel();
+      updateNavBtns();
+    };
+
+    desk.querySelectorAll('.sidebar .item').forEach(i=>{
+      i.addEventListener('click', ()=>switchView(i.dataset.view));
+    });
+
+    backBtn.addEventListener('click', ()=>{
+      if (histIdx > 0) { histIdx--; switchView(history[histIdx], false); }
+    });
+    fwdBtn.addEventListener('click', ()=>{
+      if (histIdx < history.length - 1) { histIdx++; switchView(history[histIdx], false); }
+    });
+    updateNavBtns();
+
+    // traffic lights
+    desk.querySelector('.light.r').addEventListener('click', ()=>{ // red = close → just hide, stays closed (reload to return)
+      finder.style.display='none';
+    });
+    desk.querySelector('.light.y').addEventListener('click', ()=>{   // yellow = minimize
+      finder.classList.add('minimizing');
+      setTimeout(()=>{
+        finder.style.display='none';
+        finder.classList.remove('minimizing');
+      }, 350);
+      // click anywhere on desktop restores
+      desk.addEventListener('click', function restore(e){
+        if (e.target.closest('.finder')) return;
+        finder.style.display='';
+        finder.classList.add('restoring');
+        setTimeout(()=>finder.classList.remove('restoring'), 350);
+        desk.removeEventListener('click', restore);
+      });
+    });
+    let isFullscreen = false;
+    desk.querySelector('.light.g').addEventListener('click', ()=>{   // green = fullscreen
+      isFullscreen = !isFullscreen;
+      finder.classList.toggle('fullscreen', isFullscreen);
+    });
+
+    // grid size toggle
+    let largeIcons = false;
+    desk.querySelector('.grid-btn').addEventListener('click', ()=>{
+      largeIcons = !largeIcons;
+      finder.classList.toggle('large-icons', largeIcons);
+      desk.querySelector('.grid-btn').classList.toggle('active', largeIcons);
+    });
+
+    // search
+    const searchWrap = desk.querySelector('.finder-search-wrap');
+    const searchInput = desk.querySelector('.finder-search');
+    let searchOpen = false;
+    desk.querySelector('.search-btn').addEventListener('click', ()=>{
+      searchOpen = !searchOpen;
+      searchWrap.style.display = searchOpen ? '' : 'none';
+      desk.querySelector('.search-btn').classList.toggle('active', searchOpen);
+      if (searchOpen) setTimeout(()=>searchInput.focus(), 50);
+      else { searchInput.value=''; filterFiles(''); }
+    });
+    const filterFiles = (q)=>{
+      desk.querySelectorAll('.fitem').forEach(f=>{
+        const nm = f.querySelector('.nm');
+        if (!nm) return;
+        f.style.display = (!q || nm.textContent.toLowerCase().includes(q.toLowerCase())) ? '' : 'none';
+      });
+    };
+    searchInput.addEventListener('input', ()=>filterFiles(searchInput.value));
+    searchInput.addEventListener('keydown', (e)=>{
+      if (e.key==='Escape'){ searchOpen=false; searchWrap.style.display='none'; desk.querySelector('.search-btn').classList.remove('active'); searchInput.value=''; filterFiles(''); }
+    });
+
+    const clearSel = ()=>desk.querySelectorAll('.fitem').forEach(x=>x.classList.remove('sel'));
+
+    // password dialog
+    const pwWrap  = desk.querySelector('.pw-wrap');
+    const pwInput = desk.querySelector('.pw-input');
+    const showPw  = ()=>{ pwWrap.classList.add('show'); pwInput.value=''; setTimeout(()=>pwInput.focus(),220); };
+    const closePw = ()=>{ pwWrap.classList.remove('show'); };
+    const wrongPw = ()=>{
+      pwInput.classList.remove('shake');
+      void pwInput.offsetWidth;
+      pwInput.classList.add('shake');
+      pwInput.value = '';
+      setTimeout(()=>pwInput.focus(), 10);
+    };
+    desk.querySelector('.pw-cancel').addEventListener('click', closePw);
+    desk.querySelector('.pw-ok').addEventListener('click', wrongPw);
+    pwInput.addEventListener('keydown', (e)=>{
+      if (e.key==='Enter') wrongPw();
+      if (e.key==='Escape') closePw();
+    });
+    pwWrap.addEventListener('click', (e)=>{ if(e.target===pwWrap) closePw(); });
+
+    const open = (f)=>{
+      const r = f.dataset.role;
+      if (r==='portfolio') launch();
+      else if (r==='password') showPw();
+      else if (r==='wallpaper') window.open('images/wallpaper.png', '_blank');
+      else showError(f); // covers 'error' and 'dmg-error'
+    };
+
+    let lastEl = null, lastTap = 0;
+    desk.querySelectorAll('.fitem').forEach(f=>{
+      f.addEventListener('click', ()=>{
+        clearSel();
+        f.classList.add('sel');
+        const now = Date.now();
+        if (lastEl===f && now-lastTap<450) open(f);
+        lastTap = now; lastEl = f;
+      });
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if (desk.classList.contains('launch')) return;
+      if (e.key==='Escape') {
+        if (dlg.classList.contains('show')) { closeDlg(); return; }
+        if (pwWrap.classList.contains('show')) { closePw(); return; }
+      }
+      if (e.key==='Enter') { const sel = desk.querySelector('.fitem.sel'); if(sel) open(sel); }
+    });
   }
 
   const io = new IntersectionObserver((entries)=>{
