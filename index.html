@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Subhan Sajadi — Mechatronics Engineer</title>
-<meta name="description" content="Portfolio of Subhan Sajadi — Mechanical & Mechatronic Engineering @ TMU. Robotics, embedded systems, and dynamic systems design.">
+<meta name="description" content="Portfolio of Subhan Sajadi, Mechanical Engineering (Mechatronics) at Toronto Metropolitan University: wearable robotics, autonomous systems, embedded control, and mechanical design.">
+<meta name="theme-color" content="#F8F7F1">
+<link rel="canonical" href="https://subhansajadi.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2322303E'/%3E%3Crect x='5' y='5' width='54' height='54' fill='none' stroke='%236F9BD6' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='24' font-weight='700' fill='%23F8F7F1' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subhansajadi.github.io/">
+<meta property="og:title" content="Subhan Sajadi — Mechatronics Engineer">
+<meta property="og:description" content="Portfolio of Subhan Sajadi, Mechanical Engineering (Mechatronics) at Toronto Metropolitan University: wearable robotics, autonomous systems, embedded control, and mechanical design.">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Architects+Daughter&display=swap" rel="stylesheet">
@@ -26,7 +34,8 @@
   --max:1180px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
+html.modal-open,html.modal-open body{overflow:hidden}
 body{
   overflow-x:hidden;
   font-family:var(--sans);
@@ -47,7 +56,7 @@ body{
 #desk{
   position:fixed;inset:0;z-index:100;overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',var(--sans);
-  background:url('images/wallpaper.png') center/cover no-repeat;
+  background:url('images/wallpaper.jpg') center/cover no-repeat;
   transition:opacity .5s ease;
 }
 #desk.fade{opacity:0;pointer-events:none}
@@ -405,7 +414,7 @@ body{
 @media(max-width:720px){.frame{inset:8px}}
 
 /* =================== NAV =================== */
-nav{
+body>nav{
   position:fixed;top:14px;left:14px;right:14px;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 28px;
@@ -413,18 +422,18 @@ nav{
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--grid-2);
 }
-nav .id{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--graphite)}
-nav .id b{color:var(--draft);font-weight:500}
-nav ul{display:flex;gap:26px;list-style:none}
-nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-decoration:none;transition:color .2s}
-nav a:hover,nav a:focus-visible{color:var(--draft)}
-nav a:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
-nav .btn{padding:7px 15px;font-size:11px}
+body>nav .id{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--graphite)}
+body>nav .id b{color:var(--draft);font-weight:500}
+body>nav ul{display:flex;gap:26px;list-style:none}
+body>nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-decoration:none;transition:color .2s}
+body>nav a:hover,body>nav a:focus-visible{color:var(--draft)}
+body>nav a:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
+body>nav .btn{padding:7px 15px;font-size:11px}
 @media(max-width:720px){
-  nav{top:8px;left:8px;right:8px;padding:10px 12px}
-  nav ul{display:none}
-  nav .id{display:block;font-size:9.5px;letter-spacing:.05em}
-  nav .btn{padding:5px 10px;font-size:9.5px}
+  body>nav{top:8px;left:8px;right:8px;padding:10px 12px}
+  body>nav ul{display:none}
+  body>nav .id{display:block;font-size:9.5px;letter-spacing:.05em}
+  body>nav .btn{padding:5px 10px;font-size:9.5px}
 }
 
 /* =================== HERO =================== */
@@ -570,10 +579,13 @@ section{max-width:var(--max);margin:0 auto;padding:48px 40px}
 .company-logo.md{height:46px;max-width:150px}
 .company-logo.lg{height:72px;max-width:210px}
 @media(max-width:720px){.company-logo{height:26px;max-width:96px}.company-logo.md{height:38px;max-width:120px}.company-logo.lg{height:58px;max-width:160px}}
+.co-mark{display:table;margin-top:14px;font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);border:1.5px solid var(--ink);padding:3px 8px 1px;line-height:1.15}
+.xp-link{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--draft);text-decoration:none;border-bottom:1px solid var(--draft-mid);padding-bottom:2px;transition:border-color .2s}
+.xp-link:hover,.xp-link:focus-visible{border-color:var(--draft)}
 
 /* =================== PROJECTS =================== */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
-@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:18px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
 .card{
   border:1px solid var(--ink);background:var(--paper);position:relative;
   display:flex;flex-direction:column;
@@ -586,11 +598,11 @@ section{max-width:var(--max);margin:0 auto;padding:48px 40px}
   font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);
 }
 .card .cbar b{color:var(--draft);font-weight:500}
-.card .body{padding:22px;flex:1;display:flex;flex-direction:column}
+.card .body{padding:15px 17px 17px;flex:1;display:flex;flex-direction:column}
 .card .media{border-bottom:1px solid var(--ink);background:linear-gradient(#FCFCFA,#F1F2EC);overflow:hidden;position:relative}
 .card .media svg{display:block;width:100%;height:auto}
 .card .media .figlbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--graphite)}
-.card h3{font-family:var(--disp);font-size:25px;font-weight:600;text-transform:uppercase;line-height:1.1;margin-bottom:10px}
+.card .body h3{font-family:var(--disp);font-size:18px;font-weight:600;text-transform:uppercase;line-height:1.12;margin-bottom:0}
 .m-sweep{animation:lidar 2.8s ease-in-out infinite alternate}
 @keyframes lidar{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
 .m-spin{animation:rspin .45s linear infinite}
@@ -613,6 +625,140 @@ section{max-width:var(--max);margin:0 auto;padding:48px 40px}
   font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
   border:1px solid var(--grid-2);color:var(--graphite);padding:4px 9px;background:var(--paper-2);
 }
+
+/* compact project cards → click to open a detail sheet */
+.card{cursor:pointer}
+.card:focus-visible{outline:2px solid var(--draft);outline-offset:3px}
+.card.hide{display:none}
+.card .card-sum{font-size:13.5px;color:var(--graphite);line-height:1.5;margin-top:7px;flex:1}
+.card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:13px}
+.card-cats{display:flex;flex-wrap:wrap;gap:6px}
+.card-cats span{
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--draft);border:1px solid var(--draft-mid);padding:3px 6px;background:var(--draft-soft);
+}
+.card-go{flex:none;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--draft);white-space:nowrap}
+.card-go i{font-style:normal;display:inline-block;transition:transform .25s}
+.card:hover .card-go i,.card:focus-visible .card-go i{transform:translateX(4px)}
+.card-expand{
+  position:absolute;top:8px;right:8px;width:24px;height:24px;z-index:2;
+  display:flex;align-items:center;justify-content:center;pointer-events:none;
+  background:var(--paper);border:1px solid var(--ink);color:var(--ink);font-size:12px;line-height:1;
+  opacity:0;transform:translateY(-4px);transition:opacity .2s,transform .2s;
+}
+.card:hover .card-expand,.card:focus-visible .card-expand{opacity:1;transform:none}
+.m-osc{animation:osc 2.6s ease-in-out infinite alternate}
+@keyframes osc{from{transform:rotate(-22deg)}to{transform:rotate(14deg)}}
+
+/* project filter bar */
+.pfilter{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px}
+.pf-btn{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 13px;border:1px solid var(--grid-2);background:var(--paper);color:var(--graphite);
+  cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;
+}
+.pf-btn:hover{border-color:var(--draft);color:var(--draft)}
+.pf-btn.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.pf-btn:focus-visible{outline:2px solid var(--draft);outline-offset:2px}
+.pf-n{font-size:9px;opacity:.55}
+
+/* project detail sheet */
+.cdetail{display:none}
+.pmodal-wrap{
+  position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(34,48,62,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+.pmodal-wrap.show{opacity:1;pointer-events:auto}
+.pmodal{
+  position:relative;width:min(980px,100%);max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);
+  display:flex;flex-direction:column;
+  background:var(--paper);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--draft);
+  transform:translateY(18px) scale(.985);transition:transform .32s cubic-bezier(.16,1,.3,1);
+}
+.pmodal-wrap.show .pmodal{transform:none}
+.pm-top{
+  flex:none;display:flex;align-items:center;gap:16px;padding:9px 10px 9px 20px;border-bottom:1px solid var(--ink);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);
+}
+.pm-top b{color:var(--draft);font-weight:500}
+.pm-dwgtag{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pm-keys{margin-left:auto;font-size:9.5px;letter-spacing:.1em;opacity:.75;white-space:nowrap}
+.pm-count{white-space:nowrap}
+.pm-keys+.pm-count{margin-left:0}
+.pm-x{
+  flex:none;width:30px;height:30px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;
+  font-size:13px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+}
+.pm-x:hover{background:var(--ink);color:var(--paper)}
+.pm-x:focus-visible,.pm-nav button:focus-visible{outline:2px solid var(--draft);outline-offset:-3px}
+.pm-scroll{flex:1;overflow:auto;overscroll-behavior:contain}
+.pmodal .media{border-bottom:1px solid var(--ink);background:linear-gradient(#FCFCFA,#F1F2EC);overflow:hidden}
+.pmodal .media svg{display:block;width:100%;height:auto}
+.pm-pad{padding:26px 32px 32px}
+.pm-pad h3{font-family:var(--disp);font-size:clamp(28px,4.4vw,40px);font-weight:700;text-transform:uppercase;line-height:1.02;margin-bottom:12px}
+.pm-pad .pm-lede{font-size:17px;color:#33404E;max-width:64ch}
+.pm-grid{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:34px;margin-top:24px;padding-top:24px;border-top:1px solid var(--grid-2)}
+.pm-pad h4{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--draft);margin:0 0 10px;display:flex;align-items:center;gap:10px;
+}
+.pm-main h4::after{content:'';flex:1;height:1px;background:var(--grid-2)}
+.pm-main h4:not(:first-child){margin-top:26px}
+.pm-main p{font-size:15.5px;color:#33404E}
+.pm-main code{font-family:var(--mono);font-size:.88em;background:var(--paper-2);border:1px solid var(--grid-2);padding:0 4px}
+.pm-list{list-style:none;display:grid;gap:9px}
+.pm-list li{padding-left:22px;position:relative;font-size:15px;color:#33404E;line-height:1.55}
+.pm-list li::before{content:'—';position:absolute;left:0;color:var(--draft)}
+.pm-list li b{color:var(--ink);font-weight:600}
+.pm-main .res{
+  padding:11px 14px;background:var(--draft-soft);border-left:3px solid var(--draft);
+  font-family:var(--mono);font-size:12.5px;color:var(--ink);letter-spacing:.01em;
+}
+.pm-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.pm-figs figure{border:1px solid var(--grid-2);background:#fff;margin:0}
+.pm-figs a{display:block}
+.pm-figs img{display:block;width:100%;height:auto}
+.pm-figs figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--graphite);padding:6px 9px;border-top:1px solid var(--grid-2)}
+.pm-spec{align-self:start;border:1px solid var(--ink);background:var(--paper-2)}
+.pm-spec dl{margin:0}
+.pm-spec .row{padding:10px 14px;border-bottom:1px solid var(--grid-2)}
+.pm-spec dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite)}
+.pm-spec dd{font-size:14px;color:var(--ink);margin:2px 0 0;line-height:1.4}
+.pm-tools{padding:12px 14px 14px}
+.pm-tools h4{margin-bottom:9px}
+.pm-tools .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pm-status{display:inline-flex;align-items:center;gap:7px}
+.pm-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--graphite)}
+.pm-status.live::before{background:#3DA35D;box-shadow:0 0 0 3px rgba(61,163,93,.18)}
+.pm-nav{flex:none;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+.pm-nav[hidden]{display:none}
+.pm-nav button{
+  background:var(--paper);border:0;padding:11px 20px;cursor:pointer;text-align:left;min-width:0;
+  display:flex;flex-direction:column;align-items:flex-start;gap:1px;font-family:var(--mono);color:var(--graphite);
+  transition:background .2s;
+}
+.pm-nav button+button{border-left:1px solid var(--ink);text-align:right;align-items:flex-end}
+.pm-nav small{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.pm-nav span{
+  font-family:var(--disp);font-size:17px;font-weight:600;text-transform:uppercase;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+.pm-nav button:hover{background:var(--draft-soft)}
+.pm-nav button:hover span{color:var(--draft)}
+@media(max-width:760px){
+  .pm-grid{grid-template-columns:1fr;gap:26px}
+  .pm-keys{display:none}
+  .pm-count{margin-left:auto}
+}
+@media(max-width:560px){
+  .pmodal-wrap{padding:0}
+  .pmodal{height:100%;max-height:none;border:0;box-shadow:none}
+  .pm-pad{padding:20px 20px 28px}
+  .pm-nav button{padding:10px 14px}
+  .pm-nav span{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.pmodal{transform:none}}
 
 /* =================== SKILLS =================== */
 .spec{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--ink)}
@@ -641,6 +787,8 @@ section{max-width:var(--max);margin:0 auto;padding:48px 40px}
 .lcard .org{font-family:var(--mono);font-size:11.5px;color:var(--graphite);margin:4px 0 12px}
 .lcard p{font-size:14.5px;color:#33404E}
 .lcard .metric{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--draft)}
+.lcard p a{color:var(--draft);text-decoration:none;border-bottom:1px solid var(--draft-mid)}
+.lcard p a:hover{border-color:var(--draft)}
 
 /* =================== CONTACT / TITLE BLOCK =================== */
 footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relative}
@@ -886,8 +1034,8 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
         <div class="view-panel" id="view-desktop">
           <div class="files">
             <div class="fitem" data-role="wallpaper" tabindex="0">
-              <div class="fthumb" style="background-image:url('images/wallpaper.png')"></div>
-              <span class="nm">wallpaper.png</span>
+              <div class="fthumb" style="background-image:url('images/wallpaper.jpg')"></div>
+              <span class="nm">wallpaper.jpg</span>
             </div>
           </div>
         </div>
@@ -1045,7 +1193,7 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <div class="frame" aria-hidden="true"><span class="c3"></span><span class="c4"></span></div>
 
 <nav>
-  <div class="id"><b>SS-001</b> / REV 2026.06 / SCALE 1:1</div>
+  <div class="id"><b>SS-001</b> / REV 2026.09 / SCALE 1:1</div>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -1059,12 +1207,12 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div>
-    <div class="kicker">Mechatronics · Robotics · Embedded Systems</div>
+    <div class="kicker">Mechatronics · Robotics · Manufacturing</div>
     <h1>
       <span class="row"><span>Subhan</span></span>
       <span class="row"><span>Sajadi</span></span>
     </h1>
-    <p class="role">Mechanical Engineering (Mechatronics) student at <b>Toronto Metropolitan University</b> — Undergraduate Research Assistant at <b>iBEST</b> and VP Competitions at the <b>Ontario Engineering Competition</b>. I design, build, and program electromechanical systems that actually work.</p>
+    <p class="role">Mechanical Engineering (Mechatronics) student at <b>Toronto Metropolitan University</b>, class of 2027. Research Assistant in the <b>SymBioRobotX</b> wearable-exosuit lab and VP Competitions for the <b>Ontario Engineering Competition</b>. I design, build, and program electromechanical systems that actually work.</p>
     <div class="hero-cta">
       <a class="btn blue" href="#projects">View Projects</a>
       <a class="btn" href="#contact">Get In Touch</a>
@@ -1126,7 +1274,7 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
         </g>
       </svg>
 
-      <img src="images/subhan_cutout.png" alt="Subhan Sajadi, arms crossed in a black blazer" width="755" height="1119">
+      <picture><source srcset="images/subhan_cutout.webp" type="image/webp"><img src="images/subhan_cutout.png" alt="Subhan Sajadi, arms crossed in a black blazer" width="755" height="1119" fetchpriority="high" decoding="async"></picture>
 
       <div class="callout c1">ITEM 1 — ENGINEER<br>QTY: 1 · MAT'L: DETERMINED</div>
       <div class="callout c2">SEE SHT 03<br>FOR DETAIL DWGS</div>
@@ -1144,8 +1292,8 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
   </div>
   <div class="about">
     <div class="rv">
-      <p>I build integrated systems where <span class="hl">mechanical design, electronics, and code meet</span> — from a SLAM-driven autonomous race car to a sensor-instrumented knee sleeve for ACL rehabilitation. My approach combines analytical modeling, simulation, and rapid prototyping to get from concept to a working machine.</p>
-      <p>Alongside engineering, I've led teams of up to 26 people delivering province-scale competitions, and spent a year inside automotive manufacturing at Litens reviewing drawings, BOMs, and ECOs with real suppliers. Currently exploring how AI and machine learning can make physical systems more intelligent — working toward a career in robotics.</p>
+      <p>I build systems where <span class="hl">mechanical design, electronics, and code meet</span>. Right now that's a real-time controller for the actuator in a wearable hip exosuit; before it, a microfluidic device fabrication process, a LiDAR-braking autonomous race car, and a sensor-instrumented knee sleeve for ACL rehab. I lean on analytical modeling and simulation, then prototype fast to get to a working machine.</p>
+      <p>Outside the lab, I've led teams of up to 26 people running province-scale engineering competitions, and spent a year inside automotive manufacturing at Litens reviewing drawings, BOMs, and ECOs with real suppliers. Where I'm headed: wearable robotics and a career in robotics, ideally by way of graduate research.</p>
       <div class="note">
         <svg width="34" height="22" viewBox="0 0 34 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 18 C 12 20, 22 14, 30 6 M30 6 l-7 1 M30 6 l-1 7"/></svg>
         from CAD to firmware — I like owning the whole stack
@@ -1154,9 +1302,9 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
     <div class="bom rv">
       <div class="bhead"><span>BILL OF MATERIALS</span><b>TBL-01</b></div>
       <div class="stat"><span class="n">2027</span><span class="l">B.Eng Mech. Eng + CS Minor<br>Toronto Metropolitan Univ.</span></div>
-      <div class="stat"><span class="n">6+</span><span class="l">Hardware + software<br>projects shipped</span></div>
+      <div class="stat"><span class="n">2</span><span class="l">Research labs<br>exosuits · microfluidics</span></div>
+      <div class="stat"><span class="n">19</span><span class="l">Projects on<br>sheet 03</span></div>
       <div class="stat"><span class="n">26</span><span class="l">Largest team led</span></div>
-      <div class="stat"><span class="n">~90%</span><span class="l">Collision reduction,<br>autonomous AEB system</span></div>
     </div>
   </div>
 </section>
@@ -1169,52 +1317,73 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
   </div>
   <div class="xp">
     <div class="job rv">
-      <div class="when">May 2026 — <span class="now">Present</span><img src="images/iBEST.png" alt="iBEST" class="company-logo md"></div>
+      <div class="when">Jul 2026 — <span class="now">Present</span><span class="co-mark">SymBioRobotX</span></div>
       <div>
         <h3>Undergraduate Research Assistant</h3>
-        <div class="org">iBEST — Institute for Biomedical Engineering, Science & Technology · Toronto</div>
+        <div class="org">SymBioRobotX Lab (Wearable Exosuits) · Toronto Metropolitan University</div>
         <ul>
-          <li>Conducting research at the intersection of engineering and biomedical science at TMU + St. Michael's Hospital's joint research institute.</li>
+          <li>Built a MATLAB/Simulink Desktop Real-Time controller for a CubeMars AK70-9 exosuit actuator over CAN (PCAN-USB, 1 Mbps), with a position/velocity/current mode selector, a safe-disable path, and live commanded-vs-measured plotting.</li>
+          <li>Moved the controller to real-time kernel mode, eliminating a ~4 s feedback lag, then measured ~80% amplitude tracking at 1 Hz and CAN timing jitter to characterize bandwidth for gait-phase assistance.</li>
+          <li>Debugged the CAN stack by hand-decoding frames, tracing silent driver clamping to a 10,000× command-scaling error and a misassigned current-loop ID, bringing current control online.</li>
+          <li>Designed a 12-position CAN/48 V power tether with bus termination and a mandatory isolation test; replacing 10–14-week-lead connectors with stock parts cut the BOM to ~US$233.</li>
         </ul>
+        <a class="xp-link" href="#project/exosuit-actuator">Open project drawing →</a>
       </div>
     </div>
     <div class="job rv">
-      <div class="when">Mar 2026 — <span class="now">Present</span><img src="images/tmuwave.png" alt="TMU WAVE" class="company-logo md"></div>
+      <div class="when">May 2026 — Aug 2026<img src="images/iBEST.png" alt="iBEST" class="company-logo md" loading="lazy"></div>
       <div>
-        <h3>Software Team Member</h3>
-        <div class="org">TMU WAVE · Design Team</div>
+        <h3>Undergraduate Research Assistant</h3>
+        <div class="org">Miniaturization in Bioanalysis Lab · iBEST, St. Michael's Hospital · Toronto</div>
         <ul>
-          <li>Developing software for TMU's student vehicle design team.</li>
+          <li>Developed a two-layer SU-8 photolithography process on 100 mm silicon wafers with a MicroWriter ML3 maskless direct-write system, fabricating mother-machine microfluidic devices for single-cell <i>E. coli</i> imaging.</li>
+          <li>Fabricated PDMS devices end to end (casting, port punching, plasma bonding) and iterated photomask geometry across multiple revisions, writing a Python GDS viewer to inspect mask files.</li>
+          <li>Diagnosed resist-thickness discrepancies by cross-referencing optical profilometry against spin-speed parameters, and designed experiments to separate instrument artifacts from coating defects.</li>
+          <li>Authored the lab's 30-section cleanroom SOP (v3.0) with alignment-mark recovery fallbacks, and designed a 3D-printed microscope stage insert in SolidWorks for the next student.</li>
         </ul>
+        <a class="xp-link" href="#project/mother-machine">Open project drawing →</a>
       </div>
     </div>
     <div class="job rv">
-      <div class="when">May 2025 — May 2026<img src="images/litens.png.webp" alt="Litens Automotive" class="company-logo lg"></div>
+      <div class="when">Mar 2026 — <span class="now">Present</span><img src="images/tmuwave.png" alt="TMU WAVE" class="company-logo md" loading="lazy"></div>
+      <div>
+        <h3>Computer Vision Developer</h3>
+        <div class="org">TMU Wave · Autonomous Underwater Vehicle Team</div>
+        <ul>
+          <li>Developing OpenCV detectors for gates, slalom poles, and path markers, tested in a Dockerized ArduPilot SITL + MAVLink simulation stack.</li>
+          <li>Proposed a shared detection-output contract (found, center, offset, direction, confidence) and a reusable center-offset utility to simplify integration with the controls and state-machine sub-teams.</li>
+        </ul>
+        <a class="xp-link" href="#project/auv-vision">Open project drawing →</a>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="when">May 2025 — May 2026<img src="images/litens.png.webp" alt="Litens Automotive" class="company-logo lg" loading="lazy"></div>
       <div>
         <h3>Purchasing Student</h3>
         <div class="org">Litens Automotive Group · Vaughan, ON</div>
         <ul>
-          <li>Reviewed engineering drawings and BOMs to identify design improvements, achieving up to 10% in cost savings.</li>
-          <li>Coordinated supplier design exceptions, ECOs and MCOs, keeping revisions aligned with production capability and cost targets.</li>
+          <li>Built an Excel/Power Query cost-benchmarking platform comparing supplier pricing by part type, material, vendor, currency, and historical trend.</li>
+          <li>Supported supplier cost forecasting and negotiations contributing to projected multi-million-dollar savings on future automotive programs.</li>
+          <li>Evaluated quotes against engineering drawings, BOMs, and cost drivers across machining, forging, casting, and injection moulding; drawing and BOM reviews identified design improvements worth up to 10% in savings.</li>
+          <li>Automated purchasing workflows in VBA, saving up to 2 hours a day with zero errors on automated POs; coordinated ECOs and supplier design exceptions across ~200 RFQs.</li>
           <li>Served as project manager tracking progress across multiple team projects; supported CRQs for Ford, GMC, and other OEMs.</li>
-          <li>Analyzed raw material trends with engineering to select materials; conducted site visits to verify technical and quality compliance.</li>
         </ul>
       </div>
     </div>
     <div class="job rv">
-      <div class="when">May 2024 — Aug 2024<img src="images/Celestica.png" alt="Celestica" class="company-logo"></div>
+      <div class="when">May 2024 — Aug 2024<img src="images/Celestica.png" alt="Celestica" class="company-logo" loading="lazy"></div>
       <div>
         <h3>Commodity Management</h3>
         <div class="org">Celestica · Toronto, ON</div>
         <ul>
-          <li>Negotiated supplier contracts, achieving a 10% increase in cost savings.</li>
-          <li>Optimized procurement workflows by maintaining material price databases for compliance and competitiveness in global bids.</li>
-          <li>Resolved supplier performance issues and participated in quarterly business reviews with top suppliers.</li>
+          <li>Owned price determination, sourcing, and supplier negotiations for assigned commodities, achieving a 10% increase in cost savings.</li>
+          <li>Analyzed BOMs and maintained material price databases to prepare competitive, compliant customer bids.</li>
+          <li>Resolved supplier performance issues through quarterly business reviews with top suppliers.</li>
         </ul>
       </div>
     </div>
     <div class="job rv">
-      <div class="when">Sep 2023 — Jun 2025<img src="images/PALS.png" alt="PALS Learning Center" class="company-logo"></div>
+      <div class="when">Sep 2023 — Jun 2025<img src="images/PALS.png" alt="PALS Learning Center" class="company-logo" loading="lazy"></div>
       <div>
         <h3>Academic Tutor</h3>
         <div class="org">PALS Learning Center · Toronto, ON</div>
@@ -1233,17 +1402,93 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
     <div class="tag"><b>SHT 03</b> / DETAIL DRAWINGS</div>
   </div>
 
+  <div class="pfilter rv" role="group" aria-label="Filter projects by category">
+    <button type="button" class="pf-btn on" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" class="pf-btn" data-filter="robotics" aria-pressed="false">Robotics &amp; Autonomous</button>
+    <button type="button" class="pf-btn" data-filter="biomedical" aria-pressed="false">Biomedical</button>
+    <button type="button" class="pf-btn" data-filter="mechanical" aria-pressed="false">Mechanical Design</button>
+    <button type="button" class="pf-btn" data-filter="energy" aria-pressed="false">Dynamics &amp; Energy</button>
+    <button type="button" class="pf-btn" data-filter="software" aria-pressed="false">Software</button>
+  </div>
+
   <div class="grid">
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-01</b></span><span>Autonomous Systems</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="robotics software" data-slug="exosuit-actuator" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Exosuit Actuator Control">
+      <div class="cbar"><span>DWG <b>P-01</b></span><span>Wearable Robotics</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs><linearGradient id="gX1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D4C5C"/><stop offset="1" stop-color="#1B232C"/></linearGradient></defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-01 · AK70-9 · CAN 1 MBPS</text>
+<rect x="30" y="128" width="170" height="8" fill="#C9D2DA" stroke="#5A636D" stroke-width="1"/>
+<rect x="96" y="104" width="28" height="24" fill="#AEB7C1" stroke="#5A636D" stroke-width="1.2"/>
+<circle cx="110" cy="78" r="40" fill="url(#gX1)" stroke="#10161D" stroke-width="1.4"/>
+<circle cx="110" cy="78" r="28" fill="#2A323C" stroke="#5A636D" stroke-width="1"/>
+<circle cx="129.0" cy="78.0" r="2.2" fill="#9AA5B0"/><circle cx="119.5" cy="94.5" r="2.2" fill="#9AA5B0"/><circle cx="100.5" cy="94.5" r="2.2" fill="#9AA5B0"/><circle cx="91.0" cy="78.0" r="2.2" fill="#9AA5B0"/><circle cx="100.5" cy="61.5" r="2.2" fill="#9AA5B0"/><circle cx="119.5" cy="61.5" r="2.2" fill="#9AA5B0"/>
+<g class="m-osc" style="transform-origin:110px 78px">
+  <rect x="104" y="72" width="94" height="12" rx="6" fill="#E8762C" stroke="#A14E15" stroke-width="1"/>
+  <circle cx="188" cy="78" r="3" fill="#A14E15"/>
+</g>
+<circle cx="110" cy="78" r="7" fill="#9AA5B0" stroke="#5A636D" stroke-width="1"/>
+<path class="m-wave" d="M128 44 C156 32 200 30 244 34" stroke="#2E5C9E" stroke-width="1.4"/>
+<path d="M132 49 C160 38 204 37 244 41" stroke="#5A6675" stroke-width="1.2"/>
+<rect x="244" y="30" width="256" height="102" rx="3" fill="#15191E" stroke="#3A434E" stroke-width="1.2"/>
+<line x1="276" y1="50" x2="276" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="308" y1="50" x2="308" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="340" y1="50" x2="340" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="372" y1="50" x2="372" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="404" y1="50" x2="404" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="436" y1="50" x2="436" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="468" y1="50" x2="468" y2="128" stroke="#26303A" stroke-width=".8"/><line x1="248" y1="63" x2="496" y2="63" stroke="#26303A" stroke-width=".8"/><line x1="248" y1="89" x2="496" y2="89" stroke="#26303A" stroke-width=".8"/><line x1="248" y1="115" x2="496" y2="115" stroke="#26303A" stroke-width=".8"/>
+<text x="254" y="44" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#7FB0E8">CMD</text>
+<text x="278" y="44" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#E8762C">MEAS</text>
+<text x="490" y="44" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#9AA5B0">1 Hz · SLDRT KERNEL</text>
+<path d="M250 89.0 L254 83.7 L258 78.6 L262 73.9 L266 69.9 L270 66.7 L274 64.4 L278 63.2 L282 63.1 L286 64.0 L290 66.1 L294 69.0 L298 72.9 L302 77.4 L306 82.4 L310 87.7 L314 93.0 L318 98.2 L322 103.0 L326 107.1 L330 110.6 L334 113.1 L338 114.6 L342 115.0 L346 114.3 L350 112.5 L354 109.8 L358 106.2 L362 101.8 L366 96.9 L370 91.7 L374 86.3 L378 81.1 L382 76.2 L386 71.8 L390 68.2 L394 65.5 L398 63.7 L402 63.0 L406 63.4 L410 64.9 L414 67.4 L418 70.9 L422 75.0 L426 79.8 L430 85.0 L434 90.3 L438 95.6 L442 100.6 L446 105.1 L450 109.0 L454 111.9 L458 114.0 L462 114.9 L466 114.8 L470 113.6 L474 111.3 L478 108.1 L482 104.1 L486 99.4 L490 94.3 L494 89.0" stroke="#7FB0E8" stroke-width="1.3" stroke-dasharray="4 3"/>
+<path d="M250 100.0 L254 96.1 L258 91.9 L262 87.6 L266 83.3 L270 79.3 L274 75.7 L278 72.7 L282 70.3 L286 68.7 L290 68.0 L294 68.2 L298 69.3 L302 71.2 L306 73.8 L310 77.1 L314 80.9 L318 85.0 L322 89.3 L326 93.6 L330 97.7 L334 101.4 L338 104.6 L342 107.2 L346 108.9 L350 109.9 L354 109.9 L358 109.1 L362 107.4 L366 104.9 L370 101.8 L374 98.1 L378 94.0 L382 89.7 L386 85.4 L390 81.3 L394 77.4 L398 74.1 L402 71.4 L406 69.4 L410 68.3 L414 68.0 L418 68.6 L422 70.1 L426 72.4 L430 75.4 L434 79.0 L438 82.9 L442 87.2 L446 91.5 L450 95.7 L454 99.6 L458 103.1 L462 106.0 L466 108.2 L470 109.5 L474 110.0 L478 109.6 L482 108.3 L486 106.2 L490 103.4 L494 100.0" stroke="#E8762C" stroke-width="1.6"/>
+</svg></div>
+      <div class="body">
+        <h3>Exosuit Actuator Control</h3>
+        <p class="card-sum">Real-time Simulink controller driving a hip-exosuit motor over CAN.</p>
+        <div class="card-foot"><div class="card-cats"><span>Robotics</span><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-01</b> · Wearable Robotics</div>
+        <h3>Real-Time Actuator Control for a Hip Exosuit</h3>
+        <p class="pm-lede">A tethered MATLAB/Simulink controller for the CubeMars AK70-9 actuator that drives an OpenExo-based hip exosuit, built in TMU's SymBioRobotX lab for occupational load-carriage assistance.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>The lab moved exosuit control off embedded firmware and onto MATLAB/Simulink on a lab PC so control strategies could be iterated quickly. That meant bringing up a quasi-direct-drive motor over raw CAN, with timing good enough to eventually drive gait-phase assistance, and no safety net: the driver simply holds its last command if the bus drops.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Simulink Desktop Real-Time controller</b> with a four-position mode selector (position / velocity / current / disable), decoded feedback frames, and live commanded-vs-measured plotting over PCAN-USB at 1 Mbps.</li>
+              <li><b>Moved it to real-time kernel mode</b>, which eliminated a ~4 s feedback lag seen in normal mode.</li>
+              <li><b>Debugged silent CAN faults</b> by hand-decoding frames in PCAN-View: a copy-pasted ×10,000 gain on the velocity channel was being clamped by the driver with no error code, and current commands were going to the current-brake ID instead of the current loop (the ID fault was found in a debugging session with my supervisor).</li>
+              <li><b>Characterized bandwidth</b>: ~80% amplitude tracking at 1 Hz and worst-case CAN timestamp jitter of ~40 ms (preliminary numbers, to be re-run in kernel mode).</li>
+              <li><b>Designed the 12-position CAN / 48 V tether</b> (Amphenol AT-series, Rev D) with a pin map, linear-bus termination, and a mandatory pre-connection continuity and isolation test. Swapping 10–14-week-lead M23 connectors for stock parts cut the BOM to ~US$233.</li>
+              <li><b>Wrote an 8-block bench test plan</b> (identity → passive → open-loop → position → MIT → torque → thermal → fault/stop) and designed a 3D-printed motor testbed with a 100–250 mm lever arm, sized around torque reaction rather than motor weight.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Current control running since Sep 2026 · ~4 s lag → real-time feedback</div>
+            <h4>Next</h4>
+            <p>Torque control with a saturated torque command, a scope that follows the active mode, and a PID to cut position-tracking phase lag.</p>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Undergraduate Research Assistant</dd></div>
+              <div class="row"><dt>When</dt><dd>Jul 2026 – Present</dd></div>
+              <div class="row"><dt>Lab</dt><dd>SymBioRobotX (Wearable Exosuits), TMU</dd></div>
+              <div class="row"><dt>My scope</dt><dd>Motor bring-up, CAN integration, Simulink controller</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status live">In progress</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>MATLAB</span><span>Simulink</span><span>Simulink Desktop Real-Time</span><span>CAN bus</span><span>PCAN-View</span><span>SolidWorks</span><span>3D Printing</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="robotics software" data-slug="f1tenth-race-car" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Autonomous Race Car">
+      <div class="cbar"><span>DWG <b>P-02</b></span><span>Autonomous Systems</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D4C5C"/><stop offset="1" stop-color="#1B232C"/></linearGradient>
  <linearGradient id="g1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E8BC9"/><stop offset="1" stop-color="#2E5C9E"/></linearGradient>
 </defs>
 <g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
-<text x="12" y="20" class="figlbl">FIG P-01 · AEB ENGAGED</text>
+<text x="12" y="20" class="figlbl">FIG P-02 · AEB ENGAGED</text>
 <ellipse cx="250" cy="128" rx="180" ry="7" fill="#22303E" opacity=".09"/>
 <g class="m-sweep" style="transform-origin:262px 47px">
   <path d="M262 47 L470 18 L470 78 Z" fill="#E03C3C" opacity=".13"/>
@@ -1261,16 +1506,152 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <line x1="20" y1="135" x2="500" y2="135" stroke="#B9C2CC" stroke-width="1"/>
 </svg></div>
       <div class="body">
-        <h3>1/10th-Scale Autonomous Race Car</h3>
-        <p>SLAM-based localization with RViz visualization on the F1Tenth platform, plus an automatic emergency braking system using LiDAR distance thresholding and time-to-collision logic.</p>
-        <div class="res">↓ ~90% collision events · &lt;100 ms perception-to-control</div>
-        <div class="chips"><span>ROS2</span><span>SLAM</span><span>LiDAR</span><span>RViz</span><span>Python</span></div>
+        <h3>Autonomous Race Car</h3>
+        <p class="card-sum">SLAM localization and LiDAR emergency braking on a 1/10-scale F1Tenth car.</p>
+        <div class="card-foot"><div class="card-cats"><span>Robotics</span><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-02</b> · Autonomous Systems</div>
+        <h3>1/10-Scale Autonomous Race Car</h3>
+        <p class="pm-lede">Localization and safety stack for a 1/10-scale F1Tenth race car, built with TMU Velocity.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>A small, fast car on a cluttered track has to know where it is, and it has to stop before it hits something, reliably and within a single control cycle.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Implemented <b>SLAM-based localization</b> in ROS2, with RViz visualization of the map, pose, and scans.</li>
+              <li>Engineered an <b>automatic emergency braking</b> system from LiDAR distance thresholds and time-to-collision logic.</li>
+              <li>Kept the loop tight: <b>sub-100 ms</b> perception-to-control latency.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">↓ ~90% collision events in testing · &lt;100 ms perception-to-control</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Team</dt><dd>TMU Velocity (F1Tenth)</dd></div>
+              <div class="row"><dt>Platform</dt><dd>F1Tenth, 1/10 scale</dd></div>
+              <div class="row"><dt>Focus</dt><dd>Localization &amp; safety</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>ROS2</span><span>SLAM</span><span>LiDAR</span><span>RViz</span><span>Python</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-02</b></span><span>Biomedical</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="robotics software" data-slug="auv-vision" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Underwater Vision Detectors">
+      <div class="cbar"><span>DWG <b>P-03</b></span><span>Computer Vision</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs><linearGradient id="gW1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8F0F8"/><stop offset="1" stop-color="#BCD2E6"/></linearGradient></defs>
+<rect x="0" y="0" width="520" height="150" fill="url(#gW1)"/>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-03 · DETECT_GATE()</text>
+<path d="M0 132 Q130 125 260 131 T520 128 V150 H0 Z" fill="#9DB6CC" opacity=".55"/>
+<g stroke="#D6453C" stroke-width="2.4" opacity=".55" stroke-linecap="round"><line x1="392" y1="84" x2="392" y2="120"/><line x1="418" y1="88" x2="418" y2="118"/><line x1="444" y1="84" x2="444" y2="120"/></g>
+<g stroke="#E8762C" stroke-width="6" stroke-linecap="square"><path d="M142 124 V50 H302 V124"/></g>
+<rect x="132" y="42" width="180" height="90" stroke="#2E5C9E" stroke-width="1.4" stroke-dasharray="5 4"/>
+<rect x="132" y="30" width="80" height="12" fill="#2E5C9E"/>
+<text x="137" y="39" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#fff">gate · conf 0.91</text>
+<line x1="260" y1="30" x2="260" y2="136" stroke="#22303E" stroke-width="1" stroke-dasharray="3 3" opacity=".45"/>
+<g stroke="#2E5C9E" stroke-width="1.3"><circle cx="222" cy="87" r="5"/><line x1="213" y1="87" x2="231" y2="87"/><line x1="222" y1="78" x2="222" y2="96"/></g>
+<path d="M258 87 H232 M238 83 L232 87 238 91" stroke="#E8762C" stroke-width="1.5"/>
+<text x="228" y="108" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#1E3F70">offset −38 px</text>
+<text x="266" y="140" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5A6675">FRAME CENTER</text>
+<circle class="m-steam" cx="62" cy="108" r="3.2" fill="#fff" opacity=".7" stroke="#9DB6CC"/>
+<circle class="m-steam s2" cx="74" cy="92" r="2.2" fill="#fff" opacity=".7" stroke="#9DB6CC"/>
+<circle class="m-steam" cx="478" cy="62" r="2.6" fill="#fff" opacity=".7" stroke="#9DB6CC"/>
+</svg></div>
+      <div class="body">
+        <h3>Underwater Vision Detectors</h3>
+        <p class="card-sum">OpenCV detectors that find gates, slalom poles, and path markers for an AUV.</p>
+        <div class="card-foot"><div class="card-cats"><span>Robotics</span><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-03</b> · Computer Vision</div>
+        <h3>Vision System for an Autonomous Underwater Vehicle</h3>
+        <p class="pm-lede">Computer-vision detectors for TMU Wave's autonomous underwater vehicle, developed against a Dockerized ArduPilot simulation stack.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>The AUV has to find and line up on competition props (a gate, slalom poles, an orange path marker) with nobody at the controls. The CV sub-team turns camera frames into something the controls and state-machine sub-teams can act on.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Developing <b>OpenCV detectors</b> for the gate, slalom poles, and orange path markers on an eight-week plan, tested against ArduPilot SITL over MAVLink in a Docker dev container.</li>
+              <li>Proposed a <b>shared detection-output contract</b>: every detector returns the same structure (found, center, offset, direction, confidence, debug frame), plus a reusable center-offset utility, so integration with controls is one interface instead of four.</li>
+              <li>Wrote a <b>macOS / Apple Silicon setup guide</b> for the team's Windows-oriented dev environment (Docker Desktop, SITL under Rosetta).</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">One detector interface for controls and state-machine integration</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Computer Vision Developer</dd></div>
+              <div class="row"><dt>When</dt><dd>Mar 2026 – Present</dd></div>
+              <div class="row"><dt>Team</dt><dd>TMU Wave AUV, CV sub-team</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status live">In development</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>Python</span><span>OpenCV</span><span>Docker</span><span>ArduPilot SITL</span><span>MAVLink</span><span>Git</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="biomedical mechanical" data-slug="mother-machine" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Mother Machine Device">
+      <div class="cbar"><span>DWG <b>P-04</b></span><span>Microfabrication</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-04 · MOTHER MACHINE · TOP VIEW</text>
+<text x="40" y="31" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#1F6B38">MOTHER CELLS SIT AT THE CLOSED ENDS</text>
+<rect x="40" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="42" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="42" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="72" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="74" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="74" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="74" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="104" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="106" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="106" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="106" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="136" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="138" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="138" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="168" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="170" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="170" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="170" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="200" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="202" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="202" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="202" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="232" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="234" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="234" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="264" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="266" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="266" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="266" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="296" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="298" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="298" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="298" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="328" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="330" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="330" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="360" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="362" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="362" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="362" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="392" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="394" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="394" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="394" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="424" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="426" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="426" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="456" y="36" width="9" height="56" fill="#EEF4FA" stroke="#5A6675" stroke-width=".9"/><rect x="458" y="38" width="5" height="14" rx="2.5" fill="#1F6B38" opacity=".85"/><rect x="458" y="55" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/><rect x="458" y="72" width="5" height="14" rx="2.5" fill="#3DA35D" opacity=".85"/>
+<rect x="20" y="92" width="480" height="30" fill="#DCE9F5" stroke="#2E5C9E" stroke-width="1.2"/>
+<path class="m-wave" d="M28 107 H492" stroke="#2E5C9E" stroke-width="1.2" opacity=".6"/>
+<rect x="300" y="101" width="14" height="5" rx="2.5" fill="#3DA35D" opacity=".6"/>
+<text x="24" y="138" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#2E5C9E">FRESH MEDIA →</text>
+<text x="496" y="138" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">GROWTH CHANNELS 20 × 1.3 × 1.2 µm · NOT TO SCALE</text>
+</svg></div>
+      <div class="body">
+        <h3>Mother Machine Device</h3>
+        <p class="card-sum">Microfluidic device that traps single E. coli cells for long-term imaging.</p>
+        <div class="card-foot"><div class="card-cats"><span>Biomedical</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-04</b> · Microfabrication</div>
+        <h3>Mother Machine: Microfluidics for Single-Cell Imaging</h3>
+        <p class="pm-lede">An end-to-end fabrication process for a mother-machine microfluidic device, built at iBEST's Miniaturization in Bioanalysis Lab so future students can image single <i>E. coli</i> cells over many generations.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>A mother machine traps bacteria single-file in dead-end growth channels about one cell wide, with fresh media flowing past the open ends. The cell at the closed end, the "mother", can be tracked across many generations, which is how you would study questions like why dividing <i>E. coli</i> are more vulnerable to the antimicrobial peptide LL-37. The catch: those channels are about 1.3 µm wide and 1.2 µm tall, and the process has to be reproducible by whoever comes next.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Two-layer SU-8 photolithography</b> on 100 mm silicon wafers with a MicroWriter ML3 maskless direct-write system: ~1.2 µm growth channels from a TF 6001 / TF 6005 blend, and a main trench from SU-8 2010 confirmed at ~18 µm by optical profilometry.</li>
+              <li><b>Calibration first</b>: iterated test photomasks across exposure doses before committing to the device, then aligned Layer 2 to Layer 1 with vernier scales and a spot-development step over the fiducials, which was validated and promoted into the main procedure.</li>
+              <li>Finished masters with a ramped hard bake before <b>FOTCS vapour silanization</b>, then cast <b>PDMS</b> replicas, punched ports, and plasma bonded devices.</li>
+              <li><b>Diagnosed a Layer 1 thickness discrepancy</b>: profilometry read roughly half the target and didn't change with a resist blend that should have thickened the film, which points to a thin-film optical-model artifact rather than a coating failure. Designed two discriminating experiments: re-measuring a metal-coated coupon, and loading <i>E. coli</i> as a biological ruler.</li>
+              <li>Authored the lab's <b>30-section cleanroom SOP (v3.0)</b>, wrote a Python GDS viewer for mask files, and designed a 3D-printed microscope stage insert in SolidWorks.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Reproducible two-layer process and SOP v3.0, handed off Aug 2026</div>
+            <h4>Open at handoff</h4>
+            <p>The Layer 1 thickness question was still unresolved when the contract ended; the two discriminating experiments were left as the next student's first steps rather than completed.</p>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Undergraduate Research Assistant</dd></div>
+              <div class="row"><dt>When</dt><dd>May – Aug 2026</dd></div>
+              <div class="row"><dt>Lab</dt><dd>Miniaturization in Bioanalysis Lab, iBEST (St. Michael's Hospital)</dd></div>
+              <div class="row"><dt>Target</dt><dd>Growth channels 20 × 1.3 × 1.2 µm</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status">Handed off</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>SU-8 Photolithography</span><span>MicroWriter ML3</span><span>PDMS Soft Lithography</span><span>Optical Profilometry</span><span>Python</span><span>SolidWorks</span><span>Cleanroom</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="biomedical mechanical" data-slug="knee-sleeve" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Smart Knee Sleeve">
+      <div class="cbar"><span>DWG <b>P-05</b></span><span>Biomedical</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g2v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DDE7F2"/><stop offset="1" stop-color="#F0F4F9"/></linearGradient>
  <linearGradient id="g2s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#55657A"/><stop offset=".5" stop-color="#2D3A49"/><stop offset="1" stop-color="#1C2630"/></linearGradient>
@@ -1302,21 +1683,47 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 </g>
 </svg></div>
       <div class="body">
+        <h3>Smart Knee Sleeve</h3>
+        <p class="card-sum">EMG + IMU wearable that measures muscle asymmetry during ACL rehab.</p>
+        <div class="card-foot"><div class="card-cats"><span>Biomedical</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-05</b> · Biomedical</div>
         <h3>Smart Rehabilitation Knee Sleeve</h3>
-        <p>Wearable integrating surface EMG and IMU sensors to quantify muscle activation asymmetry and knee ROM for ACL rehab. Embedded firmware performs real-time bilateral EMG comparison; full CAD assembly with modular sensor mounts, plus FEA and Health Canada / FDA Class I regulatory analysis.</p>
-        <div class="res">Objective strength-deficit tracking, injured vs. healthy leg</div>
-        <div class="chips"><span>EMG</span><span>IMU</span><span>Embedded C</span><span>CAD</span><span>FEA</span><span>Regulatory</span></div>
+        <p class="pm-lede">A sensor-instrumented knee sleeve that turns ACL rehabilitation progress into numbers, designed for the True North Biomedical Competition.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>ACL rehab progress is usually judged by feel and a clinician's eye. Comparing muscle activation and range of motion between the injured and the healthy leg gives an objective measure of the strength deficit.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Designed and prototyped a sleeve integrating <b>surface EMG and IMU</b> sensors to quantify muscle-activation asymmetry and knee range of motion.</li>
+              <li>Modelled the <b>full CAD assembly and exploded BOM</b>: modular sensor mounts, a battery housing, and strain-relieved wire routing that survives repeated knee flexion.</li>
+              <li>Completed a <b>Health Canada / FDA Class I regulatory analysis</b>, specifying electrical isolation and biocompatible materials.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Objective strength-deficit tracking, injured vs. healthy leg</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Mechanical team member</dd></div>
+              <div class="row"><dt>When</dt><dd>Oct 2025 – Mar 2026</dd></div>
+              <div class="row"><dt>Context</dt><dd>True North Biomedical Competition</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>SolidWorks</span><span>sEMG</span><span>IMU</span><span>BOM</span><span>Regulatory Analysis</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-03</b></span><span>Robotics</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="robotics mechanical" data-slug="rocker-bogie-rover" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Rocker-Bogie Rover">
+      <div class="cbar"><span>DWG <b>P-06</b></span><span>Robotics</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g3b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D2DA"/><stop offset="1" stop-color="#8E99A4"/></linearGradient>
 </defs>
 <g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
-<text x="12" y="20" class="figlbl">FIG P-03 · TERRAIN TRIAL</text>
+<text x="12" y="20" class="figlbl">FIG P-06 · TERRAIN TRIAL</text>
 <rect x="0" y="118" width="520" height="32" fill="#E9DEC6"/>
 <path d="M0 118 H520" stroke="#C9B98F" stroke-width="1.2"/>
 <ellipse cx="92" cy="124" rx="10" ry="4" fill="#C9B98F"/><ellipse cx="430" cy="127" rx="14" ry="5" fill="#C9B98F"/>
@@ -1339,21 +1746,395 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <text x="226" y="52" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#3A4654" letter-spacing="1">ROVER-01</text>
 </svg></div>
       <div class="body">
-        <h3>Rocker-Bogie Rover + 3-DOF Arm</h3>
-        <p>Terrain-adaptive 6-wheel rover with an integrated robotic arm for mobile manipulation. Modeled suspension kinematics and arm workspace in MATLAB with worst-case torque and tip-over analysis; 3D-printed subsystems and built an ESP32 control system with PWM motor control.</p>
-        <div class="res">Full mechatronic stack: CAD → analysis → build → firmware</div>
-        <div class="chips"><span>SolidWorks</span><span>MATLAB</span><span>ESP32</span><span>3D Printing</span></div>
+        <h3>Rocker-Bogie Rover</h3>
+        <p class="card-sum">Six-wheel competition rover with a servo arm, driven from a PS4 controller.</p>
+        <div class="card-foot"><div class="card-cats"><span>Robotics</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-06</b> · Robotics</div>
+        <h3>Rocker-Bogie Competition Rover + Arm</h3>
+        <p class="pm-lede">A six-wheel rocker-bogie rover with a servo-driven arm and claw, built by a five-person team for a three-event robotics competition.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>One robot had to do three different jobs, weighted equally: run a timed obstacle course, place 1-inch blocks on a multi-level bookshelf to match a pattern, and aim a laser at wall-mounted letters so a teammate could guess a word. All of it inside an 8 × 8 × 8 in envelope with 2 in of ground clearance.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Chose a <b>6-wheel rocker-bogie drivetrain</b> to keep every wheel in contact over obstacles and stay stable while lifting, with the battery mounted low to keep the centre of gravity down.</li>
+              <li>Integrated an <b>adapted open-source rocker-bogie suspension</b> with a custom chassis and arm in SolidWorks.</li>
+              <li>Built the <b>arm and claw</b> around the provided servos (3× MG996R for lifting, 1× SG90 for precise claw and laser aiming), and modelled arm workspace, worst-case torque, and tip-over stability in MATLAB.</li>
+              <li>Programmed <b>ESP32</b> motor and servo control with wireless PS4 gamepad input (Bluepad32), then 3D printed and assembled the rover.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Full mechatronic stack: CAD → analysis → build → firmware</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Team</dt><dd>5 students</dd></div>
+              <div class="row"><dt>When</dt><dd>Winter 2026</dd></div>
+              <div class="row"><dt>Context</dt><dd>Take-Off robotics competition</dd></div>
+              <div class="row"><dt>Envelope</dt><dd>8 × 8 × 8 in, 2 in clearance</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>SolidWorks</span><span>MATLAB</span><span>ESP32</span><span>Arduino</span><span>3D Printing</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-04</b></span><span>Dynamics</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="biomedical software" data-slug="emg-pipeline" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: EMG Signal Pipeline">
+      <div class="cbar"><span>DWG <b>P-07</b></span><span>Biosignals</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-07 · TA sEMG → %MVC</text>
+<line x1="24" y1="92" x2="496" y2="92" stroke="#B9C2CC" stroke-width="1"/>
+<path d="M24.0 91.5 L25.6 91.0 L27.2 92.5 L28.8 90.7 L30.4 92.1 L32.0 91.6 L33.6 90.7 L35.2 92.0 L36.8 90.6 L38.4 91.8 L40.0 90.7 L41.6 90.7 L43.2 91.8 L44.8 93.1 L46.4 90.6 L48.0 90.8 L49.6 92.6 L51.2 94.5 L52.8 92.5 L54.4 91.2 L56.0 96.6 L57.6 86.8 L59.2 96.9 L60.8 88.7 L62.4 85.6 L64.0 84.4 L65.6 87.8 L67.2 99.3 L68.8 84.4 L70.4 94.0 L72.0 95.3 L73.6 89.1 L75.2 93.0 L76.8 83.7 L78.4 84.6 L80.0 87.7 L81.6 94.2 L83.2 91.2 L84.8 90.4 L86.4 92.6 L88.0 91.7 L89.6 91.0 L91.2 93.3 L92.8 92.8 L94.4 91.1 L96.0 92.3 L97.6 92.1 L99.2 93.2 L100.8 92.7 L102.4 91.4 L104.0 93.5 L105.6 90.8 L107.2 91.8 L108.8 92.8 L110.4 91.0 L112.0 92.0 L113.6 90.6 L115.2 92.5 L116.8 92.8 L118.4 92.2 L120.0 93.2 L121.6 91.4 L123.2 92.7 L124.8 92.3 L126.4 92.3 L128.0 91.8 L129.6 93.9 L131.2 94.9 L132.8 91.8 L134.4 93.6 L136.0 86.6 L137.6 95.0 L139.2 94.6 L140.8 102.3 L142.4 99.7 L144.0 86.2 L145.6 88.7 L147.2 97.2 L148.8 76.7 L150.4 90.8 L152.0 81.5 L153.6 80.4 L155.2 79.6 L156.8 98.8 L158.4 83.7 L160.0 87.1 L161.6 90.2 L163.2 97.0 L164.8 87.4 L166.4 91.5 L168.0 92.4 L169.6 94.3 L171.2 93.6 L172.8 93.6 L174.4 91.1 L176.0 91.7 L177.6 91.5 L179.2 93.2 L180.8 93.4 L182.4 90.9 L184.0 91.0 L185.6 91.2 L187.2 91.2 L188.8 92.0 L190.4 92.3 L192.0 91.3 L193.6 90.5 L195.2 91.8 L196.8 91.6 L198.4 92.2 L200.0 93.4 L201.6 92.6 L203.2 92.1 L204.8 92.5 L206.4 92.8 L208.0 89.7 L209.6 94.5 L211.2 94.1 L212.8 95.6 L214.4 95.6 L216.0 90.4 L217.6 90.2 L219.2 83.3 L220.8 95.5 L222.4 78.9 L224.0 77.5 L225.6 81.3 L227.2 78.8 L228.8 85.5 L230.4 73.8 L232.0 72.1 L233.6 78.7 L235.2 78.0 L236.8 87.7 L238.4 78.8 L240.0 101.0 L241.6 94.3 L243.2 86.2 L244.8 88.7 L246.4 90.4 L248.0 90.8 L249.6 89.4 L251.2 94.0 L252.8 94.3 L254.4 91.9 L256.0 91.9 L257.6 90.6 L259.2 90.7 L260.8 91.5 L262.4 91.3 L264.0 93.0 L265.6 91.0 L267.2 90.6 L268.8 93.4 L270.4 92.1 L272.0 90.9 L273.6 92.1 L275.2 90.6 L276.8 92.1 L278.4 93.5 L280.0 93.2 L281.6 92.7 L283.2 91.1 L284.8 91.4 L286.4 90.4 L288.0 93.6 L289.6 92.2 L291.2 94.6 L292.8 90.0 L294.4 87.9 L296.0 97.9 L297.6 103.3 L299.2 102.0 L300.8 102.3 L302.4 104.4 L304.0 102.5 L305.6 78.9 L307.2 92.9 L308.8 84.3 L310.4 66.9 L312.0 67.3 L313.6 81.0 L315.2 80.9 L316.8 100.0 L318.4 108.5 L320.0 90.4 L321.6 103.2 L323.2 102.2 L324.8 99.6 L326.4 90.2 L328.0 89.1 L329.6 89.8 L331.2 90.0 L332.8 90.4 L334.4 92.6 L336.0 93.6 L337.6 93.2 L339.2 91.9 L340.8 92.5 L342.4 92.9 L344.0 90.7 L345.6 92.5 L347.2 93.2 L348.8 92.8 L350.4 92.8 L352.0 91.9 L353.6 91.0 L355.2 92.9 L356.8 91.5 L358.4 93.0 L360.0 93.6 L361.6 91.6 L363.2 91.6 L364.8 94.0 L366.4 93.2 L368.0 89.7 L369.6 88.7 L371.2 88.1 L372.8 97.9 L374.4 97.8 L376.0 83.5 L377.6 101.8 L379.2 109.6 L380.8 98.9 L382.4 84.4 L384.0 94.8 L385.6 68.8 L387.2 59.4 L388.8 124.8 L390.4 102.5 L392.0 93.8 L393.6 120.3 L395.2 88.0 L396.8 112.1 L398.4 107.4 L400.0 80.4 L401.6 83.7 L403.2 86.4 L404.8 86.5 L406.4 93.4 L408.0 88.9 L409.6 91.2 L411.2 89.2 L412.8 94.5 L414.4 91.3 L416.0 91.8 L417.6 92.3 L419.2 93.4 L420.8 91.7 L422.4 93.3 L424.0 92.0 L425.6 92.1 L427.2 92.1 L428.8 90.5 L430.4 91.8 L432.0 90.9 L433.6 90.2 L435.2 93.3 L436.8 90.4 L438.4 91.8 L440.0 93.8 L441.6 92.6 L443.2 89.7 L444.8 92.3 L446.4 93.3 L448.0 100.3 L449.6 77.5 L451.2 94.7 L452.8 78.4 L454.4 78.0 L456.0 111.3 L457.6 92.6 L459.2 97.1 L460.8 114.4 L462.4 127.9 L464.0 87.2 L465.6 101.1 L467.2 92.4 L468.8 92.8 L470.4 103.2 L472.0 89.6 L473.6 93.4 L475.2 91.3 L476.8 103.5 L478.4 96.0 L480.0 97.8 L481.6 97.2 L483.2 89.9 L484.8 92.4 L486.4 94.4 L488.0 93.5 L489.6 90.6 L491.2 90.7 L492.8 91.8 L494.4 90.6" stroke="#6FB1F2" stroke-width=".8"/>
+<path d="M24.0 91.0 L25.6 91.0 L27.2 91.0 L28.8 91.0 L30.4 91.0 L32.0 91.0 L33.6 91.0 L35.2 91.0 L36.8 91.0 L38.4 91.0 L40.0 91.0 L41.6 90.9 L43.2 90.9 L44.8 90.8 L46.4 90.7 L48.0 90.5 L49.6 90.3 L51.2 90.0 L52.8 89.5 L54.4 89.0 L56.0 88.3 L57.6 87.6 L59.2 86.7 L60.8 85.8 L62.4 85.0 L64.0 84.1 L65.6 83.4 L67.2 82.9 L68.8 82.6 L70.4 82.5 L72.0 82.7 L73.6 83.1 L75.2 83.8 L76.8 84.5 L78.4 85.4 L80.0 86.3 L81.6 87.2 L83.2 88.0 L84.8 88.7 L86.4 89.3 L88.0 89.8 L89.6 90.1 L91.2 90.4 L92.8 90.6 L94.4 90.7 L96.0 90.8 L97.6 90.9 L99.2 90.9 L100.8 91.0 L102.4 91.0 L104.0 91.0 L105.6 91.0 L107.2 91.0 L108.8 91.0 L110.4 91.0 L112.0 91.0 L113.6 91.0 L115.2 91.0 L116.8 91.0 L118.4 91.0 L120.0 90.9 L121.6 90.9 L123.2 90.8 L124.8 90.7 L126.4 90.6 L128.0 90.3 L129.6 90.0 L131.2 89.5 L132.8 88.9 L134.4 88.2 L136.0 87.3 L137.6 86.2 L139.2 85.0 L140.8 83.8 L142.4 82.5 L144.0 81.4 L145.6 80.4 L147.2 79.6 L148.8 79.2 L150.4 79.1 L152.0 79.4 L153.6 80.0 L155.2 80.9 L156.8 81.9 L158.4 83.2 L160.0 84.4 L161.6 85.6 L163.2 86.8 L164.8 87.7 L166.4 88.6 L168.0 89.3 L169.6 89.8 L171.2 90.2 L172.8 90.5 L174.4 90.6 L176.0 90.8 L177.6 90.9 L179.2 90.9 L180.8 91.0 L182.4 91.0 L184.0 91.0 L185.6 91.0 L187.2 91.0 L188.8 91.0 L190.4 91.0 L192.0 91.0 L193.6 91.0 L195.2 91.0 L196.8 91.0 L198.4 91.0 L200.0 90.9 L201.6 90.9 L203.2 90.8 L204.8 90.6 L206.4 90.4 L208.0 90.1 L209.6 89.7 L211.2 89.1 L212.8 88.3 L214.4 87.4 L216.0 86.2 L217.6 84.8 L219.2 83.3 L220.8 81.7 L222.4 80.1 L224.0 78.6 L225.6 77.4 L227.2 76.4 L228.8 75.8 L230.4 75.7 L232.0 76.1 L233.6 76.8 L235.2 78.0 L236.8 79.4 L238.4 80.9 L240.0 82.5 L241.6 84.1 L243.2 85.5 L244.8 86.8 L246.4 87.9 L248.0 88.8 L249.6 89.4 L251.2 89.9 L252.8 90.3 L254.4 90.5 L256.0 90.7 L257.6 90.8 L259.2 90.9 L260.8 90.9 L262.4 91.0 L264.0 91.0 L265.6 91.0 L267.2 91.0 L268.8 91.0 L270.4 91.0 L272.0 91.0 L273.6 91.0 L275.2 91.0 L276.8 91.0 L278.4 90.9 L280.0 90.9 L281.6 90.8 L283.2 90.7 L284.8 90.5 L286.4 90.2 L288.0 89.8 L289.6 89.3 L291.2 88.5 L292.8 87.5 L294.4 86.2 L296.0 84.6 L297.6 82.8 L299.2 80.8 L300.8 78.6 L302.4 76.5 L304.0 74.5 L305.6 72.8 L307.2 71.5 L308.8 70.8 L310.4 70.6 L312.0 71.1 L313.6 72.1 L315.2 73.6 L316.8 75.5 L318.4 77.6 L320.0 79.7 L321.6 81.8 L323.2 83.7 L324.8 85.4 L326.4 86.8 L328.0 88.0 L329.6 88.9 L331.2 89.6 L332.8 90.1 L334.4 90.4 L336.0 90.6 L337.6 90.8 L339.2 90.9 L340.8 90.9 L342.4 91.0 L344.0 91.0 L345.6 91.0 L347.2 91.0 L348.8 91.0 L350.4 91.0 L352.0 91.0 L353.6 91.0 L355.2 91.0 L356.8 91.0 L358.4 90.9 L360.0 90.9 L361.6 90.8 L363.2 90.6 L364.8 90.4 L366.4 90.0 L368.0 89.4 L369.6 88.7 L371.2 87.6 L372.8 86.3 L374.4 84.6 L376.0 82.5 L377.6 80.0 L379.2 77.4 L380.8 74.5 L382.4 71.7 L384.0 69.0 L385.6 66.7 L387.2 65.0 L388.8 64.0 L390.4 63.8 L392.0 64.4 L393.6 65.8 L395.2 67.8 L396.8 70.3 L398.4 73.1 L400.0 75.9 L401.6 78.7 L403.2 81.3 L404.8 83.6 L406.4 85.5 L408.0 87.0 L409.6 88.2 L411.2 89.1 L412.8 89.7 L414.4 90.2 L416.0 90.5 L417.6 90.7 L419.2 90.8 L420.8 90.9 L422.4 90.9 L424.0 91.0 L425.6 91.0 L427.2 91.0 L428.8 90.9 L430.4 90.9 L432.0 90.8 L433.6 90.7 L435.2 90.5 L436.8 90.2 L438.4 89.7 L440.0 89.1 L441.6 88.1 L443.2 86.8 L444.8 85.1 L446.4 82.9 L448.0 80.3 L449.6 77.3 L451.2 73.9 L452.8 70.4 L454.4 66.8 L456.0 63.5 L457.6 60.7 L459.2 58.5 L460.8 57.3 L462.4 57.0 L464.0 57.8 L465.6 59.5 L467.2 62.0 L468.8 65.1 L470.4 68.6 L472.0 72.2 L473.6 75.7 L475.2 78.9 L476.8 81.7 L478.4 84.1 L480.0 86.0 L481.6 87.5 L483.2 88.6 L484.8 89.4 L486.4 90.0 L488.0 90.4 L489.6 90.6 L491.2 90.8 L492.8 90.9 L494.4 90.9" stroke="#E8762C" stroke-width="1.8"/>
+<text x="24" y="138" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#2E5C9E">RAW · 20–450 Hz</text>
+<text x="496" y="138" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#E8762C">RMS ENVELOPE · 100 ms</text>
+</svg></div>
+      <div class="body">
+        <h3>EMG Signal Pipeline</h3>
+        <p class="card-sum">MATLAB pipeline that turns raw muscle signals into %MVC activation.</p>
+        <div class="card-foot"><div class="card-cats"><span>Biomedical</span><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-07</b> · Biosignals</div>
+        <h3>EMG Signal Processing Pipeline</h3>
+        <p class="pm-lede">A MATLAB pipeline that turns raw surface EMG from the tibialis anterior into a normalized activation curve.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Raw EMG is noisy and in arbitrary units. It picks up motion artifact at the low end and 60 Hz mains hum, and its amplitude changes between people and electrode placements. It has to be cleaned and normalized before it says anything about effort.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Band-pass filtered</b> 20–450 Hz (4th order) with an optional 60 Hz notch, on signals sampled at 2 kHz.</li>
+              <li><b>Full-wave rectified</b> the signal and extracted a <b>100 ms RMS envelope</b>.</li>
+              <li><b>Normalized to %MVC</b> against the peak envelope of a maximum-voluntary-contraction trial, so a ramped-effort trial reads as a percentage of the person's own maximum.</li>
+              <li>Checked the filtering in the frequency domain with a raw-vs-filtered power spectral density.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Clean, comparable activation curves in %MVC</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/emg-raw-filtered.jpg" target="_blank" rel="noopener"><img src="images/projects/emg-raw-filtered.jpg" alt="Raw vs. 20–450 Hz band-passed EMG" loading="lazy" width="560" height="420"></a><figcaption>Raw vs. 20–450 Hz band-passed EMG</figcaption></figure>
+              <figure><a href="images/projects/emg-envelope.jpg" target="_blank" rel="noopener"><img src="images/projects/emg-envelope.jpg" alt="Rectified signal, RMS envelope, %MVC" loading="lazy" width="560" height="420"></a><figcaption>Rectified signal, RMS envelope, %MVC</figcaption></figure>
+              <figure><a href="images/projects/emg-psd.jpg" target="_blank" rel="noopener"><img src="images/projects/emg-psd.jpg" alt="Power spectral density, raw vs. filtered" loading="lazy" width="560" height="420"></a><figcaption>Power spectral density, raw vs. filtered</figcaption></figure>
+            </div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Context</dt><dd>Biosignals coursework</dd></div>
+              <div class="row"><dt>Signal</dt><dd>Tibialis anterior sEMG, 2 kHz</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>MATLAB</span><span>Signal Processing</span><span>Filter Design</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="oec-tracker" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: OEC Tracker">
+      <div class="cbar"><span>DWG <b>P-08</b></span><span>Automation</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-08 · PENDING → CONFIRMED</text>
+<rect x="28" y="34" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="28" y="34" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="35" y1="52" x2="75" y2="52" stroke="#B9C2CC" stroke-width="2"/><line x1="35" y1="59" x2="65" y2="59" stroke="#B9C2CC" stroke-width="2"/><rect x="35" y="66" width="5" height="5" fill="#3DA35D" stroke="#5A636D" stroke-width=".8"/><rect x="43" y="66" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="98" y="34" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="98" y="34" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="105" y1="52" x2="145" y2="52" stroke="#B9C2CC" stroke-width="2"/><line x1="105" y1="59" x2="135" y2="59" stroke="#B9C2CC" stroke-width="2"/><rect x="105" y="66" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="113" y="66" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="168" y="34" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="168" y="34" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="175" y1="52" x2="215" y2="52" stroke="#B9C2CC" stroke-width="2"/><line x1="175" y1="59" x2="205" y2="59" stroke="#B9C2CC" stroke-width="2"/><rect x="175" y="66" width="5" height="5" fill="#3DA35D" stroke="#5A636D" stroke-width=".8"/><rect x="183" y="66" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="28" y="86" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="28" y="86" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="35" y1="104" x2="75" y2="104" stroke="#B9C2CC" stroke-width="2"/><line x1="35" y1="111" x2="65" y2="111" stroke="#B9C2CC" stroke-width="2"/><rect x="35" y="118" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="43" y="118" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="98" y="86" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="98" y="86" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="105" y1="104" x2="145" y2="104" stroke="#B9C2CC" stroke-width="2"/><line x1="105" y1="111" x2="135" y2="111" stroke="#B9C2CC" stroke-width="2"/><rect x="105" y="118" width="5" height="5" fill="#3DA35D" stroke="#5A636D" stroke-width=".8"/><rect x="113" y="118" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="168" y="86" width="62" height="44" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="168" y="86" width="62" height="8" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/><line x1="175" y1="104" x2="215" y2="104" stroke="#B9C2CC" stroke-width="2"/><line x1="175" y1="111" x2="205" y2="111" stroke="#B9C2CC" stroke-width="2"/><rect x="175" y="118" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/><rect x="183" y="118" width="5" height="5" fill="none" stroke="#5A636D" stroke-width=".8"/>
+<circle cx="228" cy="88" r="6.5" fill="#D6453C"/><text x="228" y="90.8" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#fff">2</text>
+<rect x="258" y="52" width="54" height="24" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/>
+<text x="285" y="67" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#3A4654">REC</text>
+<rect x="334" y="52" width="54" height="24" fill="#22303E" stroke="#10161D" stroke-width="1"/>
+<text x="361" y="67" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#F8F7F1">LLM</text>
+<rect x="410" y="52" width="80" height="24" fill="#FFF4D6" stroke="#E8A100" stroke-width="1"/>
+<text x="450" y="67" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#8A5A00">PENDING</text>
+<path class="m-wave" d="M312 64 H334 M388 64 H410" stroke="#2E5C9E" stroke-width="1.4"/>
+<path d="M450 76 V96" stroke="#3DA35D" stroke-width="1.4"/><path d="M446 91 L450 96 454 91" stroke="#3DA35D" stroke-width="1.4"/>
+<rect x="410" y="96" width="80" height="24" fill="#E3F2E8" stroke="#3DA35D" stroke-width="1"/>
+<text x="450" y="111" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#1F6B38">✓ CONFIRMED</text>
+<rect x="258" y="96" width="130" height="24" fill="#EEF0FE" stroke="#5865F2" stroke-width="1"/>
+<text x="323" y="111" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#4752C4">@lead · 2 overdue</text>
+<path class="m-wave" d="M410 108 H388" stroke="#5865F2" stroke-width="1.2"/>
+<text x="258" y="44" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5A6675">EVERY 15 MIN · ~$0.01 / MEETING</text>
+</svg></div>
+      <div class="body">
+        <h3>OEC Tracker</h3>
+        <p class="card-sum">Meeting recordings in, confirmed action items and Discord reminders out.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-08</b> · Automation</div>
+        <h3>OEC Tracker: Meetings → Action Items</h3>
+        <p class="pm-lede">A dashboard and background service that keeps ~20 competition leads on schedule for the Ontario Engineering Competition 2027 by turning meeting recordings into action items a person approves.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Running six competitions means dozens of meetings a month, and action items die in the recordings. The fix had to cost the leads almost nothing (no new accounts), and it could never act on an AI guess that nobody had checked.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>React + Supabase dashboard</b>: one card per competition, a detail page with the case document, meeting history, and checklist, and a no-login share link per competition that shows only its own confirmed items.</li>
+              <li><b>Node service</b> polls meeting recordings every 15 minutes, matches each one to a competition, and has <b>Claude Haiku</b> extract action items with structured outputs at ~$0.01 per meeting.</li>
+              <li><b>Human review gate</b>: everything extracted lands as pending until someone confirms it; low-confidence items and unresolved owners are flagged, not hidden.</li>
+              <li><b>Name resolution</b> for transcripts that mangle names: exact match → alias → phonetic key → length-scaled edit distance, with a floor below which it assigns nobody, and a queue so the roster learns new spellings.</li>
+              <li>Daily <b>overdue sweep</b> posts one @-mentioning Discord message per competition channel, with a cooldown against double pings.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">~$0.01 per meeting · nothing goes live without a person approving it</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Builder, as VP Competitions</dd></div>
+              <div class="row"><dt>When</dt><dd>2026</dd></div>
+              <div class="row"><dt>Context</dt><dd>Ontario Engineering Competition 2027</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status live">Rolling out</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Node.js</span><span>Claude API</span><span>Discord Bot</span><span>Netlify</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="oec-judge-portal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: OEC Judge Portal">
+      <div class="cbar"><span>DWG <b>P-09</b></span><span>Web Platform</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-09 · RUBRIC · TIMER · PODIUM</text>
+<rect x="28" y="32" width="190" height="100" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/>
+<rect x="28" y="32" width="190" height="14" fill="#22303E"/>
+<text x="35" y="42" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#F8F7F1">TEAM 04 · JUDGE 2 · AUTOSAVED</text>
+<text x="36" y="63" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">DESIGN</text><rect x="94" y="58" width="96" height="6" fill="#E3E7ED"/><rect x="94" y="58" width="79" height="6" fill="#2E5C9E"/><text x="210" y="63.5" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#22303E">8/10</text><text x="36" y="77" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">ANALYSIS</text><rect x="94" y="72" width="96" height="6" fill="#E3E7ED"/><rect x="94" y="72" width="67" height="6" fill="#2E5C9E"/><text x="210" y="77.5" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#22303E">7/10</text><text x="36" y="91" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">PROTOTYPE</text><rect x="94" y="86" width="96" height="6" fill="#E3E7ED"/><rect x="94" y="86" width="86" height="6" fill="#2E5C9E"/><text x="210" y="91.5" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#22303E">9/10</text><text x="36" y="105" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">PRESENT.</text><rect x="94" y="100" width="96" height="6" fill="#E3E7ED"/><rect x="94" y="100" width="61" height="6" fill="#2E5C9E"/><text x="210" y="105.5" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#22303E">6/10</text><text x="36" y="119" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">Q&amp;A</text><rect x="94" y="114" width="96" height="6" fill="#E3E7ED"/><rect x="94" y="114" width="73" height="6" fill="#2E5C9E"/><text x="210" y="119.5" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#22303E">7/10</text>
+<circle cx="282" cy="82" r="32" stroke="#D5DBE1" stroke-width="6"/>
+<circle cx="282" cy="82" r="32" stroke="#E8762C" stroke-width="6" stroke-dasharray="140 201" transform="rotate(-90 282 82)"/>
+<text x="282" y="86" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#22303E">07:42</text>
+<text x="282" y="130" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">PRESENTATION</text>
+<text x="352" y="50" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#1F6B38">✓ 3/3 JUDGES CONFIRMED</text>
+<rect x="352" y="88" width="44" height="44" fill="#AEB7C1"/><rect x="400" y="64" width="44" height="68" fill="#2E5C9E"/><rect x="448" y="102" width="44" height="30" fill="#C9D2DA"/>
+<text x="374" y="106" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="16" fill="#fff" text-anchor="middle">2</text><text x="422" y="84" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="16" fill="#fff" text-anchor="middle">1</text><text x="470" y="122" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="16" fill="#fff" text-anchor="middle">3</text>
+<line x1="344" y1="132" x2="500" y2="132" stroke="#5A636D" stroke-width="1.2"/>
+</svg></div>
+      <div class="body">
+        <h3>OEC Judge Portal</h3>
+        <p class="card-sum">Judging platform with rubrics, live timers, debate brackets, and results.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-09</b> · Web Platform</div>
+        <h3>OEC Judge Portal</h3>
+        <p class="pm-lede">A judging platform for the Ontario Engineering Competition that runs scoring for nine competitions at once, with separate views for admins, competition leads, and judges.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Judging at a provincial competition usually runs on paper rubrics, stopwatches, and a spreadsheet someone reconciles late at night. Scores have to be entered, penalized, locked, and ranked across nine competitions with three judges each, and results need to go out the same day.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Judge view</b>: per-team rubric scoring with autosave, inline preview of each team's report or slides from Google Drive, an abstract-read confirmation where the competition needs one, and a top-3 ranking that locks once all judges confirm.</li>
+              <li><b>Lead view</b>: live presentation and Q&amp;A timers, the active presenting team, point penalties and disqualifications with reasons, and drag-to-reorder presentation order.</li>
+              <li><b>Debate mode</b>: Government and Opposition rubrics side by side, the speaking side highlighted with a live banner, a topic pool, and a tournament bracket with byes that advances from combined judge scores.</li>
+              <li><b>Admin tools</b>: a rubric editor with validated Excel upload, bulk judge import with emailed credentials (Resend), a presentation-order randomizer, Google Drive fuzzy-matching of submissions to teams, a results dashboard, and CSV / styled Excel exports.</li>
+              <li>Every per-competition setting (timers, materials, report labels, debate mode) is editable from a configure page, so nothing needs a code change on event day.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">One system for scoring, penalties, rankings, and results across 9 competitions</div>
+            <h4>Next</h4>
+            <p>Move the database from SQLite to Supabase Postgres and deploy on Render with a custom domain.</p>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Builder, as VP Competitions</dd></div>
+              <div class="row"><dt>When</dt><dd>May 2026 – Present</dd></div>
+              <div class="row"><dt>Context</dt><dd>Ontario Engineering Competition 2027</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status">Prototype</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>SQLite</span><span>Google Drive API</span><span>Resend</span><span>Docker</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="oec-ai" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: OEC AI">
+      <div class="cbar"><span>DWG <b>P-10</b></span><span>AI Platform</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-10 · TEAM CHAT · TOKEN BUDGET</text>
+<rect x="28" y="30" width="300" height="104" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/>
+<rect x="36" y="38" width="100" height="13" rx="2" fill="#DCE6F0" stroke="#2E5C9E" stroke-width=".8"/>
+<text x="42" y="47" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#1E3F70">MODEL LOCKED FOR CHAT</text>
+<rect x="176" y="38" width="142" height="18" rx="8" fill="#2E5C9E"/>
+<line x1="186" y1="47" x2="300" y2="47" stroke="#fff" stroke-width="2" opacity=".75"/>
+<rect x="36" y="62" width="196" height="32" rx="8" fill="#E3E7ED"/>
+<line x1="46" y1="72" x2="216" y2="72" stroke="#8E99A4" stroke-width="2"/><line x1="46" y1="80" x2="196" y2="80" stroke="#8E99A4" stroke-width="2"/><line x1="46" y1="88" x2="150" y2="88" stroke="#8E99A4" stroke-width="2"/>
+<rect x="206" y="100" width="112" height="16" rx="8" fill="#2E5C9E"/>
+<line x1="216" y1="108" x2="300" y2="108" stroke="#fff" stroke-width="2" opacity=".75"/>
+<rect x="36" y="121" width="282" height="8" rx="2" fill="#EEF0F3" stroke="#D5DBE1" stroke-width=".8"/>
+<text x="350" y="44" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5A6675">TEAM TOKEN BUDGET</text>
+<rect x="350" y="50" width="146" height="10" fill="#E3E7ED" stroke="#B9C2CC" stroke-width=".8"/>
+<rect x="350" y="50" width="106" height="10" fill="#E8762C"/>
+<line x1="482" y1="46" x2="482" y2="64" stroke="#D6453C" stroke-width="1.4"/>
+<text x="496" y="76" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#D6453C">HARD CUTOFF</text>
+<rect x="350" y="90" width="66" height="16" fill="#fff" stroke="#5A636D" stroke-width="1"/>
+<text x="383" y="101" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">ANTHROPIC</text>
+<rect x="424" y="90" width="72" height="16" fill="#fff" stroke="#5A636D" stroke-width="1"/>
+<text x="460" y="101" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">OPENAI</text>
+<text x="350" y="126" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">KEYS STAY SERVER-SIDE</text>
+</svg></div>
+      <div class="body">
+        <h3>OEC AI</h3>
+        <p class="card-sum">Competition chatbot with per-team logins and hard token budgets.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-10</b> · AI Platform</div>
+        <h3>OEC AI: Competition Chatbot Platform</h3>
+        <p class="pm-lede">A chatbot platform that gives every competing team access to AI models under the same rules: per-team logins, per-competition configuration, and metered token budgets, with an admin console for oversight.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>OEC 2027 allows AI use during competition, which only stays fair if every team gets the same access and nobody can quietly exceed it. That calls for one controlled platform, sized for roughly 350 concurrent competitors, instead of whatever tools each team brings.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Express + TypeScript + SQLite backend</b> that proxies every AI call server-side, so API keys never reach the browser. It's multi-provider: each competition's model allow-list can mix Anthropic and OpenAI models.</li>
+              <li><b>Token metering</b>: a per-request input cap and a per-team budget with a hard cutoff, recording real usage, with graceful handling of both over-limit requests and model failures.</li>
+              <li><b>Role-based access</b> enforced on the server (super admin, competition lead, read-only viewer) with bcrypt + JWT auth, and every team query scoped to the authenticated team.</li>
+              <li><b>Team chat</b> in React + TypeScript: the admin-defined model list, a per-chat model lock, history, a live budget meter, and a near-limit warning.</li>
+              <li><b>Admin console</b>: per-competition AI rules with version history, team management with credential resets, and monitoring logs with filters and CSV / JSON export.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Same AI access and the same limits for every team</div>
+            <h4>Next</h4>
+            <p>Wire the admin console to the finished backend API (it still reads mock data), add route guards, and stream responses.</p>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Builder, as VP Competitions</dd></div>
+              <div class="row"><dt>When</dt><dd>Jun 2026 – Present</dd></div>
+              <div class="row"><dt>Context</dt><dd>Ontario Engineering Competition 2027</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status live">In development</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>React</span><span>TypeScript</span><span>Express</span><span>SQLite</span><span>Claude API</span><span>OpenAI API</span><span>JWT</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="oec-shop" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: OEC Shop">
+      <div class="cbar"><span>DWG <b>P-11</b></span><span>Web Platform</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-11 · CART HOLD · DELIVERY</text>
+<rect x="28" y="32" width="76" height="46" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="36" y="40" width="18" height="18" fill="#C9D2DA"/><line x1="60" y1="45" x2="94" y2="45" stroke="#B9C2CC" stroke-width="2"/><line x1="60" y1="52" x2="84" y2="52" stroke="#B9C2CC" stroke-width="2"/><text x="36" y="71" font-family="'IBM Plex Mono',monospace" font-size="5.8" fill="#E8762C">3 IN STOCK · 2 IN CART</text><rect x="112" y="32" width="76" height="46" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="120" y="40" width="18" height="18" fill="#C9D2DA"/><line x1="144" y1="45" x2="178" y2="45" stroke="#B9C2CC" stroke-width="2"/><line x1="144" y1="52" x2="168" y2="52" stroke="#B9C2CC" stroke-width="2"/><text x="120" y="71" font-family="'IBM Plex Mono',monospace" font-size="5.8" fill="#5A6675">IN STOCK</text><rect x="28" y="84" width="76" height="46" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="36" y="92" width="18" height="18" fill="#C9D2DA"/><line x1="60" y1="97" x2="94" y2="97" stroke="#B9C2CC" stroke-width="2"/><line x1="60" y1="104" x2="84" y2="104" stroke="#B9C2CC" stroke-width="2"/><text x="36" y="123" font-family="'IBM Plex Mono',monospace" font-size="5.8" fill="#5A6675">IN STOCK</text><rect x="112" y="84" width="76" height="46" fill="#FAFBFC" stroke="#5A636D" stroke-width="1"/><rect x="120" y="92" width="18" height="18" fill="#C9D2DA"/><line x1="144" y1="97" x2="178" y2="97" stroke="#B9C2CC" stroke-width="2"/><line x1="144" y1="104" x2="168" y2="104" stroke="#B9C2CC" stroke-width="2"/><text x="120" y="123" font-family="'IBM Plex Mono',monospace" font-size="5.8" fill="#5A6675">IN STOCK</text>
+<rect x="212" y="36" width="112" height="40" fill="#FFF4D6" stroke="#E8A100" stroke-width="1"/>
+<text x="220" y="50" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#8A5A00">CART HOLD EXPIRES</text>
+<text x="220" y="68" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#8A5A00">09:41</text>
+<text x="212" y="96" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">TEAM BUDGET</text>
+<rect x="212" y="102" width="112" height="8" fill="#E3E7ED"/><rect x="212" y="102" width="70" height="8" fill="#2E5C9E"/>
+<line x1="360" y1="70" x2="420" y2="70" stroke="#2E5C9E" stroke-width="2"/>
+<path class="m-wave" d="M420 70 H480" stroke="#2E5C9E" stroke-width="1.6"/>
+<circle cx="360" cy="70" r="9" fill="#2E5C9E"/><circle cx="420" cy="70" r="9" fill="#2E5C9E"/>
+<circle cx="480" cy="70" r="9" fill="#FAFBFC" stroke="#2E5C9E" stroke-width="1.6"/>
+<path d="M355 70 l3 3 6 -6 M415 70 l3 3 6 -6" stroke="#fff" stroke-width="1.6"/>
+<text x="360" y="94" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">PENDING</text>
+<text x="420" y="94" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">OUT FOR</text>
+<text x="420" y="103" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">DELIVERY</text>
+<text x="480" y="94" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#3A4654">DELIVERED</text>
+<text x="420" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="#5A6675">RETURNS: SHOPKEEPER + ADMIN APPROVE</text>
+</svg></div>
+      <div class="body">
+        <h3>OEC Shop</h3>
+        <p class="card-sum">Budgeted materials store for competition teams, with cart holds and delivery runs.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-11</b> · Web Platform</div>
+        <h3>OEC Shop: Competition Materials Portal</h3>
+        <p class="pm-lede">A materials store for design competitions: teams spend an assigned budget on parts, a shopkeeper fulfills orders, couriers deliver to rooms, and admins manage inventory and spend.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>In design competitions, teams build from a shared pool of materials on a budget. Tracking who took what, what's still in stock, and who's over budget by hand is slow and error-prone when dozens of teams order at once.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li><b>Four role-based views</b> (Team, Shopkeeper, Delivery, Admin) in React + TypeScript, with React Router and Zustand state.</li>
+              <li><b>Live stock with cart holds</b>: adding to cart reserves stock for a configurable window, everyone sees "X in stock, Y in cart", and expired holds release stock automatically. Checkout is blocked when a team is over budget or over stock.</li>
+              <li><b>Simplified fulfillment</b>: Pending → Out for Delivery → Delivered, with courier assignment on dispatch and couriers closing their own runs.</li>
+              <li><b>Returns</b> need both shopkeeper and admin approval before a pickup courier is assigned.</li>
+              <li><b>Admin tools</b>: stock overview, spend reporting with per-team drill-down and CSV export, inventory and team management, and bulk credential emails via Resend.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Budget and stock enforced at checkout, not reconciled afterward</div>
+            <h4>Next</h4>
+            <p>Replace the in-memory store with Supabase (Auth, Postgres, Realtime), with checkout as an atomic <code>place_order</code> transaction and row-level security per role.</p>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Builder, as VP Competitions</dd></div>
+              <div class="row"><dt>When</dt><dd>May 2026 – Present</dd></div>
+              <div class="row"><dt>Context</dt><dd>Ontario Engineering Competition 2027</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status">Prototype</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Zustand</span><span>React Router</span><span>Resend</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="mcu-events-dashboard" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: MCU Events Dashboard">
+      <div class="cbar"><span>DWG <b>P-12</b></span><span>Web Platform</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-12 · DAILY INGEST</text>
+<rect x="30" y="54" width="46" height="46" rx="12" fill="#fff" stroke="#C13584" stroke-width="2"/>
+<circle cx="53" cy="77" r="11" stroke="#C13584" stroke-width="2"/><circle cx="67" cy="63" r="2.4" fill="#C13584"/>
+<path class="m-wave" d="M80 77 H140" stroke="#2E5C9E" stroke-width="1.4"/>
+<text x="82" y="70" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5A6675">IG SCAN</text>
+<rect x="142" y="60" width="64" height="34" fill="#FFF4D6" stroke="#E8A100" stroke-width="1"/>
+<text x="174" y="75" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#8A5A00">VP</text>
+<text x="174" y="86" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#8A5A00">REVIEW</text>
+<path class="m-wave" d="M206 77 H242" stroke="#2E5C9E" stroke-width="1.4"/>
+<rect x="244" y="32" width="252" height="100" fill="#FAFBFC" stroke="#5A636D" stroke-width="1.2"/><rect x="244" y="32" width="252" height="14" fill="#22303E"/><text x="252" y="42" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#F8F7F1" letter-spacing="1">MASTER CALENDAR · ALL UNIONS</text><line x1="280" y1="46" x2="280" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="316" y1="46" x2="316" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="352" y1="46" x2="352" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="388" y1="46" x2="388" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="424" y1="46" x2="424" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="460" y1="46" x2="460" y2="132" stroke="#D5DBE1" stroke-width=".8"/><line x1="244" y1="63.2" x2="496" y2="63.2" stroke="#D5DBE1" stroke-width=".8"/><line x1="244" y1="80.4" x2="496" y2="80.4" stroke="#D5DBE1" stroke-width=".8"/><line x1="244" y1="97.6" x2="496" y2="97.6" stroke="#D5DBE1" stroke-width=".8"/><line x1="244" y1="114.8" x2="496" y2="114.8" stroke="#D5DBE1" stroke-width=".8"/><rect x="319" y="52.0" width="30" height="8" rx="1.5" fill="#2E5C9E" opacity=".85"/><rect x="391" y="69.2" width="30" height="8" rx="1.5" fill="#E8762C" opacity=".85"/><rect x="427" y="69.2" width="30" height="8" rx="1.5" fill="#2E5C9E" opacity=".85"/><rect x="283" y="86.4" width="30" height="8" rx="1.5" fill="#6FB1F2" opacity=".85"/><rect x="355" y="86.4" width="30" height="8" rx="1.5" fill="#E8762C" opacity=".85"/><rect x="247" y="103.6" width="30" height="8" rx="1.5" fill="#2E5C9E" opacity=".85"/><rect x="391" y="103.6" width="30" height="8" rx="1.5" fill="#6FB1F2" opacity=".85"/><rect x="319" y="120.8" width="30" height="8" rx="1.5" fill="#E8762C" opacity=".85"/><rect x="427" y="120.8" width="30" height="8" rx="1.5" fill="#2E5C9E" opacity=".85"/>
+<text x="30" y="124" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5A6675">GUESTS: READ-ONLY VIEW</text>
+</svg></div>
+      <div class="body">
+        <h3>MCU Events Dashboard</h3>
+        <p class="card-sum">Events platform with a cross-union calendar fed by a daily Instagram scan.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-12</b> · Web Platform</div>
+        <h3>Mechatronics Course Union Events Dashboard</h3>
+        <p class="pm-lede">The internal events platform for TMU's Mechatronics Course Union: ideas, planned events, task assignments, and a master calendar spanning every engineering course union.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Event planning lived in group chats, and nobody saw what the other course unions had scheduled until it clashed. The exec team needed one place to run events, and guests needed a calendar without seeing internal notes.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Built a <b>React / TypeScript / Vite / Tailwind</b> app for the VP and directors: an idea → event pipeline, planning details, and assigned tasks with submissions and feedback.</li>
+              <li>Secured it with <b>Supabase Auth and Postgres row-level security</b>; the browser only ever holds the publishable key.</li>
+              <li>Gave guests a <b>read-only public calendar</b> through database views that expose only guest-safe columns.</li>
+              <li>A <b>daily GitHub Actions job</b> scans union Instagram accounts, detects event posts, and queues them for VP review before they join the cross-union master calendar.</li>
+              <li>Deployed on <b>Netlify</b> and handed off with a written guide for the next VP.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Handed off to the next exec with a VP guide</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Role</dt><dd>Builder, as VP Events</dd></div>
+              <div class="row"><dt>When</dt><dd>Summer 2026</dd></div>
+              <div class="row"><dt>Context</dt><dd>Mechatronics Course Union, TMU</dd></div>
+              <div class="row"><dt>Status</dt><dd><span class="pm-status">Handed off</span></dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Supabase</span><span>PostgreSQL RLS</span><span>GitHub Actions</span><span>Netlify</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="energy mechanical" data-slug="vibration-absorber" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Vibration Absorber">
+      <div class="cbar"><span>DWG <b>P-13</b></span><span>Dynamics</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g4b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D5DCE4"/><stop offset="1" stop-color="#97A2AE"/></linearGradient>
 </defs>
 <g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
-<text x="12" y="20" class="figlbl">FIG P-04 · 1500 RPM</text>
+<text x="12" y="20" class="figlbl">FIG P-13 · 1500 RPM</text>
 <path d="M40 66 L368 76 L368 96 L40 104 Z" fill="url(#g4b)" stroke="#5A636D" stroke-width="1.3"/>
 <path d="M40 82 L368 87" stroke="#D6453C" stroke-width="3"/>
 <path d="M368 76 L398 38 L414 40 L392 78 L392 94 L368 96 Z" fill="url(#g4b)" stroke="#5A636D" stroke-width="1.3"/>
@@ -1369,23 +2150,48 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <text x="222" y="118" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">2-DOF ABSORBER</text>
 </svg></div>
       <div class="body">
-        <h3>Passive Vibration Absorber — Helicopter Tail Rotor</h3>
-        <p>2-DOF passive absorber mitigating harmonic excitation from a 500 g unbalanced rotor at 1000–2000 rpm. Tuned mass, damping, and frequency ratios via Den Hartog's equal-peak method, validated with MATLAB transmissibility simulations.</p>
-        <div class="res">↓ up to 80% peak transmissibility at resonance</div>
-        <div class="chips"><span>Vibrations</span><span>MATLAB</span><span>Den Hartog</span><span>Simulation</span></div>
+        <h3>Vibration Absorber</h3>
+        <p class="card-sum">Tuned 2-DOF absorber for an unbalanced helicopter tail rotor.</p>
+        <div class="card-foot"><div class="card-cats"><span>Dynamics &amp; Energy</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-13</b> · Dynamics</div>
+        <h3>Passive Vibration Absorber: Helicopter Tail Rotor</h3>
+        <p class="pm-lede">A 2-DOF passive absorber that tames harmonic excitation from an unbalanced tail rotor, designed for a vibrations course.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>A 500 g unbalanced rotor mass spinning at 1000–2000 rpm shakes its mount hard, worst of all near resonance. The absorber has to work across the whole speed band, not just at one tuned frequency.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Modelled the rotor mount and absorber as a <b>2-DOF system</b> under harmonic excitation.</li>
+              <li>Tuned <b>mass, damping, and frequency ratios</b> with Den Hartog's equal-peak method so the two resonant peaks come out level.</li>
+              <li>Verified with <b>MATLAB simulations</b> of force transmissibility and amplitude response across the operating band.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">↓ up to 80% peak transmissibility at resonance</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Context</dt><dd>Vibrations design project, TMU</dd></div>
+              <div class="row"><dt>Load</dt><dd>500 g unbalanced mass, 1000–2000 rpm</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>MATLAB</span><span>Vibrations</span><span>Den Hartog Tuning</span><span>Simulation</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-05</b></span><span>Mechanism Design</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="robotics mechanical" data-slug="5-bar-gripper" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: 5-Bar Gripper">
+      <div class="cbar"><span>DWG <b>P-14</b></span><span>Mechanism Design</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g5s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A434E"/><stop offset="1" stop-color="#171C22"/></linearGradient>
  <linearGradient id="g5f" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D7DDE4"/><stop offset=".5" stop-color="#AEB7C1"/><stop offset="1" stop-color="#7E8893"/></linearGradient>
  <linearGradient id="g5o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4F7BBE"/><stop offset="1" stop-color="#1E3F70"/></linearGradient>
 </defs>
 <g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
-<text x="12" y="20" class="figlbl">FIG P-05 · GRIP 500 G</text>
+<text x="12" y="20" class="figlbl">FIG P-14 · GRIP 500 G</text>
 <rect x="210" y="14" width="100" height="42" rx="6" fill="url(#g5s)" stroke="#0E1318" stroke-width="1.3"/>
 <line x1="222" y1="24" x2="222" y2="46" stroke="#4A535E" stroke-width="2"/><line x1="232" y1="24" x2="232" y2="46" stroke="#4A535E" stroke-width="2"/><line x1="242" y1="24" x2="242" y2="46" stroke="#4A535E" stroke-width="2"/>
 <text x="258" y="38" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#9AA5B0">SERVO ×2</text>
@@ -1404,22 +2210,47 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <path d="M250 142 H270" stroke="#B9C2CC" stroke-width="1"/>
 </svg></div>
       <div class="body">
+        <h3>5-Bar Gripper</h3>
+        <p class="card-sum">Servo-driven 2-DOF gripper, analyzed in MATLAB and 3D printed.</p>
+        <div class="card-foot"><div class="card-cats"><span>Robotics</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-14</b> · Mechanism Design</div>
         <h3>5-Bar Robotic Gripper</h3>
-        <p>2-DOF gripper actuated by dual servomotors synchronized through precision gearing. Kinematic, static, and torque analysis in MATLAB for secure grip on 500 g objects; full SolidWorks assembly and 3D-printed functional prototype.</p>
-        <div class="res">Working prototype, verified 500 g grip capacity</div>
-        <div class="chips"><span>Kinematics</span><span>SolidWorks</span><span>Servos</span><span>MATLAB</span></div>
+        <p class="pm-lede">A two-degree-of-freedom, five-bar gripper driven by dual servos synchronized through gears.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Hold a 500 g object securely with a compact linkage and hobby-grade servos, without the two fingers drifting out of sync.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Synchronized the fingers with <b>dual servos and gearing</b> so both close symmetrically.</li>
+              <li>Ran <b>kinematic, static, and torque analysis</b> in MATLAB to size the linkage and confirm servo torque for a 500 g payload, and simulated motion and workspace.</li>
+              <li>Modelled the full assembly in <b>SolidWorks</b> and 3D printed a functional prototype.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Working prototype, verified 500 g grip capacity</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Context</dt><dd>Mechanism design project, TMU</dd></div>
+              <div class="row"><dt>Payload</dt><dd>500 g</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>SolidWorks</span><span>MATLAB</span><span>Kinematics</span><span>Servos</span><span>3D Printing</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
-    <article class="card rv">
-      <div class="cbar"><span>DWG <b>P-06</b></span><span>Thermodynamics</span></div>
-      <div class="media" aria-hidden="true"><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <article class="card rv" data-cat="energy" data-slug="power-plant" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Sustainable Power Plant">
+      <div class="cbar"><span>DWG <b>P-15</b></span><span>Thermodynamics</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
 <defs>
  <linearGradient id="g6t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D5DCE4"/><stop offset=".5" stop-color="#B6BFC9"/><stop offset="1" stop-color="#97A2AE"/></linearGradient>
  <linearGradient id="g6h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A8B2BD"/><stop offset="1" stop-color="#7E8893"/></linearGradient>
 </defs>
 <g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
-<text x="12" y="20" class="figlbl">FIG P-06 · 80 MWe</text>
+<text x="12" y="20" class="figlbl">FIG P-15 · 80 MWe</text>
 <line x1="20" y1="128" x2="500" y2="128" stroke="#5A636D" stroke-width="1.4"/>
 <path d="M150 128 C150 94 168 86 168 62 L210 62 C210 86 228 94 228 128 Z" fill="url(#g6t)" stroke="#5A636D" stroke-width="1.3"/>
 <ellipse cx="189" cy="62" rx="21" ry="4.5" fill="#8E99A4"/>
@@ -1439,10 +2270,272 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
 <text x="266" y="142" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">TURBINE HALL · NET-ZERO CONFIG</text>
 </svg></div>
       <div class="body">
+        <h3>Sustainable Power Plant</h3>
+        <p class="card-sum">Vapour power plant for an off-grid community, simulated in MATLAB.</p>
+        <div class="card-foot"><div class="card-cats"><span>Dynamics &amp; Energy</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-15</b> · Thermodynamics</div>
         <h3>Sustainable Power Plant Design</h3>
-        <p>Vapour power plant meeting 80 MWe / 25 MWth for an off-grid Canadian community. Full-cycle thermodynamic analysis and MATLAB simulation across nuclear, natural gas, and renewable options.</p>
-        <div class="res">↑ 6% cycle efficiency · net-zero GHG configuration</div>
-        <div class="chips"><span>Thermo</span><span>MATLAB</span><span>Energy Systems</span></div>
+        <p class="pm-lede">A vapour power plant sized to supply 80 MWe of electricity and 25 MWth of heat to an off-grid Canadian community.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>Remote communities often run on diesel. The brief was to meet the community's electrical and heating demand while cutting greenhouse-gas emissions, and to justify the choice of energy source.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Ran a <b>full-cycle thermodynamic analysis</b> of the vapour power cycle.</li>
+              <li>Built <b>MATLAB simulations</b> comparing nuclear, natural gas, and renewable configurations.</li>
+              <li>Iterated the cycle to raise efficiency, arriving at a <b>net-zero GHG configuration</b>.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">↑ up to 6% cycle efficiency · net-zero GHG configuration</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>Context</dt><dd>Thermodynamics design project, TMU</dd></div>
+              <div class="row"><dt>Demand</dt><dd>80 MWe + 25 MWth</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>MATLAB</span><span>Thermodynamics</span><span>Energy Systems</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="mechanical biomedical" data-slug="rescuemate" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: RescueMate Stretcher">
+      <div class="cbar"><span>DWG <b>P-16</b></span><span>Emergency Systems</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs><linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D5DCE4"/><stop offset="1" stop-color="#97A2AE"/></linearGradient></defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-16 · ALL-TERRAIN STRETCHER</text>
+<line x1="30" y1="134" x2="490" y2="134" stroke="#B9C2CC" stroke-width="1"/>
+<circle cx="170" cy="118" r="16" fill="#1A1E23"/><circle cx="170" cy="118" r="6.5" fill="#9AA5B0"/>
+<circle cx="358" cy="118" r="16" fill="#1A1E23"/><circle cx="358" cy="118" r="6.5" fill="#9AA5B0"/>
+<path d="M170 118 L196 90 M358 118 L332 90" stroke="#5A636D" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="176" y="78" width="176" height="14" rx="3" fill="url(#gR)" stroke="#5A636D" stroke-width="1.3"/>
+<rect x="182" y="68" width="164" height="11" rx="5" fill="#6FB1F2" opacity=".55" stroke="#2E5C9E" stroke-width="1"/>
+<rect x="298" y="80" width="42" height="10" rx="1.5" fill="#C9D2DA" stroke="#5A636D" stroke-width="1"/>
+<circle cx="333" cy="85" r="1.6" fill="#5A636D"/>
+<g stroke="#5A636D" stroke-width="1.6" stroke-linecap="round"><path d="M188 68 V54 M340 68 V54 M188 54 H340"/></g>
+<path d="M214 54 A 70 70 0 0 1 314 54" stroke="#2E5C9E" stroke-width="6" opacity=".12"/>
+<path d="M214 54 A 70 70 0 0 1 314 54" stroke="#2E5C9E" stroke-width="1.8"/>
+<path d="M358 60 l24 -8 -2 16 z" fill="#F5B800" opacity=".25"/>
+<circle cx="358" cy="62" r="3" fill="#F5B800"/>
+<path d="M176 84 l-26 -6" stroke="#5A636D" stroke-width="3.5" stroke-linecap="round"/>
+<text x="388" y="92" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#5A6675">GYRO-LEVEL</text>
+</svg></div>
+      <div class="body">
+        <h3>RescueMate Stretcher</h3>
+        <p class="card-sum">All-terrain stretcher concept that keeps patients level, warm, and dry.</p>
+        <div class="card-foot"><div class="card-cats"><span>Mechanical</span><span>Biomedical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-16</b> · Emergency Systems</div>
+        <h3>RescueMate: Incapacitated Human Carrying System</h3>
+        <p class="pm-lede">A next-generation stretcher designed for use in any climate, environment, or terrain, protecting the safety, comfort, and dignity of patients and emergency responders.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>Context</h4>
+            <p>Standard stretchers assume flat ground and good weather. The goal was a product that is modular, durable, and adaptable to the environments responders actually work in.</p>
+            <h4>Features</h4>
+            <ul class="pm-list">
+              <li><b>Secure storage</b>: lockable front drawer for medical equipment and tools.</li>
+              <li><b>Retractable railings &amp; handles</b>: adjustable for ease of use and compact storage.</li>
+              <li><b>Integrated canopy &amp; lighting</b>: deployable canopy and headlight for adverse weather and low light.</li>
+              <li><b>Advanced mobility</b>: specialized tires and a gyroscope mechanism that keeps the bed level.</li>
+              <li><b>Water adaptability</b>: automatic flotation devices that deploy on water detection.</li>
+              <li><b>Temperature control</b>: heated bed with adjustable comfort settings.</li>
+              <li><b>Compact design</b>: detachable legs and retractable components for efficient transport.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Modular, durable, climate-adaptable patient transport</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>When</dt><dd>Sep – Dec 2023</dd></div>
+              <div class="row"><dt>Context</dt><dd>Toronto Metropolitan University</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>Mechanical Design</span><span>CAD</span><span>Engineering Drawings</span><span>Prototyping</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="mechanical biomedical" data-slug="parkinsons-kitchen" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Parkinson's Kitchen">
+      <div class="cbar"><span>DWG <b>P-17</b></span><span>Accessible Design</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs><linearGradient id="gK" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D7DDE4"/><stop offset="1" stop-color="#AEB7C1"/></linearGradient></defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-17 · ACCESSIBLE LAYOUT</text>
+<rect x="150" y="30" width="220" height="106" fill="#FAFBFC" stroke="#5A636D" stroke-width="1.5"/>
+<rect x="150" y="30" width="220" height="20" fill="url(#gK)" stroke="#5A636D" stroke-width="1"/>
+<rect x="150" y="50" width="20" height="86" fill="url(#gK)" stroke="#5A636D" stroke-width="1"/>
+<rect x="186" y="33" width="34" height="14" fill="#fff" stroke="#5A636D" stroke-width="1"/>
+<circle cx="194" cy="40" r="2.4" fill="#5A636D"/><circle cx="203" cy="40" r="2.4" fill="#5A636D"/><circle cx="212" cy="37" r="2.4" fill="#5A636D"/><circle cx="212" cy="44" r="2.4" fill="#5A636D"/>
+<rect x="250" y="33" width="30" height="14" rx="2" fill="#DCE6F0" stroke="#5A636D" stroke-width="1"/>
+<circle cx="265" cy="40" r="2" fill="#2E5C9E"/>
+<rect x="332" y="32" width="34" height="18" fill="#4F9BEE" stroke="#1E3F70" stroke-width="1"/>
+<line x1="349" y1="33" x2="349" y2="49" stroke="#fff" stroke-width="1"/>
+<circle cx="261" cy="96" r="40" stroke="#E8762C" stroke-width="1" stroke-dasharray="4 4" opacity=".55" fill="none"/>
+<rect x="222" y="78" width="78" height="36" rx="2" fill="#DCE6F0" stroke="#2E5C9E" stroke-width="1.3"/>
+<circle cx="240" cy="124" r="5" fill="none" stroke="#5A636D" stroke-width="1.2"/>
+<circle cx="261" cy="124" r="5" fill="none" stroke="#5A636D" stroke-width="1.2"/>
+<circle cx="282" cy="124" r="5" fill="none" stroke="#5A636D" stroke-width="1.2"/>
+<text x="384" y="80" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#5A6675">REACH ZONE</text>
+<text x="384" y="94" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#E8762C">GRIP ✓</text>
+</svg></div>
+      <div class="body">
+        <h3>Parkinson's Kitchen</h3>
+        <p class="card-sum">Kitchen redesigned for people living with tremor and balance loss.</p>
+        <div class="card-foot"><div class="card-cats"><span>Mechanical</span><span>Biomedical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-17</b> · Accessible Design</div>
+        <h3>Parkinson's Disease Kitchen Redesign</h3>
+        <p class="pm-lede">A proposed kitchen that is more accessible to people with Parkinson's disease, a neurological condition marked by tremor, rigidity, and difficulty with balance and coordination.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>Context</h4>
+            <p>Roughly 90,000 new Parkinson's diagnoses are reported each year in the United States alone. Everyday kitchen tasks (reaching, gripping, carrying) get harder and riskier as symptoms progress.</p>
+            <h4>Design principles</h4>
+            <ul class="pm-list">
+              <li>Follows a familiar, traditional kitchen layout.</li>
+              <li>Large, open space with bright lighting.</li>
+              <li>All appliances have grippy, easy-to-hold handles.</li>
+              <li>Everything within a reasonable height and reach.</li>
+              <li>Smart-technology integration.</li>
+              <li>Designed to stay affordable.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Accessible, affordable kitchen for people with Parkinson's</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>When</dt><dd>Sep – Dec 2023</dd></div>
+              <div class="row"><dt>Context</dt><dd>Toronto Metropolitan University</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>Homestyler</span><span>Design</span><span>Accessibility</span><span>CAD</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="energy mechanical" data-slug="grey-water-generator" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Grey Water Generator">
+      <div class="cbar"><span>DWG <b>P-18</b></span><span>Renewable Energy</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<defs><linearGradient id="gG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D2DA"/><stop offset="1" stop-color="#8E99A4"/></linearGradient></defs>
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-18 · MICRO-HYDRO</text>
+<line x1="30" y1="132" x2="490" y2="132" stroke="#B9C2CC" stroke-width="1"/>
+<rect x="60" y="36" width="80" height="36" rx="3" fill="url(#gG)" stroke="#5A636D" stroke-width="1.3"/>
+<path d="M64 46 h72" stroke="#6FB1F2" stroke-width="6" opacity=".45"/>
+<text x="74" y="61" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#3A4654">GREY H₂O</text>
+<path d="M100 72 V104" stroke="#5A636D" stroke-width="7"/>
+<path d="M100 72 V104" stroke="#6FB1F2" stroke-width="3" opacity=".5"/>
+<circle class="m-steam" cx="100" cy="96" r="3.4" fill="#2E5C9E"/>
+<circle cx="172" cy="104" r="28" fill="#fff" stroke="#5A636D" stroke-width="1.3"/>
+<g class="m-spin" style="transform-origin:172px 104px">
+  <rect x="169" y="80" width="6" height="48" rx="3" fill="#2A323C"/>
+  <rect x="148" y="101" width="48" height="6" rx="3" fill="#2A323C"/>
+</g>
+<circle cx="172" cy="104" r="6" fill="#15191E" stroke="#5A636D" stroke-width="1.3"/>
+<path d="M200 104 H238" stroke="#5A636D" stroke-width="4"/>
+<rect x="238" y="86" width="62" height="36" rx="2" fill="url(#gG)" stroke="#5A636D" stroke-width="1.3"/>
+<text x="250" y="108" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#2E5C9E">GEN</text>
+<path class="m-wave" d="M300 100 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" stroke="#2E5C9E" stroke-width="1.5"/>
+<circle cx="470" cy="100" r="11" fill="#F5B800" opacity=".22" stroke="#E8A100" stroke-width="1.2"/>
+<path d="M466 105 v6 h8 v-6" stroke="#5A636D" stroke-width="1.2"/>
+</svg></div>
+      <div class="body">
+        <h3>Grey Water Generator</h3>
+        <p class="card-sum">Micro-hydro concept that recovers energy from household wastewater.</p>
+        <div class="card-foot"><div class="card-cats"><span>Dynamics &amp; Energy</span><span>Mechanical</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-18</b> · Renewable Energy</div>
+        <h3>Grey Water Power Generator</h3>
+        <p class="pm-lede">A method to generate clean, renewable power by converting the gravitational potential energy of wastewater into kinetic energy.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>Context</h4>
+            <p>Wherever wastewater sits at an elevated level, there is energy to recover, and the plumbing already exists in almost every household. The same system could reduce the need for gas-powered generators during outages.</p>
+            <h4>Approach</h4>
+            <ul class="pm-list">
+              <li>Route household grey water from an elevated collection tank down through a <b>small turbine</b>.</li>
+              <li>Couple the turbine to a <b>generator</b> to supply household loads or backup power.</li>
+              <li>Reuse <b>existing plumbing</b> to keep installation cost and footprint low.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Household-scale renewable power from existing plumbing</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>When</dt><dd>Oct – Nov 2022</dd></div>
+              <div class="row"><dt>Context</dt><dd>Toronto Metropolitan University</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>Energy Systems</span><span>Renewables</span><span>Concept Design</span><span>Teamwork</span></div></div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="card rv" data-cat="software" data-slug="diabetes-data-c" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open project details: Diabetes Data in C">
+      <div class="cbar"><span>DWG <b>P-19</b></span><span>Data Engineering</span></div>
+      <div class="media" aria-hidden="true"><span class="card-expand">⤢</span><svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g stroke="#E3E7ED" stroke-width=".6"><line x1="0" y1="50" x2="520" y2="50"/><line x1="0" y1="100" x2="520" y2="100"/><line x1="104" y1="0" x2="104" y2="150"/><line x1="208" y1="0" x2="208" y2="150"/><line x1="312" y1="0" x2="312" y2="150"/><line x1="416" y1="0" x2="416" y2="150"/></g>
+<text x="12" y="20" class="figlbl">FIG P-19 · STATS CANADA</text>
+<rect x="38" y="34" width="226" height="96" rx="6" fill="#15191E" stroke="#3A434E" stroke-width="1.2"/>
+<rect x="38" y="34" width="226" height="16" rx="6" fill="#2A323C"/>
+<rect x="38" y="44" width="226" height="6" fill="#2A323C"/>
+<circle cx="50" cy="42" r="3" fill="#ff5f57"/><circle cx="61" cy="42" r="3" fill="#febc2e"/><circle cx="72" cy="42" r="3" fill="#28c840"/>
+<g font-family="'IBM Plex Mono',monospace" font-size="7.5">
+ <text x="48" y="66" fill="#7FB0E8">$ ./diabetes --prov ON</text>
+ <text x="48" y="80" fill="#9AA5B0">2021  9.8%</text>
+ <text x="48" y="92" fill="#9AA5B0">2022  10.4%</text>
+ <text x="48" y="104" fill="#9AA5B0">2023  11.1%</text>
+ <text x="48" y="120" fill="#3DA35D">sorted ✓</text>
+</g>
+<rect x="120" y="74" width="40" height="6" fill="#2E5C9E"/>
+<rect x="120" y="86" width="52" height="6" fill="#2E5C9E"/>
+<rect x="120" y="98" width="62" height="6" fill="#2E5C9E"/>
+<line x1="300" y1="120" x2="486" y2="120" stroke="#5A636D" stroke-width="1.1"/>
+<line x1="300" y1="40" x2="300" y2="120" stroke="#5A636D" stroke-width="1.1"/>
+<rect x="318" y="92" width="22" height="28" fill="#6FB1F2"/>
+<rect x="352" y="78" width="22" height="42" fill="#4F9BEE"/>
+<rect x="386" y="62" width="22" height="58" fill="#2E5C9E"/>
+<rect x="420" y="50" width="22" height="70" fill="#1E3F70"/>
+<text x="300" y="34" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#5A6675">% POP · DIABETES</text>
+</svg></div>
+      <div class="body">
+        <h3>Diabetes Data in C</h3>
+        <p class="card-sum">C programs that filter Statistics Canada diabetes data.</p>
+        <div class="card-foot"><div class="card-cats"><span>Software</span></div><span class="card-go">Details <i>→</i></span></div>
+      </div>
+      <div class="cdetail">
+        <div class="pm-dwg">DWG <b>P-19</b> · Data Engineering</div>
+        <h3>Organizing Diabetes Population Data in C</h3>
+        <p class="pm-lede">C programs that organize Statistics Canada data on the percentage of the Canadian population with diabetes.</p>
+        <div class="pm-grid">
+          <div class="pm-main">
+            <h4>The problem</h4>
+            <p>The raw table is large and hard to query by hand. The goal was to make it filterable by province, year, sex, or any combination.</p>
+            <h4>What I did</h4>
+            <ul class="pm-list">
+              <li>Parsed the <b>Statistics Canada</b> dataset into structured records in C.</li>
+              <li>Built filters by <b>province, year, and sex</b>, individually or all at once.</li>
+              <li>Sorted and summarized the results for comparison across groups.</li>
+            </ul>
+            <h4>Result</h4>
+            <div class="res">Filterable diabetes statistics by province / year / sex</div>
+          </div>
+          <aside class="pm-spec">
+            <dl>
+              <div class="row"><dt>When</dt><dd>Apr 2023</dd></div>
+              <div class="row"><dt>Context</dt><dd>Toronto Metropolitan University</dd></div>
+            </dl>
+            <div class="pm-tools"><h4>Tools</h4><div class="chips"><span>C</span><span>Microsoft Excel</span><span>Data Processing</span></div></div>
+          </aside>
+        </div>
       </div>
     </article>
 
@@ -1456,21 +2549,37 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
     <div class="tag"><b>SHT 04</b> / SPECIFICATIONS</div>
   </div>
   <div class="spec rv">
-      <div class="col">
-        <h3>Mechanical</h3>
-        <div class="items"><span>SolidWorks</span><span>AutoCAD</span><span>Fusion 360</span><span>Onshape</span><span>Ansys FEA</span><span>GD&amp;T</span><span>Engineering Drawings</span><span>CNC Machining</span><span>CMM / Metrology</span><span>3D Printing</span></div>
-      </div>
-      <div class="col">
-        <h3>Robotics &amp; AI</h3>
-        <div class="items"><span>ROS2</span><span>Computer Vision</span><span>OpenCV</span><span>YOLOv8</span><span>RViz</span><span>SLAM</span><span>F1Tenth</span><span>Object Detection</span></div>
-      </div>
-      <div class="col">
-        <h3>Electrical &amp; Embedded</h3>
-        <div class="items"><span>ESP32</span><span>Arduino</span><span>FPGA</span><span>VHDL</span><span>Sensor Integration</span><span>Motor Control</span></div>
-      </div>
-      <div class="col">
-        <h3>Software</h3>
-        <div class="items"><span>Python</span><span>C/C++</span><span>MATLAB</span><span>Simulink</span><span>Java</span><span>VBA</span><span>Bash</span><span>SAP/ERP</span><span>Power BI</span></div>
+    <div class="col">
+      <h3>Mechanical</h3>
+      <div class="items"><span>SolidWorks</span><span>Fusion 360</span><span>Onshape</span><span>AutoCAD</span><span>Ansys FEA</span><span>GD&amp;T</span><span>Engineering Drawings</span><span>CMM / Metrology</span></div>
+    </div>
+    <div class="col">
+      <h3>Electrical &amp; Embedded</h3>
+      <div class="items"><span>ESP32</span><span>Arduino</span><span>CAN Bus (PCAN)</span><span>I2C / SPI</span><span>KiCad</span><span>FPGA / VHDL</span><span>Motor Control</span></div>
+    </div>
+    <div class="col">
+      <h3>Controls &amp; Analysis</h3>
+      <div class="items"><span>MATLAB</span><span>Simulink</span><span>Simulink Desktop Real-Time</span><span>Signal Processing</span><span>Statistical Analysis</span></div>
+    </div>
+    <div class="col">
+      <h3>Robotics &amp; Vision</h3>
+      <div class="items"><span>ROS2</span><span>RViz</span><span>SLAM</span><span>OpenCV</span><span>YOLOv8</span><span>ArduPilot SITL</span><span>MAVLink</span></div>
+    </div>
+    <div class="col">
+      <h3>Software</h3>
+      <div class="items"><span>Python</span><span>C/C++</span><span>Java</span><span>TypeScript / React</span><span>SQL</span><span>VBA</span><span>Bash</span><span>Git</span><span>Docker</span></div>
+    </div>
+    <div class="col">
+      <h3>Fabrication &amp; Lab</h3>
+      <div class="items"><span>3D Printing (FDM)</span><span>CNC Machining</span><span>SU-8 Photolithography</span><span>PDMS Soft Lithography</span><span>Cleanroom Protocols</span></div>
+    </div>
+    <div class="col">
+      <h3>Manufacturing &amp; Business</h3>
+      <div class="items"><span>Excel / Power Query</span><span>Power BI</span><span>SAP / ERP</span><span>PLM</span><span>RFQs &amp; BOMs</span><span>ECOs</span></div>
+    </div>
+    <div class="col">
+      <h3>Certifications</h3>
+      <div class="items"><span>Controlled Goods Program</span><span>WHMIS</span></div>
     </div>
   </div>
 </section>
@@ -1484,9 +2593,9 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
   <div class="lead">
     <div class="lcard rv" data-n="L-01">
       <h3>VP Competitions</h3>
-      <div class="org">Ontario Engineering Competition · 2026 —</div>
-      <p>Developed 9 technical competitions for Ontario's top engineering students; built scorecard automation with Google Apps Script and Python.</p>
-      <div class="metric">20 leads managed · 300+ competitors</div>
+      <div class="org">Ontario Engineering Competition 2027 · Jan 2026 —</div>
+      <p>Co-leading 9 provincial competitions, directly overseeing 6 of them. Led the 2026–27 rulebook and AI-use policy revision, re-scoped two design challenges after test day. Building the event's software: a <a href="#project/oec-judge-portal">judging portal</a>, a <a href="#project/oec-ai">competition AI platform</a>, a <a href="#project/oec-shop">materials shop</a>, and <a href="#project/oec-tracker">OEC Tracker</a>.</p>
+      <div class="metric">~20 leads · 300+ competitors expected · $5K build budget</div>
     </div>
     <div class="lcard rv" data-n="L-02">
       <h3>VP Competitions</h3>
@@ -1496,8 +2605,8 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
     </div>
     <div class="lcard rv" data-n="L-03">
       <h3>VP Events</h3>
-      <div class="org">Mechatronic Course Union · 2025 —</div>
-      <p>Led 6+ hands-on technical workshops — SolidWorks, Arduino, and more — for engineering students, managing a team of directors and first-year reps.</p>
+      <div class="org">Mechatronics Course Union · May 2025 —</div>
+      <p>Lead 4 directors and 6 first-year reps running 6+ hands-on technical workshops (SolidWorks, Arduino), and built the union's <a href="#project/mcu-events-dashboard">events dashboard</a> with a cross-union calendar.</p>
       <div class="metric">10-person team · 6+ events</div>
     </div>
   </div>
@@ -1515,11 +2624,11 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
       </text>
       <text x="80" y="85" text-anchor="middle" font-family="'Saira Condensed',sans-serif" font-weight="700" font-size="21" fill="currentColor" letter-spacing="1">APPROVED</text>
       <line x1="40" y1="95" x2="120" y2="95" stroke="currentColor" stroke-width="1.2"/>
-      <text x="80" y="110" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="currentColor" letter-spacing="1">REV 2026.06</text>
+      <text x="80" y="110" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="currentColor" letter-spacing="1">REV 2026.09</text>
       <text x="80" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="currentColor" letter-spacing="1">S. SAJADI</text>
     </svg>
     <h2>Let's build<br><span class="o">something real.</span></h2>
-    <p>Open to robotics, mechatronics, and R&amp;D opportunities — internships, research, and collaborations.</p>
+    <p>Graduating April 2027. Open to robotics, mechatronics, and R&amp;D roles, graduate research, and collaborations.</p>
     <div class="hero-cta">
       <a class="btn blue" href="mailto:subhan.sajadi@torontomu.ca">subhan.sajadi@torontomu.ca</a>
       <a class="btn" href="https://www.linkedin.com/in/subhansajadi/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 310 310" fill="currentColor" aria-hidden="true" style="vertical-align:-.1em;margin-right:5px"><path d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73C77.16,101.969,74.922,99.73,72.16,99.73z"/><path d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"/><path d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995C310,145.43,300.549,94.761,230.454,94.761z"/></svg>LinkedIn ↗</a>
@@ -1531,9 +2640,26 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
     <div class="cell"><span class="k">Drawn by</span><span class="v">SUBHAN SAJADI</span></div>
     <div class="cell"><span class="k">Title</span><span class="v">PORTFOLIO — SHEET SS-001</span></div>
     <div class="cell"><span class="k">Location</span><span class="v">TORONTO, ON</span></div>
-    <div class="cell"><span class="k">Status</span><span class="v blue">REV 2026.06 · APPROVED</span></div>
+    <div class="cell"><span class="k">Status</span><span class="v blue">REV 2026.09 · APPROVED</span></div>
   </div>
 </footer>
+
+<!-- ============ PROJECT DETAIL SHEET ============ -->
+<div class="pmodal-wrap" id="proj-modal" aria-hidden="true">
+  <div class="pmodal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="pm-top">
+      <span class="pm-dwgtag"></span>
+      <span class="pm-keys">Esc to close · ← → to browse</span>
+      <span class="pm-count"></span>
+      <button type="button" class="pm-x" aria-label="Close project details">✕</button>
+    </div>
+    <div class="pm-scroll"><div class="pmodal-body"></div></div>
+    <nav class="pm-nav" aria-label="Browse projects">
+      <button type="button" class="pm-prev"><small>← Previous</small><span></span></button>
+      <button type="button" class="pm-next"><small>Next →</small><span></span></button>
+    </nav>
+  </div>
+</div>
 
 <script>
 window.scrollTo(0, 0);
@@ -1544,7 +2670,9 @@ window.scrollTo(0, 0);
 
   function start(){ window.scrollTo(0, 0); document.body.classList.add('loaded'); }
 
-  if (reduce || isMobile || !desk) { start(); if(desk) desk.remove(); }
+  // a shared project link skips the desktop intro and opens straight to the drawing
+  const deepLink = /^#project\//.test(location.hash);
+  if (reduce || isMobile || !desk || deepLink) { start(); if(desk) desk.remove(); }
   else {
     requestAnimationFrame(()=>requestAnimationFrame(()=>desk.classList.add('ready')));
 
@@ -1796,7 +2924,7 @@ window.scrollTo(0, 0);
       const r = f.dataset.role;
       if (r==='portfolio') launch();
       else if (r==='password') showPw();
-      else if (r==='wallpaper') window.open('images/wallpaper.png', '_blank');
+      else if (r==='wallpaper') window.open('images/wallpaper.jpg', '_blank');
       else showError(f); // covers 'error' and 'dmg-error'
     };
 
@@ -1828,6 +2956,145 @@ window.scrollTo(0, 0);
   },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
   if (reduce) document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+
+  // ===== Projects: category filter + detail sheet =====
+  (function(){
+    const cards = [...document.querySelectorAll('#projects .card')];
+    if (!cards.length) return;
+    const fbtns = [...document.querySelectorAll('.pf-btn')];
+    const catsOf = (c)=>(c.dataset.cat||'').split(' ').filter(Boolean);
+
+    // append result counts to each filter button
+    fbtns.forEach(b=>{
+      const f = b.dataset.filter;
+      const n = f==='all' ? cards.length : cards.filter(c=>catsOf(c).includes(f)).length;
+      const s = document.createElement('span'); s.className='pf-n'; s.textContent=n; b.appendChild(s);
+    });
+
+    fbtns.forEach(b=>b.addEventListener('click',()=>{
+      const f = b.dataset.filter;
+      fbtns.forEach(x=>{ const on = x===b; x.classList.toggle('on',on); x.setAttribute('aria-pressed',on); });
+      cards.forEach(c=>{
+        const show = f==='all' || catsOf(c).includes(f);
+        c.classList.toggle('hide',!show);
+        if (show) c.classList.add('in');   // ensure revealed even if filtered before scroll
+      });
+    }));
+
+    // detail sheet — each card carries its own .cdetail; the sheet clones it in
+    const wrap     = document.getElementById('proj-modal');
+    const sheet    = wrap.querySelector('.pmodal');
+    const body     = wrap.querySelector('.pmodal-body');
+    const scroller = wrap.querySelector('.pm-scroll');
+    const tagEl    = wrap.querySelector('.pm-dwgtag');
+    const countEl  = wrap.querySelector('.pm-count');
+    const closeBtn = wrap.querySelector('.pm-x');
+    const navEl    = wrap.querySelector('.pm-nav');
+    const prevBtn  = wrap.querySelector('.pm-prev');
+    const nextBtn  = wrap.querySelector('.pm-next');
+    const slugOf   = (c)=>c.dataset.slug;
+    const titleOf  = (c)=>c.querySelector('.body h3').textContent;
+    const bySlug   = (s)=>cards.find(c=>slugOf(c)===s);
+    const hashSlug = ()=>{ const m = location.hash.match(/^#project\/([\w-]+)$/); return m ? m[1] : null; };
+    const pad2     = (n)=>String(n).padStart(2,'0');
+    let current = null, lastFocus = null, ownsEntry = false;
+
+    // browse within the active filter, unless the open card is outside it (e.g. arrived by link)
+    const browseList = ()=>{
+      const v = cards.filter(c=>!c.classList.contains('hide'));
+      return current && !v.includes(current) ? cards : v;
+    };
+
+    const render = (card)=>{
+      current = card;
+      const media = card.querySelector('.media').cloneNode(true);
+      const ex = media.querySelector('.card-expand'); if (ex) ex.remove();
+      const detail = card.querySelector('.cdetail').cloneNode(true);
+      const dwg = detail.querySelector('.pm-dwg');
+      tagEl.innerHTML = dwg ? dwg.innerHTML : '';
+      if (dwg) dwg.remove();
+      const pad = document.createElement('div');
+      pad.className = 'pm-pad';
+      pad.append(...detail.childNodes);
+      body.replaceChildren(media, pad);
+      const h = pad.querySelector('h3');
+      sheet.setAttribute('aria-label', h ? h.textContent : 'Project details');
+
+      const list = browseList(), i = list.indexOf(card);
+      countEl.textContent = pad2(i+1) + ' / ' + pad2(list.length);
+      navEl.hidden = list.length < 2;
+      const prev = list[(i-1+list.length)%list.length], next = list[(i+1)%list.length];
+      prevBtn.querySelector('span').textContent = titleOf(prev); prevBtn.dataset.slug = slugOf(prev);
+      nextBtn.querySelector('span').textContent = titleOf(next); nextBtn.dataset.slug = slugOf(next);
+      scroller.scrollTop = 0;
+    };
+    const show = (card)=>{
+      if (!current) lastFocus = document.activeElement;
+      render(card);
+      wrap.classList.add('show'); wrap.setAttribute('aria-hidden','false');
+      document.documentElement.classList.add('modal-open');
+      closeBtn.focus({preventScroll:true});
+    };
+    const hide = ()=>{
+      if (!current) return;
+      current = null; ownsEntry = false;
+      wrap.classList.remove('show'); wrap.setAttribute('aria-hidden','true');
+      document.documentElement.classList.remove('modal-open');
+      if (lastFocus && document.contains(lastFocus)) lastFocus.focus({preventScroll:true});
+    };
+
+    // every open project gets a shareable #project/<slug> URL; Back closes the sheet
+    const open = (card)=>{
+      if (!card) return;
+      const url = '#project/' + slugOf(card);
+      if (current) history.replaceState(null, '', url);
+      else { history.pushState(null, '', url); ownsEntry = true; }
+      show(card);
+    };
+    const close = ()=>{
+      if (!current) return;
+      if (ownsEntry) history.back();   // popstate → sync() → hide()
+      else { history.replaceState(null, '', location.pathname + location.search); hide(); }
+    };
+    const sync = ()=>{
+      const card = bySlug(hashSlug());
+      if (!card) { hide(); return; }
+      if (card === current) return;
+      const wasOpen = !!current;
+      show(card);
+      if (!wasOpen) ownsEntry = true;  // reached via a link or Forward: Back returns to the page
+    };
+    window.addEventListener('popstate', sync);
+    window.addEventListener('hashchange', sync);
+
+    cards.forEach(c=>{
+      c.addEventListener('click', ()=>open(c));
+      c.addEventListener('keydown', (e)=>{
+        if (e.key==='Enter' || e.key===' '){ e.preventDefault(); open(c); }
+      });
+    });
+    closeBtn.addEventListener('click', close);
+    wrap.addEventListener('click', (e)=>{ if (e.target===wrap) close(); });
+    [prevBtn, nextBtn].forEach(b=>b.addEventListener('click', ()=>open(bySlug(b.dataset.slug))));
+
+    document.addEventListener('keydown', (e)=>{
+      if (!current) return;
+      if (e.key==='Escape'){ e.preventDefault(); close(); }
+      else if (e.key==='ArrowRight' && !navEl.hidden){ open(bySlug(nextBtn.dataset.slug)); }
+      else if (e.key==='ArrowLeft' && !navEl.hidden){ open(bySlug(prevBtn.dataset.slug)); }
+      else if (e.key==='Tab'){            // keep focus inside the sheet
+        const f = [...sheet.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])')].filter(el=>el.offsetParent!==null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length-1];
+        if (e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // arrived with #project/<slug> in the URL
+    const initial = bySlug(hashSlug());
+    if (initial) show(initial);
+  })();
 })();
 </script>
 </body>
