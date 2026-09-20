@@ -11,3 +11,6 @@
 
 # Uncompressed image originals (kept locally, not deployed)
 _originals/
+
+# Claude design-component export (working files, not deployed)
+Personal website design upgrade/
