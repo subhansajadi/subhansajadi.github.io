@@ -8,3 +8,6 @@
 .idea/
 *.swp
 *.swo
+
+# Uncompressed image originals (kept locally, not deployed)
+_originals/

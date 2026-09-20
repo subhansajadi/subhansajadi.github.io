@@ -715,7 +715,7 @@ section{max-width:var(--max);margin:0 auto;padding:48px 40px}
   padding:11px 14px;background:var(--draft-soft);border-left:3px solid var(--draft);
   font-family:var(--mono);font-size:12.5px;color:var(--ink);letter-spacing:.01em;
 }
-.pm-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.pm-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;align-items:start}
 .pm-figs figure{border:1px solid var(--grid-2);background:#fff;margin:0}
 .pm-figs a{display:block}
 .pm-figs img{display:block;width:100%;height:auto}
@@ -1323,8 +1323,8 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
         <div class="org">SymBioRobotX Lab (Wearable Exosuits) · Toronto Metropolitan University</div>
         <ul>
           <li>Built a MATLAB/Simulink Desktop Real-Time controller for a CubeMars AK70-9 exosuit actuator over CAN (PCAN-USB, 1 Mbps), with a position/velocity/current mode selector, a safe-disable path, and live commanded-vs-measured plotting.</li>
-          <li>Moved the controller to real-time kernel mode, eliminating a ~4 s feedback lag, then measured ~80% amplitude tracking at 1 Hz and CAN timing jitter to characterize bandwidth for gait-phase assistance.</li>
-          <li>Debugged the CAN stack by hand-decoding frames, tracing silent driver clamping to a 10,000× command-scaling error and a misassigned current-loop ID, bringing current control online.</li>
+          <li>Moved the controller to real-time kernel mode, eliminating a ~4 s feedback lag, then tuned the driver's position loop (Kp 0.0040 → 0.0170) to raise closed-loop bandwidth from 1.07 Hz to 5.23 Hz, verified with a 5 Hz sine test and a step response showing no measurable overshoot.</li>
+          <li>Debugged the CAN stack by hand-decoding frames, tracing silent driver clamping to a 10,000× command-scaling error and a misassigned current-loop ID, bringing current and torque control online.</li>
           <li>Designed a 12-position CAN/48 V power tether with bus termination and a mandatory isolation test; replacing 10–14-week-lead connectors with stock parts cut the BOM to ~US$233.</li>
         </ul>
         <a class="xp-link" href="#project/exosuit-actuator">Open project drawing →</a>
@@ -1454,17 +1454,26 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             <p>The lab moved exosuit control off embedded firmware and onto MATLAB/Simulink on a lab PC so control strategies could be iterated quickly. That meant bringing up a quasi-direct-drive motor over raw CAN, with timing good enough to eventually drive gait-phase assistance, and no safety net: the driver simply holds its last command if the bus drops.</p>
             <h4>What I did</h4>
             <ul class="pm-list">
-              <li><b>Simulink Desktop Real-Time controller</b> with a four-position mode selector (position / velocity / current / disable), decoded feedback frames, and live commanded-vs-measured plotting over PCAN-USB at 1 Mbps.</li>
+              <li><b>Simulink Desktop Real-Time controller</b> with a four-position mode selector (position / velocity / torque / disable), decoded feedback frames, and a scope that follows the active mode, running over PCAN-USB at 1 Mbps.</li>
               <li><b>Moved it to real-time kernel mode</b>, which eliminated a ~4 s feedback lag seen in normal mode.</li>
               <li><b>Debugged silent CAN faults</b> by hand-decoding frames in PCAN-View: a copy-pasted ×10,000 gain on the velocity channel was being clamped by the driver with no error code, and current commands were going to the current-brake ID instead of the current loop (the ID fault was found in a debugging session with my supervisor).</li>
-              <li><b>Characterized bandwidth</b>: ~80% amplitude tracking at 1 Hz and worst-case CAN timestamp jitter of ~40 ms (preliminary numbers, to be re-run in kernel mode).</li>
+              <li><b>Tuned the position loop</b> in four runs, changing one driver gain (Kp 0.0040 → 0.0170). Closed-loop bandwidth rose <b>4.9×, from 1.07 Hz to 5.23 Hz</b>, and a 5 Hz sine returned 72% of commanded amplitude against the 70.7% (−3 dB) acceptance line. Bandwidth scaled linearly with Kp across all four points, so the next target is one parameter write away.</li>
+              <li><b>Checked the tuning against a step response</b>: 61 ms rise time (67 ms predicted), no overshoot above the 0.1° feedback resolution, and a steady-state error of 0.001°, so derivative and integral gains stayed untouched.</li>
+              <li><b>Confirmed the current-command scaling on the bench</b> (mA on the V3.0 frame), which cleared up an apparent 10× disagreement between two torque-constant references.</li>
               <li><b>Designed the 12-position CAN / 48 V tether</b> (Amphenol AT-series, Rev D) with a pin map, linear-bus termination, and a mandatory pre-connection continuity and isolation test. Swapping 10–14-week-lead M23 connectors for stock parts cut the BOM to ~US$233.</li>
               <li><b>Wrote an 8-block bench test plan</b> (identity → passive → open-loop → position → MIT → torque → thermal → fault/stop) and designed a 3D-printed motor testbed with a 100–250 mm lever arm, sized around torque reaction rather than motor weight.</li>
             </ul>
             <h4>Result</h4>
-            <div class="res">Current control running since Sep 2026 · ~4 s lag → real-time feedback</div>
+            <div class="res">Position bandwidth 1.07 → 5.23 Hz · ~4 s lag → real-time feedback · torque control running</div>
             <h4>Next</h4>
-            <p>Torque control with a saturated torque command, a scope that follows the active mode, and a PID to cut position-tracking phase lag.</p>
+            <p>Raising the control loop from 100 Hz to 200 Hz, measuring real output torque with the lever-arm testbed and a known mass (the datasheet torque constant has not yet been checked against the output shaft), and adding an external controller with feedforward to cut the remaining ~30 ms of position-tracking lag.</p>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/symbiorobotx/bench-setup.webp" target="_blank" rel="noopener"><img src="images/projects/symbiorobotx/bench-setup.webp" alt="Bench testbed: AK70-9 on a lever mount, PSU and PCAN-USB link" loading="lazy" width="1050" height="1400"></a><figcaption>Bench testbed: AK70-9 on a lever mount, PSU and PCAN-USB link</figcaption></figure>
+              <figure><a href="images/projects/symbiorobotx/simulink-controller.webp" target="_blank" rel="noopener"><img src="images/projects/symbiorobotx/simulink-controller.webp" alt="Simulink controller: mode selector, TX subsystems, decoded feedback" loading="lazy" width="1400" height="697"></a><figcaption>Simulink controller: mode selector, TX subsystems, decoded feedback</figcaption></figure>
+              <figure><a href="images/projects/symbiorobotx/position-tuning-scope.webp" target="_blank" rel="noopener"><img src="images/projects/symbiorobotx/position-tuning-scope.webp" alt="Commanded vs. measured position after tuning (Simulink scope)" loading="lazy" width="1400" height="751"></a><figcaption>Commanded vs. measured position after tuning (Simulink scope)</figcaption></figure>
+              <figure><a href="images/projects/symbiorobotx/ankle-exo.webp" target="_blank" rel="noopener"><img src="images/projects/symbiorobotx/ankle-exo.webp" alt="Ankle exoskeleton unit (render), part of the wider exosuit build" loading="lazy" width="1280" height="1024"></a><figcaption>Ankle exoskeleton unit (render), part of the wider exosuit build</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -1634,6 +1643,14 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             <div class="res">Reproducible two-layer process and SOP v3.0, handed off Aug 2026</div>
             <h4>Open at handoff</h4>
             <p>The Layer 1 thickness question was still unresolved when the contract ended; the two discriminating experiments were left as the next student's first steps rather than completed.</p>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/mother-machine/mask-layout.webp" target="_blank" rel="noopener"><img src="images/projects/mother-machine/mask-layout.webp" alt="Photomask layout: growth channels and inlet/outlet ports in four orientations" loading="lazy" width="1059" height="1046"></a><figcaption>Photomask layout: growth channels and inlet/outlet ports in four orientations</figcaption></figure>
+              <figure><a href="images/projects/mother-machine/ml3-alignment.webp" target="_blank" rel="noopener"><img src="images/projects/mother-machine/ml3-alignment.webp" alt="MicroWriter ML3 wafer alignment view" loading="lazy" width="1050" height="1400"></a><figcaption>MicroWriter ML3 wafer alignment view</figcaption></figure>
+              <figure><a href="images/projects/mother-machine/wafer-microscope.webp" target="_blank" rel="noopener"><img src="images/projects/mother-machine/wafer-microscope.webp" alt="Patterned die on a wafer under the stereo microscope" loading="lazy" width="1050" height="1400"></a><figcaption>Patterned die on a wafer under the stereo microscope</figcaption></figure>
+              <figure><a href="images/projects/mother-machine/wafer.webp" target="_blank" rel="noopener"><img src="images/projects/mother-machine/wafer.webp" alt="SU-8 coated 100 mm wafer" loading="lazy" width="787" height="1400"></a><figcaption>SU-8 coated 100 mm wafer</figcaption></figure>
+              <figure><a href="images/projects/mother-machine/profilometer.webp" target="_blank" rel="noopener"><img src="images/projects/mother-machine/profilometer.webp" alt="Optical profilometry of a channel step: height map and line profiles" loading="lazy" width="1400" height="569"></a><figcaption>Optical profilometry of a channel step: height map and line profiles</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -1767,6 +1784,12 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Full mechatronic stack: CAD → analysis → build → firmware</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/rocker-bogie/cad-assembly.jpg" target="_blank" rel="noopener"><img src="images/projects/rocker-bogie/cad-assembly.jpg" alt="SolidWorks assembly: rocker-bogie chassis with arm and claw" loading="lazy" width="1280" height="1011"></a><figcaption>SolidWorks assembly: rocker-bogie chassis with arm and claw</figcaption></figure>
+              <figure><a href="images/projects/rocker-bogie/wiring-build.jpg" target="_blank" rel="noopener"><img src="images/projects/rocker-bogie/wiring-build.jpg" alt="Wiring and assembly of the rover" loading="lazy" width="1280" height="853"></a><figcaption>Wiring and assembly of the rover</figcaption></figure>
+              <figure><a href="images/projects/rocker-bogie/rover-on-course.jpg" target="_blank" rel="noopener"><img src="images/projects/rocker-bogie/rover-on-course.jpg" alt="Rover on the competition course" loading="lazy" width="1280" height="853"></a><figcaption>Rover on the competition course</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2170,6 +2193,11 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">↓ up to 80% peak transmissibility at resonance</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/vibration-absorber/cad.jpg" target="_blank" rel="noopener"><img src="images/projects/vibration-absorber/cad.jpg" alt="CAD: spring-and-damper absorber on the shaft bearing housing" loading="lazy" width="717" height="800"></a><figcaption>CAD: spring-and-damper absorber on the shaft bearing housing</figcaption></figure>
+              <figure><a href="images/projects/vibration-absorber/transmissibility.jpg" target="_blank" rel="noopener"><img src="images/projects/vibration-absorber/transmissibility.jpg" alt="Transmissibility vs. frequency ratio at several damping ratios, with the operating speeds marked" loading="lazy" width="914" height="762"></a><figcaption>Transmissibility vs. frequency ratio at several damping ratios, with the operating speeds marked</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2230,6 +2258,12 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Working prototype, verified 500 g grip capacity</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/gripper/prototype.jpg" target="_blank" rel="noopener"><img src="images/projects/gripper/prototype.jpg" alt="3D-printed prototype" loading="lazy" width="600" height="800"></a><figcaption>3D-printed prototype</figcaption></figure>
+              <figure><a href="images/projects/gripper/drawing.jpg" target="_blank" rel="noopener"><img src="images/projects/gripper/drawing.jpg" alt="Assembly drawing (MEC411)" loading="lazy" width="1287" height="994"></a><figcaption>Assembly drawing (MEC411)</figcaption></figure>
+              <figure><a href="images/projects/gripper/tip-path.jpg" target="_blank" rel="noopener"><img src="images/projects/gripper/tip-path.jpg" alt="Gripper tip path as a function of the two driven joint angles" loading="lazy" width="1090" height="818"></a><figcaption>Gripper tip path as a function of the two driven joint angles</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2290,6 +2324,11 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">↑ up to 6% cycle efficiency · net-zero GHG configuration</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/power-plant/cycle-schematic.jpg" target="_blank" rel="noopener"><img src="images/projects/power-plant/cycle-schematic.jpg" alt="Cycle schematic: boiler, three turbine stages, open and closed feedwater heaters" loading="lazy" width="1230" height="679"></a><figcaption>Cycle schematic: boiler, three turbine stages, open and closed feedwater heaters</figcaption></figure>
+              <figure><a href="images/projects/power-plant/ts-diagram.jpg" target="_blank" rel="noopener"><img src="images/projects/power-plant/ts-diagram.jpg" alt="Cycle states plotted on the steam property chart" loading="lazy" width="1088" height="761"></a><figcaption>Cycle states plotted on the steam property chart</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2349,6 +2388,11 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Modular, durable, climate-adaptable patient transport</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/rescuemate/cad.jpg" target="_blank" rel="noopener"><img src="images/projects/rescuemate/cad.jpg" alt="CAD views of the RescueMate stretcher" loading="lazy" width="981" height="727"></a><figcaption>CAD views of the RescueMate stretcher</figcaption></figure>
+              <figure><a href="images/projects/rescuemate/drawing.jpg" target="_blank" rel="noopener"><img src="images/projects/rescuemate/drawing.jpg" alt="Engineering drawing (MEC325)" loading="lazy" width="1280" height="687"></a><figcaption>Engineering drawing (MEC325)</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2408,6 +2452,12 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Accessible, affordable kitchen for people with Parkinson's</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/kitchen-redesign/full-kitchen.jpg" target="_blank" rel="noopener"><img src="images/projects/kitchen-redesign/full-kitchen.jpg" alt="Full kitchen layout (Homestyler)" loading="lazy" width="1027" height="584"></a><figcaption>Full kitchen layout (Homestyler)</figcaption></figure>
+              <figure><a href="images/projects/kitchen-redesign/fridge.jpg" target="_blank" rel="noopener"><img src="images/projects/kitchen-redesign/fridge.jpg" alt="Refrigerator side and wall units" loading="lazy" width="1280" height="960"></a><figcaption>Refrigerator side and wall units</figcaption></figure>
+              <figure><a href="images/projects/kitchen-redesign/hood-fan.jpg" target="_blank" rel="noopener"><img src="images/projects/kitchen-redesign/hood-fan.jpg" alt="Hood fan and cooktop" loading="lazy" width="606" height="540"></a><figcaption>Hood fan and cooktop</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2467,6 +2517,10 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Household-scale renewable power from existing plumbing</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/greywater/concept-drawing.jpg" target="_blank" rel="noopener"><img src="images/projects/greywater/concept-drawing.jpg" alt="Concept drawing: drainage tank, turbine, Pelton-style bucket wheel and rectifier" loading="lazy" width="1280" height="797"></a><figcaption>Concept drawing: drainage tank, turbine, Pelton-style bucket wheel and rectifier</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
@@ -2527,6 +2581,10 @@ footer{max-width:var(--max);margin:0 auto;padding:48px 40px 54px;position:relati
             </ul>
             <h4>Result</h4>
             <div class="res">Filterable diabetes statistics by province / year / sex</div>
+            <h4>Figures</h4>
+            <div class="pm-figs">
+              <figure><a href="images/projects/c_diabetes/program-output.jpg" target="_blank" rel="noopener"><img src="images/projects/c_diabetes/program-output.jpg" alt="Program output: national and provincial averages by year" loading="lazy" width="1280" height="668"></a><figcaption>Program output: national and provincial averages by year</figcaption></figure>
+            </div>
           </div>
           <aside class="pm-spec">
             <dl>
