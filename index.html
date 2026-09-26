@@ -1390,7 +1390,8 @@ footer .inner{max-width:var(--max);margin:0 auto;padding:80px 40px 40px;position
               <li><b>Tuned the position loop</b> in four runs, changing one driver gain (Kp 0.0040 → 0.0170). Closed-loop bandwidth rose <b>4.9×, from 1.07 Hz to 5.23 Hz</b>, and a 5 Hz sine returned 72% of commanded amplitude against the 70.7% (−3 dB) acceptance line. Bandwidth scaled linearly with Kp across all four points, so the next target is one parameter write away.</li>
               <li><b>Checked the tuning against a step response</b>: 61 ms rise time (67 ms predicted), no overshoot above the 0.1° feedback resolution, and a steady-state error of 0.001°, so derivative and integral gains stayed untouched.</li>
               <li><b>Confirmed the current-command scaling on the bench</b> (mA on the V3.0 frame), which cleared up an apparent 10× disagreement between two torque-constant references.</li>
-              <li><b>Designed the 12-position CAN / 48 V tether</b> (Amphenol AT-series, Rev D) with a pin map, linear-bus termination, and a mandatory pre-connection continuity and isolation test. Swapping 10–14-week-lead M23 connectors for stock parts cut the BOM to ~US$233.</li>
+              <li><b>Helped redesign and assemble the exosuit's mechanical architecture</b> on the OpenExo platform, from the 3D-printed motor cartridges and strain-relief parts to the sprocket, roller-chain, and Bowden-cable transmission that carries motor torque to the joint.</li>
+              <li><b>Designed the 12-position CAN / 48 V tether</b> (Amphenol AT-series, Rev D) with a pin map, linear-bus termination, and a mandatory pre-connection continuity and isolation test, built from in-stock parts instead of 10–14-week-lead M23 connectors.</li>
               <li><b>Wrote an 8-block bench test plan</b> (identity → passive → open-loop → position → MIT → torque → thermal → fault/stop) and designed a 3D-printed motor testbed with a 100–250 mm lever arm, sized around torque reaction rather than motor weight.</li>
             </ul>
             <h4>Result</h4>
@@ -2564,7 +2565,7 @@ footer .inner{max-width:var(--max);margin:0 auto;padding:80px 40px 40px;position
           <li>Built a MATLAB/Simulink Desktop Real-Time controller for a CubeMars AK70-9 exosuit actuator over CAN (PCAN-USB, 1 Mbps), with a position/velocity/current mode selector, a safe-disable path, and live commanded-vs-measured plotting.</li>
           <li>Moved the controller to real-time kernel mode, eliminating a ~4 s feedback lag, then tuned the driver's position loop (Kp 0.0040 → 0.0170) to raise closed-loop bandwidth from 1.07 Hz to 5.23 Hz, verified with a 5 Hz sine test and a step response showing no measurable overshoot.</li>
           <li>Debugged the CAN stack by hand-decoding frames, tracing silent driver clamping to a 10,000× command-scaling error and a misassigned current-loop ID, bringing current and torque control online.</li>
-          <li>Designed a 12-position CAN/48 V power tether with bus termination and a mandatory isolation test; replacing 10–14-week-lead connectors with stock parts cut the BOM to ~US$233.</li>
+          <li>Helped redesign and assemble the OpenExo-based exosuit's mechanical architecture, from 3D-printed motor cartridges to the sprocket, roller-chain, and Bowden-cable transmission, and designed a 3D-printed lever-arm testbed for torque calibration.</li>
         </ul>
         <a class="xp-link" href="#project/exosuit-actuator">Case study 01 →</a>
       </div>
